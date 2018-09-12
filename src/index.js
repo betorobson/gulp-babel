@@ -19,17 +19,17 @@ const objx = {
 objx.loop();
 
 const obj = {
-	fn: function()  {
-		console.log(typeof this);
+	fn: function(txt)  {
+		console.log(txt, typeof this);
 		return new Promise((res, rej) => {
 			rej;
-			console.log(typeof this);
+			console.log(txt, typeof this);
 			setTimeout(res, 1000);
 		});
 	}
 };
 
-obj.fn();
+obj.fn('Promisse timeout');
 
 
 // 1 + 2 + 3 + 4

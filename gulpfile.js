@@ -2,6 +2,7 @@
 const
 	gulp = require('gulp'),
 	babel = require('gulp-babel'),
+	concat = require('gulp-concat'),
 	eslint = require('gulp-eslint');
 
 gulp.task(
@@ -19,13 +20,22 @@ gulp.task(
 	'default',
 	['eslint'],
 	() =>
-		gulp.src('src/**/*.js')
+		gulp.src([
+			'node_modules/@babel/polyfill/dist/polyfill.min.js',
+			'src/**/*.js'
+		])
+			.pipe(concat('app.min.js'))
 			.pipe(babel({
-				presets: ['es2015'],
-				plugins: [
-					'transform-runtime'
-					// 'transform-es2015-arrow-functions'
+				presets: [
+					'@babel/preset-env',
+					{
+						// useBuiltIns: 'entry'
+					}
 				]
+				// presets: ['es2015'],
+				// plugins: [
+				// 	'@babel/transform-runtime'
+				// ]
 			}))
 			.pipe(gulp.dest('dist'))
 );
