@@ -1,14 +1,6 @@
 "use strict";
 
-var _promise = require("babel-runtime/core-js/promise");
-
-var _promise2 = _interopRequireDefault(_promise);
-
-var _typeof2 = require("babel-runtime/helpers/typeof");
-
-var _typeof3 = _interopRequireDefault(_typeof2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var x = 1;
 var array1 = [1, 2, 3, 4];
@@ -23,8 +15,10 @@ for (var _x = 1; _x < 10; _x++) {
 var objx = {
 	nums: [1, 3, 4],
 	loop: function loop() {
-		undefined.nums.map(function (num, index) {
-			console.log(undefined.nums[index]);
+		var _this = this;
+
+		this.nums.map(function (num, index) {
+			console.log(_this.nums[index]);
 		});
 	}
 };
@@ -33,12 +27,12 @@ objx.loop();
 
 var obj = {
 	fn: function fn() {
-		var _this = this;
+		var _this2 = this;
 
-		console.log((0, _typeof3.default)(this));
-		return new _promise2.default(function (res, rej) {
+		console.log(_typeof(this));
+		return new Promise(function (res, rej) {
 			rej;
-			console.log((0, _typeof3.default)(_this));
+			console.log(_typeof(_this2));
 			setTimeout(res, 1000);
 		});
 	}

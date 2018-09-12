@@ -9,7 +9,7 @@ for(let x=1; x<10; x++){
 
 const objx = {
 	nums: [1,3,4],
-	loop: () => {
+	loop() {
 		this.nums.map((num, index) => {
 			console.log(this.nums[index]);
 		});
