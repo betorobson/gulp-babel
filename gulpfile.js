@@ -23,7 +23,7 @@ gulp.task(
 			.pipe(babel({
 				presets: ['es2015'],
 				plugins: [
-					// 'transform-runtime'
+					'transform-runtime'
 					// 'transform-es2015-arrow-functions'
 				]
 			}))
