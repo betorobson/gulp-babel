@@ -43,3 +43,9 @@ console.log(array1.reduce(reducer, 5));
 console.log(array1.includes(2));
 
 console.log(x);
+
+let objy = { a: 1, b: 2, c: 3 };
+console.log(Object.entries(objy));
+console.log(Object.values(objy));
+
+Object.keys(objy).map(key => console.log(objy[key]));

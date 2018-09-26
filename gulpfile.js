@@ -26,16 +26,13 @@ gulp.task(
 		])
 			.pipe(concat('app.min.js'))
 			.pipe(babel({
+				// plugins: ['@babel/transform-runtime'],
 				presets: [
 					'@babel/preset-env',
-					{
-						// useBuiltIns: 'entry'
-					}
+					// {
+					// 	useBuiltIns: 'entry'
+					// }
 				]
-				// presets: ['es2015'],
-				// plugins: [
-				// 	'@babel/transform-runtime'
-				// ]
 			}))
 			.pipe(gulp.dest('dist'))
 );
