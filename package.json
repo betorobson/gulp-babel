@@ -39,12 +39,10 @@
     "gulp-eslint": "^5.0.0",
     "gulp-sequence": "^1.0.0",
     "gulp-sourcemaps": "^2.6.4",
-    "gulp-tap": "^1.0.1",
     "gulp-uglify": "^3.0.1",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
     "vinyl-transform": "^1.0.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

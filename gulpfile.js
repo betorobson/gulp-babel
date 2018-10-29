@@ -5,7 +5,6 @@ const
 	concat = require('gulp-concat'),
 	del = require('del'),
 	browserify = require('browserify'),
-	// vinylTransform = require('vinyl-transform'),
 	source = require('vinyl-source-stream'),
 	buffer = require('vinyl-buffer'),
 	sourcemaps = require('gulp-sourcemaps'),
@@ -73,7 +72,7 @@ gulp.task(
 	'browserify',
 	() =>
 		browserify({
-			entries: ['./_tmp/dist/app.min.js'],
+			entries: ['./_tmp/app.min.js'],
 			debug: true
 		})
 			.transform('babelify', {
