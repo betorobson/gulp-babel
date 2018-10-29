@@ -3,7 +3,38 @@ const
 	gulp = require('gulp'),
 	babel = require('gulp-babel'),
 	concat = require('gulp-concat'),
-	eslint = require('gulp-eslint');
+	del = require('del'),
+	browserify = require('browserify'),
+	babelify = require('babelify'),
+	// vinylTransform = require('vinyl-transform'),
+	source = require('vinyl-source-stream'),
+	buffer = require('vinyl-buffer'),
+	tap = require('gulp-tap'),
+	sourcemaps = require('gulp-sourcemaps'),
+	uglify = require('gulp-uglify'),
+	eslint = require('gulp-eslint'),
+	runSequence = require('gulp-sequence');
+
+gulp.task(
+	'default',
+	callback => {
+
+		runSequence(
+			'clean',
+			'eslint',
+			'javascript',
+			'browserify'
+		)(callback);
+
+	}
+);
+
+gulp.task(
+	'clean',
+	() => del([
+		'dist/*',
+	])
+);
 
 gulp.task(
 	'eslint',
@@ -17,22 +48,46 @@ gulp.task(
 );
 
 gulp.task(
-	'default',
-	['eslint'],
+	'javascript',
 	() =>
 		gulp.src([
-			'node_modules/@babel/polyfill/dist/polyfill.min.js',
+			// 'node_modules/@babel/polyfill/dist/polyfill.min.js',
 			'src/**/*.js'
 		])
+			.pipe(sourcemaps.init())
 			.pipe(concat('app.min.js'))
 			.pipe(babel({
-				// plugins: ['@babel/transform-runtime'],
 				presets: [
-					'@babel/preset-env',
-					// {
-					// 	useBuiltIns: 'entry'
-					// }
+					[
+						'@babel/preset-env',
+						{
+							targets: 'last 5 major versions',
+							useBuiltIns: 'usage'
+						}
+					]
 				]
 			}))
-			.pipe(gulp.dest('dist'))
+			.pipe(sourcemaps.write('maps'))
+			.pipe(gulp.dest('./_tmp'))
+);
+
+gulp.task(
+	'browserify',
+	() =>
+		browserify({
+			entries: ['./_tmp/dist/app.min.js'],
+			debug: true
+		})
+			.transform('babelify', {
+				presets: [
+					'@babel/preset-env'
+				]
+			})
+			.bundle()
+			.pipe(source('app.min.js'))
+			.pipe(buffer())
+			.pipe(sourcemaps.init({loadMaps: true}))
+			.pipe(uglify({mangle: false}))
+			.pipe(sourcemaps.write('./maps'))
+			.pipe(gulp.dest('./dist'))
 );

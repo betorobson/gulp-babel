@@ -48,4 +48,4 @@ let objy = { a: 1, b: 2, c: 3 };
 console.log(Object.entries(objy));
 console.log(Object.values(objy));
 
-Object.keys(objy).map(key => console.log(objy[key]));
+Object.keys(objy).map(key => console.log('keys: ', objy[key]));
