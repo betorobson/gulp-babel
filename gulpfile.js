@@ -1,6 +1,7 @@
 
 const
 	gulp = require('gulp'),
+	{ task, series, parallel } = require('gulp'),
 	babel = require('gulp-babel'),
 	concat = require('gulp-concat'),
 	del = require('del'),
@@ -10,27 +11,19 @@ const
 	sourcemaps = require('gulp-sourcemaps'),
 	// uglify = require('gulp-uglify'),
 	eslint = require('gulp-eslint'),
-	runSequence = require('gulp-sequence');
+	runSequence = require('gulp-sequence'),
+	cached = require('gulp-cached'),
+	remember = require('gulp-remember');
 
-gulp.task(
-	'default',
-	callback => {
-
-		runSequence(
-			'clean',
-			'eslint',
-			'javascript',
-			'browserify'
-		)(callback);
-
-	}
-);
-
-gulp.task(
+task(
 	'clean',
-	() => del([
-		'dist/*',
-	])
+	(cb) => {
+		del([
+			'dist/*',
+		]);
+
+		cb();
+	}
 );
 
 gulp.task(
@@ -50,7 +43,11 @@ gulp.task(
 		gulp.src([
 			// 'node_modules/@babel/polyfill/dist/polyfill.min.js',
 			'src/**/*.js'
-		])
+		]
+		// {since: gulp.lastRun('scripts')}
+		)
+			.pipe(cached('scripts'))
+			.pipe(remember('scripts'))
 			.pipe(sourcemaps.init())
 			.pipe(concat('app.min.js'))
 			.pipe(babel({
@@ -59,8 +56,7 @@ gulp.task(
 						'@babel/preset-env',
 						{
 							targets: 'last 5 major versions',
-							useBuiltIns: 'usage',
-							compact: true
+							useBuiltIns: 'usage'
 						}
 					]
 				]
@@ -91,4 +87,70 @@ gulp.task(
 			// .pipe(uglify({mangle: false}))
 			.pipe(sourcemaps.write('./maps'))
 			.pipe(gulp.dest('./dist'))
+);
+
+task(
+	'default',
+	series(
+		'clean',
+		'eslint',
+		'javascript',
+		'browserify'
+	),
+	(cb) => {
+
+		cb();
+
+		// runSequence(
+		// 	'clean',
+		// 	'eslint',
+		// 	'javascript',
+		// 	'browserify'
+		// )(callback);
+
+	}
+);
+
+gulp.task(
+	'watcher',
+	function () {
+
+		var watcher = gulp.watch(
+			'src/**/*.js',
+			// { events: 'all' },
+			gulp.series('javascript', 'browserify')
+		);
+
+		watcher.on('change', function (event) {
+
+			console.log('[watch2] ' + event + ' -> ' + event.path);
+
+			if (event.type === 'deleted') {                   // if a file is deleted, forget about it
+				delete cached.caches.scripts[event.path];       // gulp-cached remove api
+				remember.forget('scripts', event.path);         // gulp-remember remove api
+			}
+
+		});
+
+	}
+);
+
+task(
+	'watch',
+	series(
+		'default',
+		'watcher'
+	),
+	(cb) => {
+
+		cb();
+
+		// runSequence(
+		// 	'clean',
+		// 	'eslint',
+		// 	'javascript',
+		// 	'browserify'
+		// )(callback);
+
+	}
 );
