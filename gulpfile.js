@@ -50,17 +50,17 @@ gulp.task(
 			.pipe(remember('scripts'))
 			.pipe(sourcemaps.init())
 			.pipe(concat('app.min.js'))
-			.pipe(babel({
-				presets: [
-					[
-						'@babel/preset-env',
-						{
-							targets: 'last 5 major versions',
-							useBuiltIns: 'usage'
-						}
-					]
-				]
-			}))
+			// .pipe(babel({
+			// 	presets: [
+			// 		[
+			// 			'@babel/preset-env',
+			// 			{
+			// 				targets: 'last 5 major versions',
+			// 				useBuiltIns: 'usage'
+			// 			}
+			// 		]
+			// 	]
+			// }))
 			.pipe(sourcemaps.write('maps'))
 			.pipe(gulp.dest('./_tmp'))
 );
@@ -93,9 +93,9 @@ task(
 	'default',
 	series(
 		'clean',
-		'eslint',
-		'javascript',
-		'browserify'
+		// 'eslint',
+		'javascript'
+		// 'browserify'
 	)
 );
 
@@ -106,17 +106,20 @@ gulp.task(
 		var watcher = gulp.watch(
 			'src/**/*.js',
 			// { events: 'all' },
-			gulp.series('javascript', 'browserify')
+			gulp.series(
+				'javascript'
+				// 'browserify'
+			)
 		);
 
-		watcher.on('change', function (event) {
+		watcher.on('change', function (path) {
 
-			console.log('[watch2] ' + event + ' -> ' + event.path);
+			console.log('[watch2] -> ' + path);
 
-			if (event.type === 'deleted') {                   // if a file is deleted, forget about it
-				delete cached.caches.scripts[event.path];       // gulp-cached remove api
-				remember.forget('scripts', event.path);         // gulp-remember remove api
-			}
+			// if (event.type === 'deleted') {                   // if a file is deleted, forget about it
+			// 	delete cached.caches.scripts[event.path];       // gulp-cached remove api
+			// 	remember.forget('scripts', event.path);         // gulp-remember remove api
+			// }
 
 		});
 
