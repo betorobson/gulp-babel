@@ -11,7 +11,7 @@ const
 	sourcemaps = require('gulp-sourcemaps'),
 	// uglify = require('gulp-uglify'),
 	eslint = require('gulp-eslint'),
-	runSequence = require('gulp-sequence'),
+	// runSequence = require('gulp-sequence'),
 	cached = require('gulp-cached'),
 	remember = require('gulp-remember');
 
@@ -96,19 +96,7 @@ task(
 		'eslint',
 		'javascript',
 		'browserify'
-	),
-	(cb) => {
-
-		cb();
-
-		// runSequence(
-		// 	'clean',
-		// 	'eslint',
-		// 	'javascript',
-		// 	'browserify'
-		// )(callback);
-
-	}
+	)
 );
 
 gulp.task(
