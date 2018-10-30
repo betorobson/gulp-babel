@@ -24,5 +24,5 @@ const objxyz = {
 	}
 };
 
-objxyz.fn('Promisse timeout file1 za');
+objxyz.fn('Promisse timeout file1 zaa');
 

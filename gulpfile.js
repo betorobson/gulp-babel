@@ -1,7 +1,7 @@
 
 const
 	gulp = require('gulp'),
-	{ task, series, parallel } = require('gulp'),
+	{ task, series } = require('gulp'),
 	babel = require('gulp-babel'),
 	concat = require('gulp-concat'),
 	del = require('del'),
@@ -13,9 +13,16 @@ const
 	eslint = require('gulp-eslint'),
 	// runSequence = require('gulp-sequence'),
 	cached = require('gulp-cached'),
+	gulpDebug = require('gulp-debug'),
+	transform = require('vinyl-transform'),
 	remember = require('gulp-remember');
 
-task(
+var browserified = transform(function(filename) {
+	var b = browserify(filename);
+	return b.bundle();
+});
+
+gulp.task(
 	'clean',
 	(cb) => {
 		del([
@@ -31,9 +38,11 @@ gulp.task(
 	() =>
 
 		gulp.src(['src/**/*.js'])
+			.pipe(cached('eslint'))
 			.pipe(eslint())
 			.pipe(eslint.format())
 			.pipe(eslint.failAfterError())
+			.pipe(remember('eslint'))
 
 );
 
@@ -46,10 +55,9 @@ gulp.task(
 		]
 		// {since: gulp.lastRun('scripts')}
 		)
-			.pipe(cached('scripts'))
-			.pipe(remember('scripts'))
 			.pipe(sourcemaps.init())
-			.pipe(concat('app.min.js'))
+			.pipe(cached('scripts'))
+			.pipe(gulpDebug({title: 'javascriptSrcBuild'}))
 			// .pipe(babel({
 			// 	presets: [
 			// 		[
@@ -61,8 +69,11 @@ gulp.task(
 			// 		]
 			// 	]
 			// }))
+			.pipe(remember('scripts'))
+			.pipe(concat('app.min.js'))
+			// .pipe(browserified)
 			.pipe(sourcemaps.write('maps'))
-			.pipe(gulp.dest('./_tmp'))
+			.pipe(gulp.dest('./dist'))
 );
 
 gulp.task(
@@ -73,10 +84,11 @@ gulp.task(
 			debug: true
 		})
 			.transform('babelify', {
+				compact: true,
 				presets: [
 					'@babel/preset-env',
 					{
-						compact: true
+						useBuiltIns: 'usage'
 					}
 				]
 			})
@@ -93,7 +105,7 @@ task(
 	'default',
 	series(
 		'clean',
-		// 'eslint',
+		'eslint',
 		'javascript'
 		// 'browserify'
 	)
