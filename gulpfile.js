@@ -6,6 +6,7 @@ const
 	concat = require('gulp-concat'),
 	del = require('del'),
 	browserify = require('browserify'),
+	bro = require('gulp-bro'),
 	source = require('vinyl-source-stream'),
 	buffer = require('vinyl-buffer'),
 	sourcemaps = require('gulp-sourcemaps'),
@@ -51,54 +52,69 @@ gulp.task(
 	() =>
 		gulp.src([
 			// 'node_modules/@babel/polyfill/dist/polyfill.min.js',
-			'src/**/*.js'
+			'src/**/*.js',
+			// '_tmp/src/**/*.js'
 		]
 		// {since: gulp.lastRun('scripts')}
 		)
 			.pipe(sourcemaps.init())
 			.pipe(cached('scripts'))
 			.pipe(gulpDebug({title: 'javascriptSrcBuild'}))
-			// .pipe(babel({
-			// 	presets: [
-			// 		[
-			// 			'@babel/preset-env',
-			// 			{
-			// 				targets: 'last 5 major versions',
-			// 				useBuiltIns: 'usage'
-			// 			}
-			// 		]
-			// 	]
-			// }))
+			.pipe(babel({
+				presets: [
+					[
+						'@babel/preset-env',
+						{
+							targets: [
+								'last 5 chrome version',
+								'last 5 safari version'
+							],
+							useBuiltIns: 'usage'
+						}
+					]
+				]
+			}))
 			.pipe(remember('scripts'))
 			.pipe(concat('app.min.js'))
 			// .pipe(browserified)
 			.pipe(sourcemaps.write('maps'))
 			.pipe(gulp.dest('./dist'))
+			// .pipe(bro())
 );
 
 gulp.task(
 	'browserify',
 	() =>
+
 		browserify({
-			entries: ['./_tmp/app.min.js'],
+			entries: './dist/app.min.js',
 			debug: true
 		})
-			.transform('babelify', {
-				compact: true,
-				presets: [
-					'@babel/preset-env',
-					{
-						useBuiltIns: 'usage'
-					}
-				]
-			})
 			.bundle()
-			.pipe(source('app.min.js'))
+			.pipe(source('app.min.bundle.js'))
 			.pipe(buffer())
-			.pipe(sourcemaps.init({loadMaps: true}))
-			// .pipe(uglify({mangle: false}))
-			.pipe(sourcemaps.write('./maps'))
 			.pipe(gulp.dest('./dist'))
+
+	// browserify({
+	// 	entries: ['./_tmp/app.min.js'],
+	// 	debug: true
+	// })
+	// 	.transform('babelify', {
+	// 		compact: true,
+	// 		presets: [
+	// 			'@babel/preset-env',
+	// 			{
+	// 				useBuiltIns: 'usage'
+	// 			}
+	// 		]
+	// 	})
+	// 	.bundle()
+	// 	.pipe(source('app.min.js'))
+	// 	.pipe(buffer())
+	// 	.pipe(sourcemaps.init({loadMaps: true}))
+	// 	// .pipe(uglify({mangle: false}))
+	// 	.pipe(sourcemaps.write('./maps'))
+	// 	.pipe(gulp.dest('./dist'))
 );
 
 task(
@@ -117,7 +133,6 @@ gulp.task(
 
 		var watcher = gulp.watch(
 			'src/**/*.js',
-			// { events: 'all' },
 			gulp.series(
 				'javascript'
 				// 'browserify'
