@@ -8,7 +8,7 @@ const
 	source = require('vinyl-source-stream'),
 	buffer = require('vinyl-buffer'),
 	sourcemaps = require('gulp-sourcemaps'),
-	uglify = require('gulp-uglify'),
+	// uglify = require('gulp-uglify'),
 	eslint = require('gulp-eslint'),
 	runSequence = require('gulp-sequence');
 
@@ -59,7 +59,8 @@ gulp.task(
 						'@babel/preset-env',
 						{
 							targets: 'last 5 major versions',
-							useBuiltIns: 'usage'
+							useBuiltIns: 'usage',
+							compact: true
 						}
 					]
 				]
@@ -77,14 +78,17 @@ gulp.task(
 		})
 			.transform('babelify', {
 				presets: [
-					'@babel/preset-env'
+					'@babel/preset-env',
+					{
+						compact: true
+					}
 				]
 			})
 			.bundle()
 			.pipe(source('app.min.js'))
 			.pipe(buffer())
 			.pipe(sourcemaps.init({loadMaps: true}))
-			.pipe(uglify({mangle: false}))
+			// .pipe(uglify({mangle: false}))
 			.pipe(sourcemaps.write('./maps'))
 			.pipe(gulp.dest('./dist'))
 );
