@@ -1,7 +1,7 @@
 
-const modulex = require('../tmp-modules/misc');
+// const modulex = require('../tmp-modules/misc');
 
-console.log(modulex);
+// console.log(modulex);
 
 let o = {
 	a:1

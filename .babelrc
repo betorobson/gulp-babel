@@ -1,0 +1,14 @@
+{
+	"presets": [
+		[
+			"@babel/preset-env",
+			{
+				"targets": [
+					"last 5 chrome version",
+					"last 5 safari version"
+				],
+				"useBuiltIns": "usage"
+			}
+		]
+	]
+}

@@ -3,6 +3,7 @@ const
 	gulp = require('gulp'),
 	{ task, series } = require('gulp'),
 	babel = require('gulp-babel'),
+	babelify = require('babelify'),
 	concat = require('gulp-concat'),
 	del = require('del'),
 	browserify = require('browserify'),
@@ -53,27 +54,14 @@ gulp.task(
 		gulp.src([
 			// 'node_modules/@babel/polyfill/dist/polyfill.min.js',
 			'src/**/*.js',
-			// '_tmp/src/**/*.js'
+			'_tmp/src/**/*.js'
 		]
 		// {since: gulp.lastRun('scripts')}
 		)
 			.pipe(sourcemaps.init())
 			.pipe(cached('scripts'))
 			.pipe(gulpDebug({title: 'javascriptSrcBuild'}))
-			.pipe(babel({
-				presets: [
-					[
-						'@babel/preset-env',
-						{
-							targets: [
-								'last 5 chrome version',
-								'last 5 safari version'
-							],
-							useBuiltIns: 'usage'
-						}
-					]
-				]
-			}))
+			// .pipe(babel())
 			.pipe(remember('scripts'))
 			.pipe(concat('app.min.js'))
 			// .pipe(browserified)
@@ -90,31 +78,11 @@ gulp.task(
 			entries: './dist/app.min.js',
 			debug: true
 		})
+			.transform(babelify)
 			.bundle()
 			.pipe(source('app.min.bundle.js'))
 			.pipe(buffer())
 			.pipe(gulp.dest('./dist'))
-
-	// browserify({
-	// 	entries: ['./_tmp/app.min.js'],
-	// 	debug: true
-	// })
-	// 	.transform('babelify', {
-	// 		compact: true,
-	// 		presets: [
-	// 			'@babel/preset-env',
-	// 			{
-	// 				useBuiltIns: 'usage'
-	// 			}
-	// 		]
-	// 	})
-	// 	.bundle()
-	// 	.pipe(source('app.min.js'))
-	// 	.pipe(buffer())
-	// 	.pipe(sourcemaps.init({loadMaps: true}))
-	// 	// .pipe(uglify({mangle: false}))
-	// 	.pipe(sourcemaps.write('./maps'))
-	// 	.pipe(gulp.dest('./dist'))
 );
 
 task(
@@ -122,8 +90,8 @@ task(
 	series(
 		'clean',
 		'eslint',
-		'javascript'
-		// 'browserify'
+		'javascript',
+		'browserify'
 	)
 );
 
@@ -132,10 +100,13 @@ gulp.task(
 	function () {
 
 		var watcher = gulp.watch(
-			'src/**/*.js',
+			[
+				'src/**/*.js',
+				'_tmp/src/**/*.js',
+			],
 			gulp.series(
-				'javascript'
-				// 'browserify'
+				'javascript',
+				'browserify'
 			)
 		);
 
