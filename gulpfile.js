@@ -54,7 +54,8 @@ gulp.task(
 		gulp.src([
 			// 'node_modules/@babel/polyfill/dist/polyfill.min.js',
 			'src/**/*.js',
-			'_tmp/src/**/*.js'
+			'!src/app.js',
+			// '_tmp/src/**/*.js'
 		]
 		// {since: gulp.lastRun('scripts')}
 		)

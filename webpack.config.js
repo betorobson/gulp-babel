@@ -21,22 +21,20 @@ const webpack = require('webpack');
 module.exports = {
 	entry: {
 		main: [
+			// './src/app.js',
 			'./dist/app.min.js'
 		]
 	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'app.min.bundle.js',
-		sourceMapFilename: 'app.min.js.map',
+		// sourceMap: true,
+		// sourceMapFilename: 'app.min.js.map',
 	},
+	// devtool: 'source-map',
 	optimization: {
 		minimize: false,
 		minimizer: [
-			// new UglifyJsPlugin({
-			// 	uglifyOptions: {
-			// 		mangle: false
-			// 	}
-			// })
 			new TerserPlugin({
 				terserOptions: {
 					sourceMap: true,
@@ -48,25 +46,27 @@ module.exports = {
 			})
 		]
 	},
-	// plugins: [
-	// 	new webpack.SourceMapDevToolPlugin({})
-	// ],
+	plugins: [
+		new webpack.SourceMapDevToolPlugin({
+			filename: 'app.min.bundle.js.map'
+		})
+	],
 	module: {
 		rules: [
 
-			// {
-			// 	test: /\.js$/,
-			// 	exclude: /node_modules/,
-			// 	use: {
-			// 		loader: 'babel-loader'
-			// 	}
-			// },
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader'
+				}
+			},
 
-			// {
-			// 	test: /\.js$/,
-			// 	use: ['source-map-loader'],
-			// 	enforce: 'pre'
-			// }
+			{
+				test: /\.js$/,
+				use: ['source-map-loader'],
+				enforce: 'pre'
+			}
 
 		]
 	}
