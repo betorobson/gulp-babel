@@ -1,8 +1,11 @@
 {
+	"sourceMaps": true,
+	"compact": false,
 	"presets": [
 		[
 			"@babel/preset-env",
 			{
+				"debug": true,
 				"targets": [
 					"last 5 chrome version",
 					"last 5 safari version"
