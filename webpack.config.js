@@ -1,7 +1,7 @@
 // import '@babel/polyfill';
 
 const path = require('path');
-const glob = require('glob');
+const glob = require('glob-all');
 
 // plugins
 // const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -19,26 +19,15 @@ const webpack = require('webpack');
 // };
 
 module.exports = {
-	entry: {
-		main: [].concat(
-			glob.sync('./_tmp/src/app.js'),
-			glob.sync('./_tmp/src/config/*.js'),
-			'./_tmp/src/**/!(*.config).js', // select modules declarations first
-			glob.sync('./_tmp/src/**/*.config.js'), // select modules config
-			glob.sync('./_tmp/src/**/*.run.js'), // select modules run
-			glob.sync('./_tmp/src/legacy.js')
-		)
-	},
-	// entry: glob.sync('./src/**/*.js'),
-	// entry: glob.sync('./_tmp/src/**/*.js'),
-	// entry: glob.sync([
-	// 	'./_tmp/src/app.js',
-	// 	'./_tmp/src/config/*.js',
-	// 	'./_tmp/src/**/!(*.config).js', // select modules declarations first
-	// 	'./_tmp/src/**/*.config.js', // select modules config
-	// 	'./_tmp/src/**/*.run.js', // select modules run
-	// 	'./_tmp/src/legacy.js'
-	// ]),
+	entry: glob.sync([
+		'!./_tmp/src/**/*.config.js', // select modules declarations first
+		'./_tmp/src/app.js',
+		'./_tmp/src/config/*.js',
+		'./_tmp/src/**/*.js',
+		'./_tmp/src/**/*.config.js', // select modules config
+		'./_tmp/src/**/*.run.js', // select modules run
+		'./_tmp/src/legacy.js'
+	]),
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'app.min.bundle.js',

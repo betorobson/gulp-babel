@@ -47,6 +47,7 @@
     "gulp-sequence": "^1.0.0",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.1",
+    "import-glob": "^1.5.0",
     "source-map-loader": "^0.2.4",
     "terser-webpack-plugin": "^1.1.0",
     "uglifyjs-webpack-plugin": "^2.0.1",
@@ -57,5 +58,7 @@
     "webpack-cli": "^3.1.2",
     "webpack-glob-entry": "^2.1.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "glob-all": "^3.1.0"
+  }
 }

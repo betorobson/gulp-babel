@@ -1,3 +1,3 @@
 
-import './index.js';
-import './file1.js';
+import '../_tmp/src/app.js';
+import '../_tmp/src/config/*.js';
