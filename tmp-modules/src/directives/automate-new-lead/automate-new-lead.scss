@@ -1,0 +1,28 @@
+automate-new-lead {
+
+	display: block;
+	position: relative;
+
+	 @media #{$mediaDesktop} {
+		> div {
+			min-width: 350px;
+		}
+	}
+
+	.btn.btn-primary {
+
+		margin-top: 8px;
+		line-height: 1;
+
+		span {
+			font-size: 18px;
+			display: block;
+		}
+
+		span,
+		small {
+			white-space: white-space;
+		}
+
+	}
+}

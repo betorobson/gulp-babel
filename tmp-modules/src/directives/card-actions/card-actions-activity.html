@@ -1,0 +1,74 @@
+
+<div
+	class="tab-pane fade in position-relative modal-content-scrollable"
+	ng-class="{active: active}"
+>
+	<loading-spinner
+		class="fill size-mid"
+		ng-class="submitStatus"
+		ng-if="loading"
+	></loading-spinner>
+
+	<form
+		layout="column"
+		layout-wrap
+		name="form"
+		ng-submit="submit()"
+		novalidate
+		disabled="true"
+	>
+		<formly-form
+			form="form"
+			fields="fields"
+			model="model"
+			options="formOptions"
+		>
+		</formly-form>
+
+		<div
+			ng-if="edit"
+			layout="row"
+			layout-align="space-between center"
+		>
+
+			<button
+				flex-gt-xs="33"
+				type="reset"
+				class="btn btn-secondary"
+				ng-disabled="loading"
+				ng-click="cancel()"
+			>
+				Cancelar
+			</button>
+
+			<button
+				flex-gt-xs="33"
+				type="submit"
+				class="btn btn-primary"
+				ng-disabled="loading"
+			>
+				Remarcar
+			</button>
+
+		</div>
+
+		<div
+			ng-if="!edit"
+			layout="row"
+			layout-align="end center"
+		>
+
+			<button
+				flex-gt-xs="33"
+				type="submit"
+				class="btn btn-primary"
+				ng-disabled="loading"
+			>
+				Adicionar atividade
+			</button>
+
+		</div>
+
+	</form>
+
+</div>

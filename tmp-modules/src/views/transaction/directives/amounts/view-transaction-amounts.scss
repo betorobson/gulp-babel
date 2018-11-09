@@ -1,0 +1,40 @@
+
+view-title {
+	view-transaction-amounts {
+		padding: 5px 0;
+		margin:0 20px;
+	}
+}
+
+view-transaction-amounts {
+
+	display: block;
+	cursor: pointer;
+	background-color: #fff;
+	padding: 10px 0;
+	margin-bottom: 20px;
+
+	.amounts > div {
+		padding: 0 20px;
+		&:first-child {
+			border-right: solid 1px #d6d6d6;
+		}
+	}
+
+}
+
+main-controller[device=desktop] {
+	view-transaction-amounts {
+		&:hover {
+			background-color: $color3;
+		}
+	}
+}
+
+main-controller[device=mobile]{
+	view-transaction-amounts {
+		&:active {
+			background-color: $color3;
+		}
+	}
+}

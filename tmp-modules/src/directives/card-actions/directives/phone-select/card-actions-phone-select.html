@@ -1,0 +1,14 @@
+
+<div
+    ng-repeat="item in item.phones"
+    layout-margin
+>
+
+    <button
+        ng-click="phoneSelect(item.prospectTelefoneFull)"
+        class="btn btn-primary btn-phone-select"
+    >
+        {{item.prospectTelefoneFull | mask: 'tel'}}
+    </button>
+</div>
+

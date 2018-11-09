@@ -1,0 +1,109 @@
+
+<ul class="navigation-bar-actions">
+
+	<!-- <li><a href="#">Ligação</a></li> -->
+	<!-- <li><a href="#">E-mail</a></li> -->
+	<!-- <li><a href="#">E-mail Marketing</a></li> -->
+
+	<li permissions="pro_acessar_cadastro_de_prospect_incluir">
+		<a
+			ng-class="btnClass"
+			ng-click="showModalAddClient()"
+		>
+			<icon-svg class="always-visible" name="add-user"></icon-svg>
+			Cliente
+		</a>
+	</li>
+
+	<li
+		ng-class="getNewLeadButtonClass()"
+		data-placement="top"
+		bs-tooltip
+		ng-attr-data-title="{{activeOfferMessage()}}"
+		data-type="warn"
+	>
+		<a
+			ng-class="btnClass"
+			ng-click="getNewLead()"
+			ng-disabled="isAutomateNewLeadDisabled()"
+		>
+			<icon-svg class="always-visible" name="leads-stroke"></icon-svg>
+			Oferta Ativa
+		</a>
+	</li>
+
+	<li>
+		<a
+			ng-class="btnClass"
+			ng-click="showCardActionsModal('activity')"
+		>
+			<icon-svg class="always-visible" name="appointment"></icon-svg>
+			Atividade
+		</a>
+	</li>
+
+	<li>
+		<a
+			ng-class="btnClass"
+			ng-click="showCardActionsModal('note')"
+		>
+			<icon-svg class="always-visible" name="note"></icon-svg>
+			Nota
+		</a>
+	</li>
+
+	<li>
+		<a
+			ng-class="btnClass"
+			ng-click="showCardActionsModal('call-activity')"
+		>
+			<icon-svg class="always-visible" name="phone"></icon-svg>
+			Ligação
+		</a>
+	</li>
+
+	<li>
+		<a
+			ng-class="btnClass"
+			ng-click="showCardActionsModal('email')"
+		>
+			<icon-svg class="always-visible" name="envelope"></icon-svg>
+			E-mail
+		</a>
+	</li>
+
+	<li>
+		<a
+			ng-class="btnClass"
+			ng-click="showCardActionsModal('whatsapp')"
+		>
+			<icon-svg class="always-visible" name="whatsapp"></icon-svg>
+			WhatsApp
+		</a>
+	</li>
+
+	<li ng-if="::urlModuleSells">
+		<a
+			ng-class="btnClass"
+			ng-click="showCardActionsModal('sells')"
+		>
+			<icon-svg class="always-visible" name="house-calculator"></icon-svg>
+			Proposta
+		</a>
+	</li>
+
+	<li ng-if="::urlModuleSells">
+		<a
+			ng-class="btnClass"
+			ng-click="showCardActionsModal('sells')"
+		>
+			<icon-svg class="always-visible" name="house-with-dollar-sign2"></icon-svg>
+			Venda
+		</a>
+	</li>
+
+	<!-- <li><a href="#">Negócio</a></li> -->
+	<!-- <li><a href="#">Simulação</a></li> -->
+	<!-- <li><a href="#">Compromisso</a></li> -->
+
+</ul>

@@ -1,0 +1,246 @@
+
+<table class="table" border="1" cellpadding="2">
+	<thead>
+		<tr>
+			<th width="25%">
+				Cliente<br />
+				<small>Produto</small>
+			</th>
+			<th width="16%">Fase</th>
+			<th class="col-channel">Canal</th>
+			<th class="col-midia" permissions='atd_midia_mostrar'>Mídia</th>
+			<th class="col-attend-date">Atendido</th>
+			<th class="col-tasks">
+				Pendencias e compromissos
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+
+<tr
+	title="Para abrir em uma nova janela clique segurando control"
+	ng-repeat="item in listObj.data.data"
+	ng-if="!item.removed"
+	ng-mousedown="clickItem(item, $event)"
+	ng-class="{slideOutEffect: item.slideOutEffect}"
+
+	permissions="atd_historico_atendimento"
+	permissions-disable-mode
+	permissions-remove-attrs="ng-mousedown,title"
+
+	permissions-attrs-when-false:bs-tooltip
+	permissions-attrs-when-false:data-container="list-type-table"
+	permissions-attrs-when-false:data-title="Você não tem permissão para visualizar os detalhes do atendimento"
+	permissions-attrs-when-false:data-trigger="click"
+	permissions-attrs-when-false:data-type="warn"
+
+	permissions-attrs-when-disabled:bs-tooltip
+	permissions-attrs-when-disabled:data-title="Desculpe, este recurso está temporariamente desativado"
+	permissions-attrs-when-disabled:data-trigger="click"
+	permissions-attrs-when-disabled:data-type="error"
+>
+
+	<td>
+
+		<div
+			class="
+				transaction-status-color
+				border-left
+				{{getStatusClassName(item)}}
+			"
+		></div>
+
+		<div
+			layout="row"
+			layout-align="start center"
+		>
+			<label class="label-check" preventClickItem>
+
+			<input
+				type="checkbox"
+				ng-click="listObj.selected.toggle(item)"
+				ng-checked="listObj.selected.has(item)"
+			/>
+			</label>
+
+			<radial-progress
+				preventClickItem
+				ng-if="item.extraInfo.atendimentoExpiracaoAutomaticaQtdMinutosConf"
+				total="item.extraInfo.atendimentoExpiracaoAutomaticaQtdMinutosConf"
+				value="item.extraInfo.atendimentoExpiracaoAutomaticaQtdMinutosConf - item.extraInfo.atendimentoExpiracaoAutomaticaQtdMinutosRestantesMax"
+				label="getDaysToExpires(item)"
+				tooltip="getExpiresTooltip(item)"
+				class-thresholds="expiresProgressThreshold"
+				class="size-small transaction-expires"
+			></radial-progress>
+
+			<div layout="column" flex>
+				<span>{{item.extraInfo.prospectNome}}</span>
+				<small>{{item.extraInfo.produtoNome}}</small>
+			</div>
+
+		</div>
+	</td>
+
+	<td>
+		<div ng-if="isOnQueue(item) || isFinished(item) || !listObj.stageSelectOptions.length">
+			{{item.extraInfo.pipelineStageNome}}
+		</div>
+		<div
+			ng-if="!isOnQueue(item) && !isFinished(item) && listObj.stageSelectOptions.length"
+			class="form-select"
+			ng-click="setChangeStageElement($event)"
+			preventClickItem
+			stage-form
+		>
+			<select
+				class="form-control"
+				ng-model="item.stageItem"
+				ng-change="changeStage(item)"
+				ng-options="
+					option as option.fields.pipelineStage.pipelineStageNome
+					group by option.fields.pipelineStage.pipelineStageGrupo
+					disable when isPipelineOptionDisable(option, item)
+					for option in listObj.stageSelectOptions
+				"
+			>
+			</select>
+		</div>
+	</td>
+
+	<td class="col-channel">
+		<span>{{item.extraInfo.canalNome}}</span>
+	</td>
+
+	<td class="col-midia" permissions='atd_midia_mostrar'	>
+		<span>{{item.extraInfo.midiaNome}}</span>
+	</td>
+
+	<td class="col-attend-date">
+		<button
+			ng-if="isOnQueue(item)"
+			class="btn btn-primary"
+		>
+			Atender
+		</button>
+		<div ng-if="!isOnQueue(item)">
+			{{item.fields.atendimento.atendimentoDtAtendido | date:'dd/MM/yy'}}
+		</div>
+	</td>
+
+	<td
+		class="col-tasks"
+	>
+		<div
+			ng-if="!isOnQueue(item) && !isFinished(item)"
+			class="box-interaction"
+		>
+			<p
+				ng-if="!item.extraInfo.alarmeUltimoDtAlarme"
+				class="box color2hue1"
+			>
+				Atendimento sem próximo passo
+			</p>
+			<p
+				ng-if="item.extraInfo.alarmeProximoInteracaoTipoValor"
+				class="box color2"
+				ng-class="{
+					'text-color2hue1': item.extraInfo.alarmeProximoInteracaoQtdMinutosRestantesMax < 0
+				}"
+			>
+				<span ng-if="item.extraInfo.alarmeProximoInteracaoQtdMinutosRestantesMax >= 0">
+					Próxima
+				</span>
+				<span ng-if="item.extraInfo.alarmeProximoInteracaoQtdMinutosRestantesMax < 0">
+					Atrasado
+				</span>
+				 {{item.extraInfo.alarmeProximoInteracaoTipoValor}}
+				em {{item.extraInfo.alarmeProximoDtAlarme | date:'dd/MM HH:mm'}}
+			</p>
+			<p
+				ng-if="item.extraInfo.atendimentoInteracaoUsuarioUltimaTipoValor"
+				class="box color1"
+			>
+				Última {{item.extraInfo.atendimentoInteracaoUsuarioUltimaTipoValor}}
+				em {{item.extraInfo.atendimentoInteracaoUsuarioUltimaData | date:'dd/MM HH:mm'}}
+			</p>
+		</div>
+
+		<div
+			class="card"
+			layout="row"
+			preventClickItem
+		>
+			<div
+				flex
+				layout-align="center"
+				class="card-actions-gradient"
+			>
+			</div>
+			<div
+				flex
+				layout="row"
+				layout-align="end center"
+				class="card-actions"
+			>
+
+				<a
+					ng-if="!isOnQueue(item) && !isFinished(item)"
+					ng-click="showCardActionsModal(item)"
+					bs-tooltip
+					data-title="Ações"
+				><icon-svg name="plus"></icon-svg></a>
+
+				<a
+					ng-click="transfer(item)"
+					ng-if="isFinished(item)"
+
+					permissions="atd_reabrir"
+
+					permissions-disable-mode
+					permissions-remove-attrs="ng-click"
+
+					permissions-attrs-when-false:bs-tooltip
+					data-title="Você não tem permissão para reabrir atendimentos"
+					permissions-attrs-when-false:data-type="warn"
+
+					permissions-attrs-when-disabled:bs-tooltip
+					permissions-attrs-when-disabled:data-title="Desculpe, este recurso está desabilitado"
+					permissions-attrs-when-disabled:data-type="error"
+				><icon-svg name="padlock"></icon-svg></a>
+
+				<a
+					ng-click="transfer(item)"
+					ng-if="!isFinished(item)"
+					permissions="atd_transf"
+					bs-tooltip
+					data-title="Transferir"
+				><icon-svg name="transfer"></icon-svg></a>
+
+				<a
+					ng-if='!isFinished(item)'
+					ng-click="finish('lost', item)"
+					permissions="atd_encerrar"
+					bs-tooltip
+					data-title="Perdido"
+				><icon-svg name="thumb-down"></icon-svg></a>
+
+
+				<a
+					ng-if='!isFinished(item)'
+					ng-click="finish('won', item)"
+					permissions="atd_encerrar"
+					bs-tooltip
+					data-title="Ganho"
+				><icon-svg name="thumb-up"></icon-svg></a>
+
+			</div>
+		</div>
+
+
+	</td>
+
+</tr>
+
+	</tbody>
+</table>

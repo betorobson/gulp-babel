@@ -1,0 +1,36 @@
+
+<section
+	ng-if="$root.mainController.device == 'desktop'"
+>
+	<div>
+		<div class="box-content">
+
+			<div class="help-block clearfix">
+				<div class="clearfix">
+
+					<div ng-transclude></div>
+
+					<list-pagination></list-pagination>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section
+	ng-if="$root.mainController.device == 'mobile'"
+>
+
+<list-pagination class="box-content"></list-pagination>
+
+	<div class="row-fluid">
+		<div class="help-block clearfix">
+
+			<div ng-transclude></div>
+
+			<list-pagination class="box-content"></list-pagination>
+
+		</div>
+	</div>
+</section>

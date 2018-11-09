@@ -1,0 +1,87 @@
+
+user-status-bullet {
+
+	display: block;
+
+	.user-status-bullet {
+
+		width: 22px;
+		height: 22px;
+		border-radius: 50%;
+		border: 3px solid #fff;
+		transition: .4s;
+		background-color: $color3hue1;
+		position: relative;
+
+		&.switchers {
+			cursor: pointer;
+		}
+
+		&.online {
+			background-color: $color2;
+		}
+
+		&.offline {
+			background-color: $color2hue1;
+		}
+
+		&.paused {
+			background-color: $color4;
+		}
+
+	}
+
+	&[margin] {
+
+		margin: 0 10px;
+
+	}
+
+	&[no-border] {
+
+		.user-status-bullet {
+
+			border: none;
+			width: 16px;
+			height: 16px;
+
+		}
+
+	}
+
+	.position-onqueue {
+		background-color: $color3;
+		color: $color1;
+	}
+
+	.listAllChannels {
+
+		&[layout=row]{
+			.labelAllChannels,
+			.channel {
+				padding-right: 20px;
+			}
+		}
+
+		&[layout=column]{
+			.labelAllChannels,
+			.channel {
+				padding: 10px 0;
+			}
+		}
+
+		.channel:hover {
+			.user-status-bullet {
+				border: 2px solid #fff;
+			}
+		}
+
+		p {
+			margin: 0 5px;
+			line-height: 16px;
+		}
+
+	}
+
+}
+

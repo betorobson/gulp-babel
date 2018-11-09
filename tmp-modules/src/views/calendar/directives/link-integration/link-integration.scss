@@ -1,0 +1,41 @@
+link-integration{
+	display: block;
+	padding: 15px;
+
+	textarea{
+		max-width: 100%;
+		min-height: 150px;
+		overflow: hidden;
+	}
+
+	.textarea-link{
+		margin-top: 15px;
+	}
+
+	.integration-itens{
+		margin-top: 15px;
+	}
+
+	.btn-bigicon-text{
+		span{
+			word-break: break-all;
+		}
+	}
+
+}
+
+@media #{$mediaDesktop} {
+	.modal link-integration{
+		width: 500px;
+	}
+}
+
+@media #{$mediaMobile} and (min-width: 600px){
+	.modal link-integration {
+		max-width: 400px;
+	}
+}
+
+.modal link-integration{
+	min-height: 80px;
+}

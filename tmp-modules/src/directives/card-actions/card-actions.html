@@ -1,0 +1,274 @@
+
+<div
+	id="bloco-acoes"
+	class="box-content acoes simulacao-proposta"
+>
+
+	<div
+		ng-if="!modalDelegate"
+		class="principal-title"
+	>
+		<h2>
+			<strong>Ações</strong>
+		</h2>
+	</div>
+
+	<card-actions-select-client
+		ng-if="!resource.id"
+		delegate="cardActionsSelectClientDelegate"
+		tab-button-activated="tabButtonActivated"
+	></card-actions-select-client>
+
+	<loading-spinner
+		ng-if="resource.id && loading"
+		class="size-mid"
+		ng-if="loading"
+	></loading-spinner>
+
+	<div
+		ng-if="resource.id && !loading"
+		ng-hide="isHiddenTabButtons()"
+		layout="row"
+		layout-wrap
+		layout-align="center"
+		class="acoes-filtro nav-tabs"
+	>
+
+		<card-actions-tab-button
+			ng-if="isTabButtonListed('activity')"
+			target-id="activity"
+			icon="appointment"
+			active="isActived('activity')"
+			permissions="card-actions.activity"
+			permissions-disable-mode
+			permissions-remove-attrs="target-id"
+
+			permissions-attrs-when-false:disabled
+			permissions-attrs-when-disabled:disabled
+		>
+			Atividade
+		</card-actions-tab-button>
+		<card-actions-tab-button
+			ng-if="isTabButtonListed('note')"
+			target-id="note"
+			icon="note"
+			active="isActived('note')"
+			permissions="card-actions.note"
+			permissions-disable-mode
+			permissions-remove-attrs="target-id"
+
+			permissions-attrs-when-false:disabled
+			permissions-attrs-when-disabled:disabled
+		>
+			Anotação
+		</card-actions-tab-button>
+		<card-actions-tab-button
+			target-id="tour"
+			icon="building"
+			active="tabButtonActivated == 'tour'"
+			permissions="card-actions.tour"
+			permissions-disable-mode
+			permissions-remove-attrs="target-id"
+
+			permissions-attrs-when-false:disabled
+			permissions-attrs-when-disabled:disabled
+		>
+			Visita
+		</card-actions-tab-button>
+		<card-actions-tab-button
+			ng-if="data.emails.length"
+			target-id="email"
+			icon="envelope"
+			disabled="{{!data.emails.length ? 'disabled' : '' }}"
+			active="isActived('email')"
+
+			permissions="atd_visualizar_prospect_email"
+			permissions-disable-mode
+			permissions-remove-attrs="href,target-id"
+
+			permissions-attrs-when-false:disabled
+			permissions-attrs-when-disabled:disabled
+		>
+			E-mail
+		</card-actions-tab-button>
+		<card-actions-tab-button
+			ng-if="getContactActionLinks().phone || data.phones.length"
+			target-id="call-activity"
+			disabled="{{!data.phones.length ? 'disabled' : '' }}"
+			icon="phone"
+			active="isActived('call-activity')"
+
+			permissions="atd_visualizar_prospect_telefone"
+			permissions-disable-mode
+			permissions-remove-attrs="target-id"
+
+			permissions-attrs-when-false:disabled
+			permissions-attrs-when-disabled:disabled
+		>
+			Ligação
+		</card-actions-tab-button>
+		<!-- <card-actions-tab-button
+			ng-if="$root.mainController.device == 'mobile' && (getContactActionLinks().phone || data.phones.length)"
+			target-id="call-activity"
+			icon="phone"
+			active="isActived('call-activity')"
+			disabled="{{!data.phones.length ? 'disabled' : '' }}"
+
+			permissions="atd_visualizar_prospect_telefone"
+			permissions-disable-mode
+			permissions-remove-attrs="href,target-id"
+
+			permissions-attrs-when-false:disabled
+			permissions-attrs-when-disabled:disabled
+		>
+			Ligações
+		</card-actions-tab-button> -->
+		<card-actions-tab-button
+			target-id="sms"
+			icon="mobile"
+
+			permissions="atd_enviar_sms"
+			permissions-disable-mode
+			permissions-remove-attrs="target-id"
+
+			permissions-attrs-when-false:disabled
+			permissions-attrs-when-disabled:disabled
+		>
+			SMS
+		</card-actions-tab-button>
+
+		<card-actions-tab-button
+			ng-if="data.phoneClient || data.phones.length"
+			icon="whatsapp"
+			target-id="whatsapp"
+			disabled="{{!data.phones.length ? 'disabled' : '' }}"
+			active="isActived('whatsapp')"
+
+			permissions="atd_visualizar_prospect_telefone"
+			permissions-disable-mode
+			permissions-remove-attrs="target-id"
+
+			permissions-attrs-when-false:disabled
+			permissions-attrs-when-disabled:disabled
+		>
+			WhatsApp
+		</card-actions-tab-button>
+
+		<card-actions-tab-button
+			ng-if="::urlModuleSells"
+			icon="house-with-dollar-sign2"
+			target-id="sells"
+			active="isActived('sells')"
+
+			permissions="module-sells"
+			permissions-disable-mode
+			permissions-remove-attrs="target-id"
+
+			permissions-attrs-when-false:disabled
+			permissions-attrs-when-disabled:disabled
+		>
+			Proposta e Venda
+		</card-actions-tab-button>
+
+	</div>
+
+	<div
+		ng-if="resource.id"
+		ng-show="tabSelected || tabButtonActivated ||  $root.mainController.device == 'desktop'"
+		class="tab-content"
+	>
+		<card-actions-tour
+			permissions="card-actions.tour"
+		></card-actions-tour>
+
+		<card-actions-email
+			ng-if="isTabButtonListed('email') && data.emails.length"
+			id="tab-acoes-email"
+			delegate="cardActionsItemDelegate"
+			active="isActived('email')"
+
+			permissions="atd_visualizar_prospect_email"
+		></card-actions-email>
+
+		<card-actions-call
+			ng-if="isTabButtonListed('call-activity') && data.phones.length"
+			id="tab-acoes-call-activity"
+			delegate="cardActionsItemDelegate"
+			active="isActived('call-activity')"
+
+			permissions="atd_visualizar_prospect_telefone"
+		></card-actions-call>
+
+		<card-actions-sms
+			permissions="atd_enviar_sms"
+		></card-actions-sms>
+
+		<card-actions-note
+			ng-if="isTabButtonListed('note')"
+			id="tab-acoes-note"
+			delegate="cardActionsItemDelegate"
+			active="isActived('note')"
+
+			permissions="card-actions.note"
+		>
+		</card-actions-note>
+
+		<card-actions-activity
+			ng-if="isTabButtonListed('activity')"
+			id="tab-acoes-activity"
+			delegate="cardActionsItemDelegate"
+			active="isActived('activity')"
+
+			permissions="card-actions.activity"
+		>
+		</card-actions-activity>
+
+		<card-actions-whatsapp
+			ng-if="isTabButtonListed('whatsapp') && data.phones.length"
+			id="tab-acoes-whatsapp"
+			delegate="cardActionsItemDelegate"
+			active="isActived('whatsapp')"
+
+			permissions="card-actions.activity"
+		>
+		</card-actions-whatsapp>
+
+		<card-actions-sells
+			ng-if="isTabButtonListed('sells')"
+			id="tab-acoes-sells"
+			delegate="cardActionsItemDelegate"
+			active="isActived('sells')"
+
+			permissions="module-sells"
+		></card-actions-sells>
+
+		<div
+			ng-if="
+				!data.phones.length
+				&&
+				(isActived('call-activity') || isActived('whatsapp'))
+			"
+			layout-fill
+			layout="column"
+			layout-align="center center"
+		>
+			<h4 flex>O cliente {{data.prospectNome}} não tem número de telefone cadastrado.</h4>
+			<button ng-click="goToClient()" class="btn btn-primary">Adicionar telefone</button>
+		</div>
+
+		<div
+			ng-if="
+				!data.emails.length
+				&&
+				(isActived('email'))
+			"
+			layout-fill
+			layout="column"
+			layout-align="center center"
+		>
+			<h4 flex>O cliente {{data.prospectNome}} não tem email cadastrado</h4>
+			<button ng-click="goToClient()" class="btn btn-primary">Adicionar email</button>
+		</div>
+
+	</div>
+</div>

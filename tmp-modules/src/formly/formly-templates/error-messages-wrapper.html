@@ -1,0 +1,17 @@
+
+<formly-transclude></formly-transclude>
+<div ng-hide="to.noErrorSpace" class="error-message-space clearfix">
+<div
+	ng-messages="fc.$error"
+	ng-if="form.$submitted || options.formControl.$touched || options.validation.show"
+	class="has-error"
+>
+	<div
+		ng-message="{{ ::name }}"
+		ng-repeat="(name, message) in ::options.validation.messages"
+		class="help-block"
+	>
+		{{ message(fc.$viewValue, fc.$modelValue, this)}}
+	</div>
+</div>
+</div>

@@ -1,0 +1,234 @@
+
+.open {
+	.dropdown-menu {
+		&.ddl-novo {
+			//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+			border-radius: 2px;
+			border-top: solid 5px $color1hue2;
+			//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+			box-shadow: none;
+			left: 20px;
+			margin-top: 10px;
+			&:before {
+				content: "";
+				display: inline-block;
+				vertical-align: middle;
+				margin-right: 10px;
+				width: 0;
+				height: 0;
+				position: absolute;
+				top: -10px;
+				left: 85px;
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+				border-bottom: 5px solid $color1hue2;
+			}
+			li a {
+
+				position: relative;
+				padding: 5px 20px 5px 40px;
+
+				&:not([disabled]):hover {
+
+					font-weight: 400;
+					color: #333;
+					background: $color3;
+
+					.icon-svg {
+						display: block;
+					}
+
+				}
+
+				.icon-svg {
+					color: $color1hue2;
+					position: absolute;
+					top: 7px;
+					left: 10px;
+					width: 16px;
+					height: 16px;
+				}
+
+				.icon-svg:not(.always-visible) {
+					display: none;
+				}
+
+			}
+		}
+		&.ddl-chat {
+			//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+			border-radius: 2px;
+			border-top: solid 5px $color2;
+			//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+			box-shadow: none;
+			left: -60px;
+			margin-top: 10px;
+			//Instead of the line below you could use @include box-sizing($bs)
+			box-sizing: border-box;
+			width: 190px;
+			&:before {
+				content: "";
+				display: inline-block;
+				vertical-align: middle;
+				margin-right: 10px;
+				width: 0;
+				height: 0;
+				position: absolute;
+				top: -10px;
+				left: 85px;
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+				border-bottom: 5px solid $color1hue2;
+			}
+		}
+	}
+
+	.ddl-alerta {
+		padding: 3px;
+		width: 320px;
+		margin-left: -260px;
+	}
+
+	.ddl-configuracao {
+		padding: 3px;
+		min-width: auto;
+		background: $color1;
+		border: 0;
+	}
+
+	.ddl-alerta .msg-info a {
+		display: block;
+		margin-top: 10px;
+		color: $color1hue2;
+		font-size: 12px;
+	}
+
+	.ddl-configuracao a {
+		color: #fff !important;
+		text-decoration: none;
+		&:hover {
+			color: #fff !important;
+			text-decoration: none;
+		}
+	}
+
+	.ddl-chat {
+		.chat-status {
+			padding: 10px;
+			&:before {
+				content: "";
+				float: left;
+				background: $color2;
+				//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+				border-radius: 10px;
+				width: 11px;
+				height: 11px;
+				margin-right: 10px;
+			}
+		}
+		.msg-info {
+			display: inline-block;
+			width: 80%;
+			a {
+				display: block;
+				margin-top: 10px;
+				color: $color1hue2;
+				font-size: 12px;
+			}
+		}
+		.ddl-content {
+			padding: 10px;
+		}
+		.title-lined {
+			display: block;
+			background: url('/assets/imgs/icons/pixel-cinza.png') repeat-x center;
+			text-align: center;
+			small {
+				background: #fff;
+				padding: 2px;
+			}
+		}
+		li {
+			&.chat-config {
+				padding: 10px;
+				text-align: right;
+			}
+			a:hover {
+				background: inherit !important;
+			}
+		}
+		.chat-message {
+			a {
+				padding: 5px 0;
+				background: #eae8e8 !important;
+				border-top: solid 1px #fff;
+				border-bottom: solid 1px #fff;
+				display: inline-block;
+				width: 100%;
+				&:hover {
+					background: #eae8e8 !important;
+					color: #333;
+				}
+				&:before {
+					content: "";
+					display: inline-block;
+					vertical-align: middle;
+					width: 15px;
+					height: 17px;
+					padding: 10px;
+					margin-left: 10px;
+					background: url('/assets/imgs/icons/icones-chat-user.png') no-repeat 0 0;
+				}
+			}
+			&.new-message a:after {
+				content: "";
+				float: right;
+				vertical-align: middle;
+				width: 16px;
+				height: 16px;
+				padding: 10px;
+				margin-right: 5px;
+				background: url('/assets/imgs/icons/icones-chat-message-receive.png') no-repeat 0 0;
+			}
+		}
+	}
+
+	@media #{$mediaDesktop}{
+		.dropdown-menu.ddl-negocios {
+			//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+			border-radius: 2px;
+			border-top: solid 5px $color1hue2;
+			//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+			box-shadow: none;
+			margin-top: 10px;
+			margin-bottom: 30px;
+			width: 400px;
+			left: auto;
+			right: 30px;
+			top: 30px;
+			bottom: auto;
+			&:before {
+				content: "";
+				display: inline-block;
+				vertical-align: middle;
+				margin-right: 10px;
+				width: 0;
+				height: 0;
+				position: absolute;
+				top: -10px;
+				left: 320px;
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+				border-bottom: 5px solid $color1hue2;
+			}
+			// li a {
+			// 	padding: 5px 20px 5px 40px;
+			// 	&:hover {
+			// 		font-weight: bold;
+			// 		background: #eae8e8 url('/assets/imgs/icons/seta-azul-right.png') no-repeat 17px;
+			// 	}
+			// }
+		}
+	}
+
+}

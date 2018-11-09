@@ -1,0 +1,20 @@
+<div
+	id="popover-chat-content"
+	layout="column"
+	layout-align="end stretch"
+>
+	<user-status-switchers
+		class="user-status-switchers-popover"
+		switchers
+	>
+	</user-status-switchers>
+	<a
+		ng-if="isEnabled() && getTotalChats()"
+		href="//online.crm.anapro.com.br/webcrmservice/Pages/chat/usuario/Default.aspx"
+		target="blank"
+		class="btn btn-primary"
+	>
+		Abrir chat
+		<icon-svg	name="share"></icon-svg>
+	</a>
+</div>

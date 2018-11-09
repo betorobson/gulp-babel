@@ -1,0 +1,26 @@
+
+.modal {
+
+	.modal-content-scrollable {
+		overflow: auto;
+		margin: 10px -10px;
+		padding-top: 10px;
+	}
+
+	.modal-footer-empty {
+		margin-bottom: -15px;
+	}
+
+	[ng-transclude="title"]:empty,
+	[ng-transclude="bodyCustom"]:empty,
+	[ng-transclude="body"]:empty,
+	[ng-transclude="footer"]:empty {
+		display: none;
+	}
+}
+
+%modal-min-height{
+	@media only screen and (max-height: 500px) and (min-width: 959px){
+		min-height: 70px!important;
+	}
+}

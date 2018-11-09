@@ -1,0 +1,306 @@
+
+<div
+	class="container no-padding"
+	layout-sm="row"
+>
+	<div
+		layout="row"
+		class="panel-body"
+	>
+
+		<div
+			flex-xs="100"
+			flex-sm="100"
+			flex-gt-sm="25"
+			layout="column"
+			class='perfil-transactions-summary-overall'
+		>
+			<div
+				layout="row"
+				layout-align="start center"
+				class="title-block"
+			>
+				<icon-svg name="chart-business" class="color2"></icon-svg>
+				<p><strong>Resumo</strong> de negócios</p>
+				<div class="only-mobile" flex></div>
+				<div class="only-mobile buttons">
+					<!-- <icon-svg
+						ng-click="refresh()"
+						name="refresh"
+					></icon-svg> -->
+				</div>
+			</div>
+
+			<div
+				ng-if="loading && mainController.device == 'mobile'"
+				class="loading-wrapper"
+				flex
+				layout="row"
+				layout-align="center center"
+			>
+				<loading-spinner
+					class="size-mid"
+				></loading-spinner>
+			</div>
+
+			<div
+				ng-if="
+					mainController.device == 'mobile' && !loading && empty
+				"
+				layout="row"
+			>
+				<h4 class="text-center">
+					Estamos com dificuldades para consultar o resumo de negócios. Por favor, tente novamente.
+				</h4>
+			</div>
+
+			<a
+				ng-if="!loading && !empty"
+				ng-href="{{linkViewTransactions}}"
+				layout="column"
+				flex-sm
+				class="msg-information"
+				ng-class="{loading: loading}"
+			>
+				<div ng-if="!loading" flex>
+					<p ng-if="get(data, properties.totalTransactions) >= 0">
+						<strong>Total:</strong>
+						<span class="value">
+							{{get(data, properties.totalTransactions)}} negócio(s)
+						</span>
+					</p>
+					<p ng-if="get(data, properties.totalValue) >= 0">
+						<strong>Montante:</strong>
+						<span class="value">
+							{{get(data, properties.totalValue) | currency:'R$ '}}
+						</span>
+					</p>
+				</div>
+				<div
+					flex
+					layout="column"
+					layout-align="start center"
+					ng-if="get(data, properties.totalCommission) && !loading && !empty"
+					class="only-mobile msg-block-white"
+				>
+					Comissão potencial
+					<p>
+						{{get(data, properties.totalCommission) | currency:'R$ '}}
+						<small>
+								atualizado em {{get(data, properties.updated) | date:"dd/MM HH:mm:ss"}}
+							</small>
+					</p>
+				</div>
+			</a>
+		</div>
+
+		<div
+			ng-if="loading"
+			class="loading-wrapper"
+			flex
+			layout="row"
+			layout-align="center center"
+		>
+			<loading-spinner
+				class="size-mid"
+			></loading-spinner>
+		</div>
+
+		<div
+			class="box-content"
+			layout="row"
+			ng-if="mainController.device == 'desktop' && !loading && empty"
+		>
+			<div
+				class="buttons"
+				flex="10"
+				layout="column"
+				layout-align="start center"
+			>
+				<!-- <icon-svg
+					ng-click="refresh()"
+					name="refresh"
+					data-toggle="tooltip"
+					data-placement="top"
+					title="Atualizar"
+				></icon-svg> -->
+			</div>
+			<h4 class="text-center" flex>
+				Estamos com dificuldades para consultar o resumo de negócios. Por favor, tente novamente.
+			</h4>
+		</div>
+
+		<div
+			ng-if="mainController.device == 'desktop' && !loading && !empty"
+			flex
+			class="tableWrapper"
+		>
+			<table class="table table-two">
+				<thead>
+					<tr>
+						<th
+							class="text-center"
+							width="{{100 / (data.resumoNegocios.length + 1)}}%"
+						>
+							<div
+								class="buttons"
+								layout-fill
+								layout="row"
+								layout-align="space-around center"
+							>
+								<!-- <icon-svg
+									ng-click="refresh()"
+									name="refresh"
+									data-toggle="tooltip"
+									data-placement="top"
+									title="Atualizar"
+								></icon-svg> -->
+							</div>
+						</th>
+						<th
+							ng-repeat="item in get(data, properties.stages.items)"
+							class="stage-column"
+							width="{{100 / (data.resumoNegocios.length + 1)}}%"
+						>
+
+							<a ng-href="{{getLinkFilter(item)}}">
+								<span
+								data-toggle="tooltip"
+								data-placement="left"
+								title="{{get(item, properties.stages.nestedStages)}}"
+								>
+									<span class="stage-name">
+										{{get(item, properties.stages.name)}}
+									</span>
+							</span>
+							</a>
+
+							<div
+								class="steps"
+								layout="row"
+								layout-wrap
+							>
+								<div
+									flex
+									class="
+										stage-substages-step
+										stage-step-color{{get(subStage, properties.stages.index) + 1}}
+									"
+									ng-repeat="subStage in get(item, properties.stages.subStages)"
+									ng-click="showSubStage(item,subStage)"
+									data-toggle="tooltip"
+									data-placement="top"
+									title="{{getFormattedName(get(subStage, properties.stages.name))}}"
+								></div>
+							</div>
+
+							<div
+								ng-if="item.activeSubStage"
+								class="actived-sub-stage"
+							>
+								<div
+									class="
+										actived-sub-stage-content
+										stage-substages-step
+										stage-step-color{{get(item.activeSubStage, properties.stages.index) + 1}}
+									"
+									ng-class="{
+										'white-text': get(item.activeSubStage, properties.stages.index) >= 11
+									}"
+									layout="column"
+								>
+									<div layout='row' layout-align='space-between start'>
+										<p class="substage-title" flex>
+											{{getFormattedName(get(item.activeSubStage, properties.stages.name))}}
+										</p>
+										<a
+											class="btn-hide-stage"
+											ng-click="hideSubStage(item)"
+											data-toggle="tooltip"
+											data-placement="left"
+											title="Clique para fechar"
+										>
+											<icon-svg class='hide-stage-icon' name='bullet-close'></icon-svg>
+										</a>
+									</div>
+									<div class="line transactions">
+										{{get(item.activeSubStage, properties.stages.transactions)}}
+										<small ng-if="get(item.activeSubStage, properties.stages.percentTransactions) > 0">
+											({{get(item.activeSubStage, properties.stages.percentTransactions) | number}} %)
+										</small>
+									</div>
+									<div class="line amount" layout='row' layout-align='space-between center'>
+										<p flex>{{get(item.activeSubStage, properties.stages.value) | currency:'R$ '}}</p>
+										<a
+											ng-href="{{getLinkFilter(item.activeSubStage)}}"
+											ng-click="hideSubStage(item)"
+											data-toggle="tooltip"
+											data-placement="left"
+											title="Filtrar usando esta fase"
+										>
+											<icon-svg name='funnel'></icon-svg>
+										</a>
+									</div>
+								</div>
+							</div>
+
+							<div
+								ng-if="!item.activeSubStage"
+								layout="row"
+								layout-wrap
+							></div>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td width="140">Nº de negócios</td>
+						<td ng-repeat="item in get(data, properties.stages.items)" class="stage-transactions">
+							<a ng-href="{{getLinkFilter(item)}}">
+								{{get(item, properties.stages.transactions)}}
+							</a>
+							<small ng-if="get(item, properties.stages.percentTransactions) > 0">
+								({{get(item, properties.stages.percentTransactions) | number}} %)
+							</small>
+						</td>
+					</tr>
+					<tr>
+						<td>Montante</td>
+						<td ng-repeat="item in get(data, properties.stages.items)">
+							<span ng-if="get(item, properties.stages.value) >= 0">
+								{{get(item, properties.stages.value) | currency:'R$ '}}
+							</span>
+							<small ng-if="get(item, properties.stages.valuePercent) > 0">
+								({{get(item, properties.stages.valuePercent) | number}} %)
+							</small>
+						</td>
+					</tr>
+					<tr>
+						<td>Comissão</td>
+						<td
+							colspan="{{get(data, properties.stages.items).length - 1}}"
+							class="td-bg text-center"
+						>
+							<div>
+								<span ng-if="get(data, properties.totalCommission) >= 0">
+									potencial {{get(data, properties.totalCommission) | currency:'R$ '}}
+									<small>
+										atualizado em {{get(data, properties.updated) | date:"dd/MM HH:mm:ss"}}
+									</small>
+								</span>
+							</div>
+						</td>
+						<td class="td-bg-dark">
+							<div>
+								<span>
+									{{get(data, properties.lastStageCommision) | currency:'R$ '}}
+								</span>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+</div>

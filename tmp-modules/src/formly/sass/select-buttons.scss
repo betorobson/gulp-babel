@@ -1,0 +1,29 @@
+
+.formly-field-anaproSelectButtons {
+
+	&[layout="row"] {
+
+		.control-label,
+		.select-buttons {
+			display: inline-block;
+		}
+
+	}
+
+	.select-buttons {
+		margin-left: -4px;
+	}
+
+	.btn.btn-action {
+
+		line-height: 1;
+		margin: 4px;
+
+		&.selected {
+			background-color: $color2;
+			color: $color3hue2;
+		}
+
+	}
+
+}

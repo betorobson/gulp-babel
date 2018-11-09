@@ -1,0 +1,33 @@
+// statuses colors
+$StatusColorAttended: $color2;
+$StatusColorQueue:  $color4;
+$StatusColorFinished: $color2hue1;
+$StatusColorAdded: $color1hue2;
+
+.transaction-status-color {
+
+	&.border-left {
+		width: 8px;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	&.attended {
+		background-color: $StatusColorAttended;
+	}
+
+	&.queue {
+		background-color: $StatusColorQueue;
+	}
+
+	&.finished {
+		background-color: $StatusColorFinished;
+	}
+
+	&.added {
+		background-color: $StatusColorAdded;
+	}
+
+}

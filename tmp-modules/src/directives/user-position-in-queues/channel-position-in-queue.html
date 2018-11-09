@@ -1,0 +1,29 @@
+
+<div
+	flex-none
+	layout="row"
+	layout-align="center center"
+>
+	<span
+		class="badget campaign-channel-queue-position"
+		data-title="Sua posição na fila"
+		bs-tooltip
+	>
+		{{item.Posicao.Ordem || "calculando"}}
+	</span>
+	<div
+		ng-if="item.canalRules"
+		class="badget rules"
+		data-title="Veja as regras da fila"
+		bs-tooltip
+		ng-click="showRules()"
+	>
+		?
+	</div>
+	<a
+		ng-click="showQueue(item)"
+		class="full-queue"
+		data-title="Veja a fila completa"
+		bs-tooltip
+	><icon-svg name="arrow-right"></icon-svg></a>
+</div>

@@ -1,0 +1,21 @@
+/* line 3, ../sass/ranges.scss */
+.range {
+  width: 80%;
+  margin: auto;
+}
+/* line 7, ../sass/ranges.scss */
+.range .slider.slider-horizontal {
+  width: 100%;
+}
+/* line 11, ../sass/ranges.scss */
+.range .slider.slider-horizontal .slider-tick, .range .slider.slider-horizontal .slider-handle {
+  display: none;
+}
+/* line 15, ../sass/ranges.scss */
+.range .slider-track {
+  background: #eae8e8;
+}
+/* line 19, ../sass/ranges.scss */
+.range .slider-selection {
+  background: #929292;
+}

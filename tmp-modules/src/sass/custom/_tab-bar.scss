@@ -1,0 +1,69 @@
+
+$tabBarColorButton: #337ab7;
+
+// usually for mobile
+.tab-bar {
+
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	background: #2b3e51;
+	width: 100%;
+	height: 50px;
+	z-index: 20;
+
+	.tab-bar-button {
+
+		border-right: solid 1px $color1hue2;
+		display: block;
+		text-align: center;
+		margin: 5px 0;
+		text-decoration: none;
+		color: $color1hue2;
+
+		strong {
+			display: block;
+			font-weight: 400;
+		}
+
+		span {
+			font-size: 20px;
+			line-height: 25px;
+			display: inline-block;
+			border-radius: 9px;
+			background-color: $tabBarColorButton;
+			color: #2b3e51;
+			min-width: 25px;
+			height: 25px;
+			text-align: center;
+			padding: 0 6px;
+		}
+
+		.icons {
+			height: 24px;
+			margin-right: 0;
+		}
+
+		&[disabled],
+		&[permissions-disable-mode]{
+			color: rgba($color3,.2);
+		}
+
+	}
+
+	.attendedTransactions svg.icons {
+		height: 38px;
+		margin: -5px 0 -8px 0;
+	}
+
+	[layout="row"] div:last-child {
+
+		.tab-bar-button,
+		.btn,
+		.row div:last-child .btn {
+			border-right: none;
+		}
+
+	}
+
+}

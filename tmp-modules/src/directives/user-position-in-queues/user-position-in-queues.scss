@@ -1,0 +1,183 @@
+
+user-position-in-queues {
+
+	display: block;
+	cursor: default;
+
+	.error-message {
+
+		padding: 10px;
+
+		button {
+			margin-top: 16px;
+		}
+
+	}
+
+	.popover-title {
+		border-radius: 0;
+	}
+
+	.channel {
+
+		p {
+			font-size: 14px;
+			line-height: 1;
+			padding: 6px 7px;
+			margin: 0;
+		}
+
+		.channel-name {
+
+			p {
+				padding: 0;
+			}
+
+		}
+
+		.legend {
+			background-color: $color3;
+			color: #333;
+			padding: 3px 14px;
+		}
+
+		.full-queue {
+
+			color:#fff;
+			border-radius: 50%;
+			background-color: $color2;
+			width: 20px;
+			height: 20px;
+			margin-left: 5px;
+			padding: 0 4px;
+			cursor: pointer;
+
+			&:hover {
+				background-color: $color2hue2;
+			}
+
+			.icon-svg {
+				width: 100%;
+				height: 100%;
+			}
+
+		}
+
+		.badget {
+
+			position: static;
+			top: auto;
+			right: auto;
+			left: auto;
+			bottom: auto;
+			margin: 0;
+			min-width: 20px;
+			height: 20px;
+			font-size: 14px;
+			line-height: 20px;
+
+			&.rules {
+
+				background-color: $color1hue2;
+				border-radius: 50%;
+				margin-left: 5px;
+				cursor: pointer;
+
+				&:hover {
+					background-color: $color1;
+				}
+
+			}
+
+		}
+
+		.campaign-channel-queue-position {
+			color: $color1;
+			background-color: #fff;
+		}
+
+	}
+
+	.campaign {
+
+		margin: 0 7px;
+		padding: 5px;
+		border-top: 1px solid $color3;
+
+		&.index0 {
+			border-top: none;
+		}
+
+	}
+
+	p.campaign-name {
+		font-size: 12px;
+	}
+
+	.campaign-channel {
+
+		padding-left: 5px;
+
+		.campaign-channel-queue-position {
+			background-color: $color3;
+		}
+
+	}
+
+}
+
+.popover .user-status-switchers-popover {
+	user-position-in-queues {
+
+		.popover-title {
+			margin-top: 10px;
+			padding-top: 8px;
+		}
+
+		.content {
+			padding: 9px 0;
+		}
+
+	}
+}
+
+navigation-bar-mobile-user-status {
+	user-position-in-queues {
+
+		.content {
+			padding-bottom: 10px;
+		}
+
+		.popover-title {
+			background-color: transparent;
+			line-height: 60px;
+			border-top: 1px solid $color1;
+			border-bottom: none;
+		}
+
+		.campaign {
+			border-top-color: $color1;
+		}
+
+		.channel {
+
+			padding-left: 0;
+
+			.legend {
+				background-color: $color1;
+				color: $color3;
+			}
+
+			.channel-name {
+				background-color: transparent;
+				margin: 0;
+			}
+
+			p {
+				font-size: 18px;
+			}
+
+		}
+
+	}
+}

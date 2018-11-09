@@ -1,0 +1,64 @@
+
+<loading-spinner
+	class="size-small"
+	ng-if="loading"
+></loading-spinner>
+
+<div
+	ng-if="hasQueues() && !loading"
+	class="content"
+>
+
+	<div
+		ng-if="isChannelQueueVisible(item.channelProperties.channel)"
+		ng-repeat="item in data"
+		class="channel"
+	>
+		<div
+			class="channel-name popover-title status-row"
+			layout="row"
+			layout-align="space-between center"
+		>
+			<p>Fila {{getChannelLabel(item.channelProperties.channel)}}</p>
+			<channel-position-in-queue
+				ng-if="item.campaignChannel.Posicao"
+				item="item.campaignChannel"
+				queue-name="getChannelLabel(item.channelProperties.channel)"
+			>
+			</channel-position-in-queue>
+		</div>
+
+		<div
+			ng-if="!item.campaignChannel.Posicao"
+			class="legend"
+		>
+			Campanha / Canal
+		</div>
+
+		<div
+			ng-if="!item.campaignChannel.Posicao"
+			ng-repeat="campanha in item.queues"
+			class="campaign index{{$index}}"
+		>
+
+			<p class="campaign-name">{{campanha.CampanhaNome}}</p>
+
+			<div
+				ng-repeat="canal in campanha.Canais"
+				class="campaign-channel"
+				layout="row"
+				layout-align="space-between center"
+			>
+				<p class="campaign-channel-name">{{canal.CanalNome}}</p>
+				<channel-position-in-queue
+					item="canal"
+					queue-name="canal.CanalNome"
+				>
+				</channel-position-in-queue>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>

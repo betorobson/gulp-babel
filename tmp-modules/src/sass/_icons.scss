@@ -1,0 +1,23 @@
+
+.icons {
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+.icons-menu-alerta {
+
+	position: relative;
+
+	small{
+		position: absolute;
+		right: 0px;
+		top: 0px;
+		color: #fff;
+		text-align: center;
+		width: 16px;
+		font-size: 10px;
+		line-height: 18px;
+	}
+
+}

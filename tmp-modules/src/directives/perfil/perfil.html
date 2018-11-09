@@ -1,0 +1,148 @@
+<div class="body-content no-padding"><!-- body-content box-content-->
+	<div class="panel-group" id="perfilAccordion"><!-- painel-group-->
+		<div
+			class="panel panel-default"
+			layout-xs="column"
+			layout-sm="row"
+			layout-gt-sm="column"
+		><!-- painel-default -->
+
+<div ng-if="$root.mainController.device == 'desktop'" id="perfil" flex-sm>
+	<div
+		ng-click="collapse($event)"
+		data-toggle="collapse"
+		data-parent="#perfilAccordion"
+		data-target="#perfilHiddenContent"
+		class="panel-heading only-desk collapsed no-padding"
+	>
+		<div class="container"><!-- container-->
+
+			<div
+				layout="row"
+				layout-align="space-between center"
+			>
+				<div>
+					<user-status-bullet
+						layout="row"
+						layout-align="center center"
+						list
+						no-border
+						switchers
+					></user-status-bullet>
+				</div>
+
+				<div flex="10">
+					<a class="accordion-toggle">
+						<icon-svg
+							name="down-arrow-inside-circle"
+							class-name="color1hue2"
+						></icon-svg>
+					</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div id="perfilHiddenContent" class="panel-collapse collapse">
+		<div class="container"><!-- container-->
+			<div class="row-fluid"><!-- row-->
+				<div
+					layout-xs="column"
+					layout-sm="column"
+					layout-gt-sm="row"
+					class="panel-body"
+				>
+
+					<div
+						flex-noshrink
+						flex-xs="100"
+						flex-gt-sm="25"
+						class="no-padding"
+					>
+
+						<div
+							layout-xs="row"
+							layout-sm="row"
+							layout-gt-sm="column"
+							class="box-welcome"
+						>
+							<div
+								flex
+								layout="row"
+							>
+
+								<avatar
+									ng-if="$root.mainController.device == 'desktop'"
+									imgsrc="userProfile.fields.usuario.usuarioUrlImagem"
+								>
+									<user-status-bullet switchers></user-status-bullet>
+									<icon-medal number="1" class="size-mid"></icon-medal>
+								</avatar>
+
+								<div flex class="title-block">
+									<p>
+										<strong>Olá {{userProfile.fields.usuario.usuarioNome}}!</strong>
+										<br>
+										Seja bem-vindo :)
+										<a
+											href="{{::pathUserProfile}}"
+											class="btn btn-link only-desk"
+										>meus dados</a>
+									</p>
+								</div>
+
+							</div>
+							<div
+								layout="row"
+								class="alert-pending"
+								permissions="usr_reports"
+							>
+								<div
+									layout="row"
+									layout-align="center center"
+									class="icon-alert"
+								>
+									<icon-svg name="attention-sign-outline"></icon-svg>
+								</div>
+								<div flex>
+									<div class="only-desk">
+										Resolva pendências para receber mais leads
+									</div>
+									<div class="only-mobile">
+										Pendências
+									</div>
+									<a href="#" class="btn-link">saiba mais</a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<perfil-transactions-report
+						flex
+						class="no-padding"
+
+						permissions="usr_reports"
+					>
+					</perfil-transactions-report>
+
+				</div>
+
+				<hr class="no-margin" />
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<perfil-transactions-summary
+	flex-sm
+	layout-sm="row"
+	ng-if="mainController.currentView == 'home'
+		|| mainController.currentView == 'transactions'"
+	permissions="resfim_mostrar"
+></perfil-transactions-summary>
+
+		</div><!-- painel-default -->
+	</div><!-- painel-group-->
+</div><!-- body-content box-content-->

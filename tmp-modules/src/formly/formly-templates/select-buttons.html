@@ -1,0 +1,17 @@
+
+<div
+	class="select-buttons"
+	layout="row"
+	layout-wrap
+>
+	<input type="hidden" ng-model="model[options.key]" />
+	<button
+		type="button"
+		class="btn btn-action"
+		ng-class="{selected: option.value == model[options.key]}"
+		ng-click="select(option)"
+		ng-repeat="option in options.templateOptions.options"
+	>
+		{{option.name}}
+	</button>
+</div>

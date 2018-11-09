@@ -1,0 +1,52 @@
+
+<div
+	flex
+	layout="column"
+>
+
+	<strong>{{::label}}<span>{{::labelTabName}}.</span></strong>
+
+	<form
+		flex
+		name="form"
+		ng-submit="submit()"
+		novalidate
+		autocomplete="off"
+	>
+		<formly-form
+			form="form"
+			fields="fields"
+			model="model"
+		>
+		</formly-form>
+	</form>
+
+	<loading-spinner
+		class="size-mid"
+		ng-if="loading"
+	></loading-spinner>
+
+</div>
+
+<div class="box-content" ng-show="empty">
+	<h1 class="text-center">
+		Nenhum cliente foi encontrado.
+	</h1>
+</div>
+
+<div
+	layout="column"
+	ng-if="!loading && !empty && !error"
+	ng-repeat="item in item"
+>
+	<div
+		ng-click="setClientId(item)"
+		class="card-client"
+		layout="column"
+	>
+		<h4>{{item.extraInfo.prospectNome}}</h4>
+		<p ng-if="item.extraInfo.produtoNome"><strong>Produto: </strong>{{item.extraInfo.produtoNome}}</p>
+		<p><strong>Código do atendimento: </strong>{{item.fields.atendimento.atendimentoCodigo}}</p>
+	</div>
+</div>
+

@@ -1,0 +1,88 @@
+
+<div flex class="modal-content-scrollable clearfix">
+
+	<div
+		layout-xs="column"
+		layout-gt-xs="row"
+		class="filter-options-forms"
+	>
+
+		<form
+			name="formFilters"
+			class="filter-options-form"
+			ng-submit="setFilters($event)"
+			novalidate
+			autocomplete="off"
+		>
+			<formly-form
+				model="listFilter.model.filters"
+				fields="formlyFields"
+				form="formFilters"
+			>
+			</formly-form>
+			<button class="display-none"></button>
+		</form>
+
+		<form
+			ng-if="listFilter.advanced"
+			name="formFiltersAdvanced"
+			class="filter-options-form advanced"
+			ng-submit="setFilters($event)"
+			novalidate
+			autocomplete="off"
+		>
+			<formly-form
+				model="listFilter.model.filters"
+				fields="formlyFieldsAdvanced"
+				form="formFiltersAdvanced"
+			>
+			</formly-form>
+			<button class="display-none"></button>
+		</form>
+
+	</div>
+
+</div>
+
+<div
+	flex-none
+	layout="row"
+	layout-align="space-between"
+	class="filter-form-buttons"
+>
+
+	<a
+		class="btn btn-secondary"
+		ng-click="resetFilters($event)"
+	>Limpar filtros</a>
+
+	<button
+		ng-if="$root.mainController.device == 'mobile' && !listFilter.advanced"
+		class="btn btn-secondary"
+		ng-click="toggleAdvancedFilters()"
+	>
+		Avançado
+		<icon-svg
+			name="arrow-down"
+			class="no-margin-right"
+		></icon-svg>
+	</button>
+
+	<button
+		ng-if="$root.mainController.device == 'mobile' && listFilter.advanced"
+		class="btn btn-secondary"
+		ng-click="toggleAdvancedFilters()"
+	>
+		Voltar
+		<icon-svg
+			name="arrow-up"
+			class="no-margin-right"
+		></icon-svg>
+	</button>
+
+	<a
+		class="btn btn-primary"
+		ng-click="setFilters($event)"
+	>Filtrar</a>
+
+</div>

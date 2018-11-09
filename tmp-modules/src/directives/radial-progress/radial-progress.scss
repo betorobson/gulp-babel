@@ -1,0 +1,90 @@
+
+radial-progress {
+
+	display: block;
+	height: auto;
+	width: auto;
+	position: relative;
+
+	&.size-small {
+		.circular,
+		.icon-svg {
+			height: 50px;
+			width: 50px;
+		}
+	}
+
+	&.size-mid {
+		.circular,
+		.icon-svg {
+			height: 100px;
+			width: 100px;
+		}
+	}
+
+	&.size-large {
+		.circular,
+		.icon-svg {
+			height: 150px;
+			width: 150px;
+		}
+	}
+
+	.tooltip {
+		max-width: none;
+	}
+
+	.circular {
+		height: 100%;
+		width: 100%;
+		height: 100%;
+		transform-origin: center center;
+		width: 100%;
+		transform: rotate(-90deg);
+	}
+
+	.path {
+
+		stroke: $color2;
+		fill: transparent;
+		stroke-width: 6;
+
+		// empty
+		stroke-dasharray: 126;
+		stroke-dashoffset: 126;
+
+		// half
+		// stroke-dashoffset: 63;
+		// full
+		// stroke-dashoffset: 0;
+
+		// animation
+		// transition: stroke-dashoffset 2s ease;
+
+	}
+
+	.path-border {
+		stroke: lighten($color1, 60%);
+		stroke-width: 6;
+		fill: $color3hue2;
+	}
+
+	.label {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+		color: inherit;
+		padding: 0;
+
+	}
+
+	.label-text {
+		font-size: 16px;
+		margin: 0;
+		padding: 0;
+	}
+
+}

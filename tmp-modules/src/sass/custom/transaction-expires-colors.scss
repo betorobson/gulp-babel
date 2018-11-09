@@ -1,0 +1,22 @@
+
+radial-progress.transaction-expires {
+
+	.ok {
+		.path {
+			stroke: $color2;
+		}
+	}
+
+	.warn {
+		.path {
+			stroke: $color4;
+		}
+	}
+
+	.danger {
+		.path {
+			stroke: $color2hue1;
+		}
+	}
+
+}

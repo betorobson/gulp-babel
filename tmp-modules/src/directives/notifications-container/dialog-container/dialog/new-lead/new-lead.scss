@@ -1,0 +1,14 @@
+
+@include notification-center-dialog-type('newLead', $color2, $color1){
+
+	dialog-new-lead {
+
+		.avatar-picture {
+
+			background: $color3 url(/assets/imgs/icons/notification-new-lead.svg) center center;
+
+		}
+
+	}
+
+}

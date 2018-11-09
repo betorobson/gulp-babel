@@ -1,0 +1,376 @@
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+
+			<button
+				type="button"
+				class="menu-button pull-left only-mobile"
+				ng-class="{
+					collapsed: !showMenuNav
+				}"
+				ng-click="toogleMobileNavBar()"
+				aria-expanded="false"
+				aria-controls="navbar"
+			>
+				<icon-svg-inline name="bars-filled"></icon-svg-inline>
+			</button>
+
+			<ul class="only-mobile pull-right col-xs-10 mobile-notications no-padding-left">
+				<li class="col-xs-11 no-padding">
+					<form
+						ng-submit="submitSearchForm()"
+						novalidate
+					>
+					<div button-search class="collapse in">
+						<button data-toggle="collapse" data-target="[button-search]" type="button" class="pull-right btn-lupa">
+							<icon-svg name="search"></icon-svg>
+						</button>
+					</div>
+					<div button-search class="collapse col-xs-12">
+						<input ng-model="model.q" type="text" class="form-control" placeholder="o que você procura?" />
+					</div>
+					</form>
+				</li>
+				<li class="col-xs-1 no-padding">
+					<a
+						class="notifications"
+						ng-click="showNavigationBarActionsModal()"
+					>
+						<icon-svg name="plus"></icon-svg>
+					</a>
+				</li>
+			</ul>
+
+			<a class="navbar-brand"
+				ng-href="{{pathProvider.getPath('home')}}"
+				title="{{pathProvider.getLabel('home')}}"
+			>
+			<small
+				ng-if="$root.mainController.device == 'desktop'"
+				class="logo-beta">
+				Beta
+			</small>
+				<icon-svg-inline
+					name="{{pathProvider.getIcon('home')}}"
+					class="Anapro-Logo-Marca-3paths-white"
+				></icon-svg-inline>
+				<small class="licensed-company">Licenciado para {{getLogo().company}}</small>
+			</a>
+
+		</div>
+
+		<div
+			id="navbar"
+			class="navbar-collapse"
+			ng-if="showMenuNav"
+			ng-click="hideMobileNavbar()"
+		>
+
+			<navigation-bar-mobile-user-status
+				ng-if="$root.mainController.device == 'mobile'"
+				delegate="mobileUserStatusDelegate"
+			></navigation-bar-mobile-user-status>
+
+			<ul
+				class="nav navbar-nav"
+				ng-if="mobileSideMenuShowItems"
+			>
+
+				<li
+					class="only-mobile"
+					ng-class="{active : pathProvider.getCurrentViewName() == 'home' }"
+				>
+					<a
+						ng-href="{{pathProvider.getPath('home')}}"
+						title="{{pathProvider.getLabel('home')}}"
+					>
+						<icon-svg name="{{pathProvider.getIcon('home')}}" class="icons"></icon-svg>
+						<strong>{{pathProvider.getLabel('home')}}</strong>
+					</a>
+				</li>
+
+				<!-- <li class="separador"
+					ng-class="{active : pathProvider.getCurrentViewName() == 'clients' }"
+				>
+					<a
+						ng-href="{{pathProvider.getPath('clients')}}"
+						title="{{pathProvider.getLabel('clients')}}"
+						permissions="view.clients"
+						permissions-disable-mode
+						permissions-remove-attrs="ng-href,title"
+						data-placement="bottom"
+						permissions-attrs-when-false:bs-tooltip
+						permissions-attrs-when-false:data-title="Desculpe, você não tem permissão para ver a {{pathProvider.getLabel('clients')}}"
+						permissions-attrs-when-false:data-type="warn"
+						permissions-attrs-when-disabled:bs-tooltip
+						permissions-attrs-when-disabled:data-title="Desculpe, {{pathProvider.getLabel('clients')}} está desativada momentaneamente"
+						permissions-attrs-when-disabled:data-type="error"
+					>
+						<icon-svg name="{{pathProvider.getIcon('clients')}}" class="icons"></icon-svg>
+						<strong>{{pathProvider.getLabel('clients')}}</strong></a>
+				</li> -->
+
+				<li class="separador"
+					ng-class="navigationBarController.isActive('calendar')"
+				>
+					<a
+						ng-href="{{pathProvider.getPath('calendar')}}"
+						title="{{pathProvider.getLabel('calendar')}}"
+						permissions="view.calendar"
+						permissions-disable-mode
+						permissions-remove-attrs="ng-href,title"
+						data-placement="bottom"
+						permissions-attrs-when-false:bs-tooltip
+						permissions-attrs-when-false:data-title="Desculpe, você não tem permissão para ver a agenda"
+						permissions-attrs-when-false:data-type="warn"
+						permissions-attrs-when-disabled:bs-tooltip
+						permissions-attrs-when-disabled:data-title="Desculpe, agenda está desativada momentaneamente"
+						permissions-attrs-when-disabled:data-type="error"
+					>
+						<icon-svg name="{{pathProvider.getIcon('calendar')}}" class="icons"></icon-svg>
+						<strong>{{pathProvider.getLabel('calendar')}}</strong></a>
+				</li>
+
+				<li
+					class="separador"
+					ng-class="navigationBarController.isActive('transaction,transactions')"
+				>
+					<a
+						ng-href="{{getViewTransactionsLink()}}"
+						title="{{pathProvider.getLabel('transactions')}}"
+						permissions="atd_listar_atendimento"
+						permissions-disable-mode
+						permissions-remove-attrs="ng-href,title"
+						data-placement="bottom"
+						permissions-attrs-when-false:bs-tooltip
+						permissions-attrs-when-false:data-title="Desculpe, você não tem permissão para {{$root.permission.getDescription('atd_listar_atendimento')}}"
+						permissions-attrs-when-false:data-type="warn"
+						permissions-attrs-when-disabled:bs-tooltip
+						permissions-attrs-when-disabled:data-title="Desculpe, {{$root.permission.getDescription('atd_listar_atendimento')}} está desativado momentaneamente"
+						permissions-attrs-when-disabled:data-type="error"
+					>
+						<icon-svg name="{{pathProvider.getIcon('transactions')}}" class="icons"></icon-svg>
+						<strong>{{pathProvider.getLabel('transactions')}}</strong>
+						<em
+							ng-if="getTotalTransactionsAwaiting() > 0"
+							class="badget"
+						>
+							{{getTotalTransactionsAwaiting()}}
+						</em>
+					</a>
+				</li>
+
+				<li
+					class="separador"
+					ng-class="navigationBarController.isActive('realty,realties')"
+				>
+					<a
+						title="ANAPRO Vendas"
+						permissions="view.realties"
+						permissions-disable-mode
+						permissions-remove-attrs="ng-href,title"
+						data-placement="bottom"
+						permissions-attrs-when-false:bs-tooltip
+						permissions-attrs-when-false:data-title="Desculpe, você não tem permissão para listar imóveis"
+						permissions-attrs-when-false:data-type="warn"
+						permissions-attrs-when-disabled:bs-tooltip
+						permissions-attrs-when-disabled:data-title="Desculpe, listar imóveis está desativado momentaneamente"
+						permissions-attrs-when-disabled:data-type="error"
+						href="https://crm.anapro.com.br/webcrm/pages/pageredirect.aspx?url=http://{{urlAnaproOld.contaSistemaVendasUrl}}"
+						target="_blank"
+					>
+
+						<icon-svg name="buildings" class="icons"></icon-svg>
+						<strong>Imóveis </strong></a>
+				</li>
+
+			</ul>
+
+			<form
+				ng-if="mobileSideMenuShowItems"
+				class="navbar-form navbar-left"
+				ng-submit="submitSearchForm()"
+				novalidate
+			>
+				<div class="form-group">
+					<input ng-model="model.q" type="text" class="form-control">
+				</div>
+				<button type="submit" class="btn-lupa">
+					<icon-svg name="search"></icon-svg>
+				</button>
+			</form>
+
+			<ul
+				ng-if="mobileSideMenuShowItems"
+				class="nav navbar-nav"
+			>
+
+				<navigation-bar-chat ng-if="$root.mainController.device == 'desktop'"></navigation-bar-chat>
+
+				<!-- <li class="nav-icon">
+					<a
+						class="only-desk"
+						data-toggle="dropdown"
+						title="Alertas"
+						data-toggle="dropdown"
+						permissions="navigation-bar.notifications"
+						permissions-disable-mode
+						permissions-remove-attrs="data-toggle,title"
+						data-placement="bottom"
+						permissions-attrs-when-false:bs-tooltip
+						permissions-attrs-when-false:data-title="Desculpe, você não tem permissão para ver a lista de alertas"
+						permissions-attrs-when-false:data-type="warn"
+						permissions-attrs-when-disabled:bs-tooltip
+						permissions-attrs-when-disabled:data-title="Desculpe, a lista de alertas está desativado momentaneamente"
+						permissions-attrs-when-disabled:data-type="error"
+					>
+						<icon-svg name="bell" class="icons"></icon-svg>
+						<strong>Alertas</strong>
+					</a>
+					<ul class="dropdown-menu ddl-alerta">
+						<li class="text-right">
+							Lida
+						</li>
+						<li class="grey-block block">
+							<div class="row">
+								<div class="col-md-10 no-padding-right">
+									<label for="alertMsg1">Você sabia que pode usar a sua agenda do Google dentro do Anapro para centralizar seus compromissos em um só lugar?</label>
+								</div>
+								<div class="col-md-1 pull-right no-padding">
+									<input type="checkbox" id="alertMsg1" />
+								</div>
+							</div>
+						</li>
+						<li class="grey-block">
+							<div class="row">
+								<div class="col-md-10 no-padding-right">
+									<label for="alertMsg2">
+										<p>Você recebeu 6 novos clientes!</p>
+										<p>Atenda agora aos seus novos contatos.</p>
+									</label>
+								</div>
+								<div class="col-md-1 pull-right no-padding">
+									<input type="checkbox" id="alertMsg2" />
+								</div>
+							</div>
+						</li>
+						<li>
+							<span class="msg-info">
+								<a href="#" class="pull-right">Marcar todas como lidas</a>
+							</span>
+						</li>
+					</ul>
+				</li> -->
+
+				<!-- <li>
+					<a
+						title="Ajuda"
+						permissions="view.help"
+						permissions-disable-mode
+						permissions-remove-attrs="ng-href,title"
+						data-placement="bottom"
+						permissions-attrs-when-false:bs-tooltip
+						permissions-attrs-when-false:data-title="Desculpe, você não tem permissão para ver ajuda"
+						permissions-attrs-when-false:data-type="warn"
+						permissions-attrs-when-disabled:bs-tooltip
+						permissions-attrs-when-disabled:data-title="Desculpe, a ajuda está desativado momentaneamente"
+						permissions-attrs-when-disabled:data-type="error"
+					>
+						<icon-svg name="help" class="icons"></icon-svg>
+						<strong>Ajuda</strong>
+					</a>
+				</li> -->
+
+				<navigation-bar-whatsnew></navigation-bar-whatsnew>
+
+				<li class="nav-icon only-desk">
+					<a href="#" data-toggle="dropdown">
+						<icon-svg name="settings" class="icons"></icon-svg>
+						<strong>Configurações</strong>
+					</a>
+					<ul class="dropdown-menu ddl-configuracao">
+						<li>
+							<a
+								href="{{::pathProvider.getPath('user-profile')}}"
+							>
+								Meus dados
+							</a>
+						</li>
+						<!--li>
+							<a
+								href="//{{urlAnaproOld.contaSistemaCrmUrlOld}}"
+								target="_blank"
+							>
+							Anapro CRM Antigo
+							</a>
+						</li-->
+						<li>
+							<a ng-href="{{pathProvider.getPath('logout')}}">Sair</a>
+						</li>
+					</ul>
+				</li>
+
+				<li class="only-mobile">
+					<a
+						href="#"
+						title="Configurações"
+						permissions="view.settings"
+						permissions-disable-mode
+					>
+						<icon-svg name="settings" class="icons"></icon-svg>
+						<strong>Configurações</strong>
+					</a>
+				</li>
+
+				<!--li class="hidden-lg hidden-sm hidden-md">
+					<a ng-href="//{{urlAnaproOld.contaSistemaCrmUrlOld}}">
+						<icon-svg name="{{pathProvider.getIcon('home')}}" class="icons"></icon-svg>
+						<strong>Anapro CRM Antigo</strong>
+					</a>
+				</li-->
+
+				<li class="hidden-lg hidden-sm hidden-md">
+					<a ng-href="{{pathProvider.getPath('logout')}}">
+						<icon-svg name="{{pathProvider.getIcon('logout')}}" class="icons"></icon-svg>
+						<strong>Sair</strong>
+					</a>
+				</li>
+
+				<li class="only-desk">
+					<!-- Single button -->
+					<div class="btn-group">
+						<button
+							type="button"
+							class="dropdown-toggle btn-mais"
+							data-toggle="dropdown"
+							aria-haspopup="true"
+							aria-expanded="false"
+						>
+							Novo
+							<span class="btn-more">
+								<icon-svg name="plus"></icon-svg>
+							</span>
+						</button>
+						<navigation-bar-actions class="dropdown-menu ddl-novo"></navigation-bar-actions>
+					</div>
+				</li>
+
+				<footer ng-if="$root.mainController.device == 'mobile'"></footer>
+
+			</ul>
+		</div>
+		<!--/.nav-collapse -->
+	</div>
+</nav>
+
+<a
+	ng-if="!isBackButtonHidden()"
+	layout="row"
+	layout-align="start center"
+	class="only-mobile back-button"
+	ng-click="goBack()"
+>
+	<icon-svg name="arrow-left"></icon-svg>
+	<span>voltar</span>
+</a>

@@ -1,0 +1,37 @@
+
+.navigation-bar-chat {
+
+	cursor: pointer;
+
+	.icon-wrapper {
+
+		position: relative;
+
+		.status-bullet {
+
+			position: absolute;
+			top: 0;
+			right: 0;
+			transition: all 0.4s ease;
+			background-color: transparent;
+
+			&.disabled {
+				background-color: $color3hue1;
+			}
+
+			&.online {
+				background-color: $color2;
+			}
+
+			&.offline {
+				background-color: $color2hue1;
+			}
+
+			&.paused {
+				background-color: $color4;
+			}
+
+		}
+	}
+
+}

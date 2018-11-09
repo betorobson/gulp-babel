@@ -1,0 +1,97 @@
+
+@mixin tooltip-type($type, $color, $tooltipArrowColor) {
+
+	$typeSelector: 'tooltip';
+
+	@if $type != '' {
+		$typeSelector: 'tooltip-' + $type;
+	}
+
+	.#{$typeSelector} .tooltip-inner {
+		background-color: $color;
+	}
+
+	.#{$typeSelector}.top,
+	.#{$typeSelector}.top-left,
+	.#{$typeSelector}.top-right {
+
+		.tooltip-inner {
+			border-bottom: 4px solid $tooltipArrowColor;
+		}
+
+		.tooltip-arrow {
+			border-top-color: $tooltipArrowColor;
+		}
+
+	}
+
+	.#{$typeSelector}.left {
+
+		.tooltip-inner {
+			border-right: 4px solid $tooltipArrowColor;
+		}
+
+		.tooltip-arrow{
+			border-left-color: $tooltipArrowColor;
+		}
+
+	}
+
+	.#{$typeSelector}.bottom,
+	.#{$typeSelector}.bottom-left,
+	.#{$typeSelector}.bottom-right {
+
+		.tooltip-inner {
+			border-top: 4px solid $tooltipArrowColor;
+		}
+
+		.tooltip-arrow{
+			border-bottom-color: $tooltipArrowColor;
+		}
+
+	}
+
+	.#{$typeSelector}.right {
+
+		.tooltip-inner {
+			border-left: 4px solid $tooltipArrowColor;
+		}
+
+		.tooltip-arrow{
+			border-right-color: $tooltipArrowColor;
+		}
+
+	}
+
+}
+
+
+.tooltip {
+
+	&.in {
+		opacity: 1;
+	}
+
+	.tooltip-inner {
+		font-family: "sf_ui_displaylight";
+		font-size: 12px;
+		opacity: 1;
+		box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.5);
+		text-align: left;
+		max-width: none;
+		white-space: nowrap;
+	}
+
+}
+
+@include tooltip-type('', $color2, #23d596);
+
+@include tooltip-type('warn', $color4, $color4hue1);
+
+@include tooltip-type('info', $color1hue2, #88dafd);
+
+@include tooltip-type('error', $color2hue1, #f99fa1);
+
+@include tooltip-type('info2', $color2hue2, lighten($color2hue2, 40%));
+
+

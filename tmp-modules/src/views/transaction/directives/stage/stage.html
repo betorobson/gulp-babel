@@ -1,0 +1,141 @@
+
+<loading-spinner
+	ng-if="loading"
+	class="fill"
+	ng-class="submitStatus"
+></loading-spinner>
+
+<div
+	class="swiper"
+	ng-class="{'swiper-container': $root.mainController.device == 'mobile'}"
+>
+
+	<div
+		ng-show="swiperLoaded"
+		class="swiper-wrapper"
+		layout="row"
+	>
+
+		<div
+			ng-repeat="(group, nestedStages) in stages | groupBy:'fields.pipelineStage.pipelineStageGrupo'"
+			class="stage swiper-slide"
+			ng-class="{'hide-overlay': hideOverlay}"
+			data-toggle="modal"
+			data-target="#modal-setstage"
+			ng-click="setModal(group, $index)"
+			flex-noshrink
+			stage-form
+
+			permissions="atd_prospect"
+			permissions-disable-mode
+			permissions-remove-attrs="data-toggle,data-target"
+		>
+
+			<div
+				layout="row"
+			>
+				<div class="cell-group">{{group}}</div>
+				<div
+					ng-if="transactionItem.extraInfo.pipelineStageGrupo == group"
+					flex
+					class="cell-stage"
+				>
+					<small>({{getCurrentPipelineStage()}})</small>
+				</div>
+			</div>
+
+			<div
+				class="steps-wrapper"
+				flex
+				layout="row"
+			>
+				<div
+					flex
+					class="step-wrapper"
+					ng-repeat="item in nestedStages"
+					ng-class="{done: item.done}"
+				>
+					<div class="step-line"></div>
+					<div
+						class="stage-substages-step stage-step-color{{item.fields.pipelineStage.pipelineStageOrdem + 1}}"
+						ng-class="{done: item.done}"
+					></div>
+				</div>
+			</div>
+
+			<em
+				ng-show="nestedStages[0].fields.pipelineStage.pipelineStageFulFilled"
+				class="group-stage-duration"
+			>
+				{{durationsByGroup[group].moment.humanize || 0}}
+			</em>
+
+			<div
+				ng-if="$root.mainController.device == 'desktop'"
+				class="transaction-stage-overlay"
+				flex
+				layout="column"
+
+				permissions="atd_prospect"
+			>
+				<div
+					flex
+					ng-click="setTransactionStage($event, item)"
+					ng-repeat="item in nestedStages"
+					class="stage-substages-step stage-step-color{{item.fields.pipelineStage.pipelineStageOrdem + 1}}"
+					ng-class="{
+						done: item.done,
+						'block-backwards': !hasPermissionToBackwardsPipeline && item.fields.pipelineStage.pipelineStageFulFilled
+					}"
+				>
+					{{item.fields.pipelineStage.pipelineStageNome}}
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="swiper-pagination"></div>
+
+</div>
+
+<div
+	ng-if="$root.mainController.device == 'mobile'"
+	permissions="atd_prospect"
+>
+	<modal
+		modal-id="modal-setstage"
+		delegate="modalSetStageDelegate"
+	>
+		<modal-title><strong>{{modal.group}}</strong></modal-title>
+		<modal-body stage-form>
+
+			<loading-spinner
+				class="fill size-mid"
+				ng-class="submitStatus"
+				ng-if="loading"
+			></loading-spinner>
+
+			<div
+				ng-repeat="(group, nestedStages) in stages | groupBy:'fields.pipelineStage.pipelineStageGrupo'"
+				ng-if="modal.index == $index && !hideOverlay"
+				class="modal-stages"
+				layout="column"
+			>
+				<div
+					ng-click="setTransactionStage($event, item)"
+					ng-repeat="item in nestedStages"
+					class="stage-substages-step stage-step-color{{item.fields.pipelineStage.pipelineStageOrdem + 1}}"
+					ng-class="{
+						done: item.done,
+						'block-backwards': !hasPermissionToBackwardsPipeline && item.fields.pipelineStage.pipelineStageFulFilled
+					}"
+				>
+					{{item.fields.pipelineStage.pipelineStageNome}}
+				</div>
+			</div>
+
+		</modal-body>
+	</modal>
+</div>

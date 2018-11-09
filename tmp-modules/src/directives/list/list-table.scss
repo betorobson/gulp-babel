@@ -1,0 +1,192 @@
+
+list-table {
+
+	display: block;
+
+	.table {
+
+		tbody {
+
+			tr {
+
+				&:not(.no-hover):hover td {
+
+					background: #eae8e8;
+					cursor: pointer;
+
+					select:hover {
+						border: 1px solid #000;
+					}
+
+					.label-check:hover {
+						input:after {
+							border: 1px solid #000;
+						}
+					}
+
+					a {
+						cursor: pointer;
+						&:hover .icon-svg {
+							fill: #000;
+						}
+					}
+
+				}
+
+			}
+
+		}
+	}
+
+	.box-red {
+		border-left: solid 4px #ff5a5f;
+		padding-left: 5px;
+		margin-bottom: 2px;
+	}
+
+	.box-darkblue {
+		border-left: solid 4px #2c3e50;
+		padding-left: 5px;
+		margin-bottom: 2px;
+	}
+
+	.box {
+
+		border-left-width: 4px;
+		border-left-style: solid;
+		padding-left: 5px;
+		margin-bottom: 2px;
+
+		@each $color in $colors {
+
+				// base color
+				&.color#{nth($color,1)} {
+					border-left-color: nth($color,2);
+				}
+
+				// hue 1
+				&.color#{nth($color,1)}hue1 {
+					border-left-color: nth($color,3);
+				}
+
+				// hue 2
+				&.color#{nth($color,1)}hue2 {
+					border-left-color: nth($color,4);
+				}
+
+		}
+
+	}
+
+	.slideOutEffect {
+		animation: list-table-item-slideout-effect 500ms ease;
+		animation-fill-mode: forwards;
+	}
+
+	@keyframes list-table-item-slideout-effect {
+		from {
+			transform: translateX(0);
+			opacity: 1;
+		}
+		to {
+			transform: translateX(100px);
+			opacity: .05;
+		}
+	}
+
+}
+
+.table {
+
+	border-collapse: separate;
+	border-spacing: 0px 2px;
+
+	thead tr th {
+		border: 0px;
+		vertical-align: middle;
+	}
+
+	tbody {
+
+		tr {
+
+			td {
+
+				border-top: solid 1px #d6d6d6;
+				border-bottom: solid 1px #d6d6d6;
+				border-radius: 2px;
+				vertical-align: middle;
+				background: #fff;
+				padding: 8px;
+
+				&:first-child {
+					border-left: solid 1px #d6d6d6;
+				}
+
+				&:last-child {
+					border-right: solid 1px #d6d6d6;
+				}
+
+				input {
+					vertical-align: middle;
+				}
+
+				.btn-group {
+
+					margin-top: -7px;
+					margin-right: -7px;
+
+					a {
+						display: block;
+					}
+
+					svg {
+						margin: 7px 7px 12px 12px;
+					}
+
+					.dropdown-menu {
+						top: 22px;
+					}
+
+				}
+
+			}
+
+		}
+
+		.label-check {
+			font-weight: normal;
+		}
+
+	}
+
+}
+
+main-controller[device="mobile"] {
+
+	list-table .card {
+
+		position: relative;
+		margin-bottom: 15px;
+		padding-right: 15px;
+
+		.card-actions {
+			margin-left: -2px;
+		}
+
+		&.active {
+			background-color: rgba(0,0,0,.08);
+		}
+
+		.principal-title {
+			height: auto;
+			padding-bottom: 10px;
+
+			h3 {
+				font-size: 24px;
+			}
+		}
+
+	}
+
+}

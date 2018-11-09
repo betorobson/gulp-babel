@@ -1,0 +1,27 @@
+
+<label
+	layout="row"
+	layout-align="start center"
+	ng-class="{
+		disabled: to.disabled
+	}"
+	ng-click="onclick($event)"
+>
+	<span flex>
+		{{options.templateOptions.label}}
+		<span
+			ng-if="showValues"
+			class="switch-pill-status online"
+		>
+			{{showValues()}}
+		</span>
+	</span>
+
+	<div class="switch">
+		<input
+			type="checkbox"
+			ng-model="model[options.key]"
+		/>
+		<span class="slider round"></span>
+	</div>
+</label>

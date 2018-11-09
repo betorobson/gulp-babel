@@ -1,0 +1,105 @@
+
+list-filter {
+
+	label {
+
+		font-weight: 400;
+
+		input[type="text"] {
+			margin-top: 5px;
+		}
+
+	}
+
+	.principal-title {
+		height: auto;
+		margin-top: 15px;
+		margin-bottom: 0;
+		padding: 0;
+		font-size: 18px;
+		line-height: 19px;
+	}
+
+	.list-filter-form {
+
+		label {
+			position: relative;
+		}
+
+		.icon-svg {
+			width: 20px;
+			height: 20px;
+			color: $color2;
+			position: absolute;
+			bottom: 7px;
+			right: 7px;
+		}
+
+	}
+
+	.btn-mais {
+		margin: 0 0 2px 0;
+	}
+
+	list-filter-options {
+
+		display: block;
+
+		.btn {
+			&.btn-primary,
+			&.btn-secondary {
+				padding-top: 6px;
+				padding-bottom: 6px;
+			}
+
+			&.btn-link {
+				line-height: 10px;
+				margin-top: 15px;
+				text-decoration: none;
+			}
+		}
+
+		.grey-block {
+			padding: 5px;
+			margin-bottom: 2px;
+		}
+
+		p {
+			margin-bottom: 5px;
+		}
+
+		.buttons .btn {
+			padding: 5px;
+			line-height: 20px;
+			margin-top: 5px;
+		}
+
+		.form-group {
+			margin: 0;
+		}
+
+		.formly-field {
+			padding: 0 15px;
+			margin-bottom: 15px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+	}
+
+	.modal list-filter-options {
+		.form-group {
+			margin: 0;
+		}
+	}
+
+	.radio-group {
+		margin-top: 25px;
+	}
+
+	.dropdown-menu {
+		padding-bottom: 15px;
+	}
+
+}

@@ -1,0 +1,84 @@
+
+<div
+	id="tab-acoes-tour"
+	class="tab-pane fade in"
+	ng-class="{active: active}"
+>
+	<div class="row">
+		<div class="col-md-12 no-padding block">
+			<div class="form-group">
+				<div class="col-md-4">
+					<label for="filtro-visita-status">Status da tarefa</label>
+					<div class="filtro">
+						<select name="agendar" id="filtro-visita-status">
+							<option>Agendar</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-4 no-padding-left">
+					<label for="filtro-visita-data">Quando?</label>
+					<div class="row-fluid">
+						<span class="col-md-9 no-padding">
+							<input class="form-control" name="data" id="filtro-visita-data" type="date" />
+						</span>
+						<span class="col-md-1 no-padding">
+							<label class="title no-padding-top" for="filtro-visita-data">
+								<figure>
+									<img src="/assets/imgs/icons/date.png" alt="">
+								</figure>
+							</label>
+						</span>
+					</div>
+				</div>
+				<div class="col-md-4 no-padding-left">
+					<label for="filtro-visita-hora">&nbsp;</label>
+					<div class="row-fluid">
+						<span class="col-md-8 no-padding">
+							<input class="form-control" name="hora" id="filtro-visita-hora" type="time" />
+						</span>
+						<span class="col-md-1 no-padding">
+							<label class="title no-padding-top" for="filtro-visita-hora">
+								<figure>
+									<img src="/assets/imgs/icons/time.png" alt="">
+								</figure>
+							</label>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-12 block">
+			<div class="form-group">
+				<label for="filtro-visita-convite" class="label-check">
+					<input type="checkbox" name="enviarconvite" id="filtro-visita-convite">
+					Enviar convite para o cliente
+				</label>
+			</div>
+		</div>
+
+		<div class="col-md-12">
+			<div class="form-group col-md-8 no-padding">
+				<label for="filtro-visita-imovel">Imóvel</label>
+				<input type="text" class="form-control" name="imovel" id="filtro-visita-imovel" placeholder="imóvel" />
+			</div>
+		</div>
+		<div class="col-md-12">
+			<div class="form-group">
+				<label for="filtro-visita-descricao">Descrição</label>
+				<textarea rows="10" id="filtro-visita-descricao" name="descricao" class="" placeholder="descrição"></textarea>
+			</div>
+		</div>
+		<div class="col-md-12">
+			<div class="form-group">
+				<label for="filtro-visita-conviteparticipantes">Convidar mais participantes</label>
+				<input type="text" class="form-control" name="conviteparticipantes" id="filtro-visita-conviteparticipantes" placeholder="digite o nome do cliente cadastrado ou endereço de e-mail" />
+			</div>
+		</div>
+		<div class="col-md-12">
+			<a href="#" class="btn btn-primary pull-right">
+			<icon-svg name="attachment"></icon-svg>
+			Agendar visita
+			</a>
+		</div>
+	</div>
+</div>

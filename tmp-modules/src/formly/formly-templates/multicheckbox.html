@@ -1,0 +1,11 @@
+
+<label ng-repeat="(key, option) in to.options" class="label-check">
+	<div layout="row">
+	<input type="checkbox"
+		id="{{id + '_'+ $index}}"
+		ng-model="multiCheckbox.checked[$index]"
+		ng-change="multiCheckbox.change()"
+	/>
+	<span flex>{{option[to.labelProp || 'name']}}</span>
+	</div>
+</label>

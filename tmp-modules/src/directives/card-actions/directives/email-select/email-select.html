@@ -1,0 +1,15 @@
+
+<div
+	ng-repeat="item in item.emails"
+	layout-margin
+	layout="column"
+>
+	<button
+		ng-click="emailSelect(item.prospectEmailValor)"
+		class="btn btn-primary btn-email-select no-margin"
+		flex
+	>
+		{{item.prospectEmailValor}}
+	</button>
+</div>
+

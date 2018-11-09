@@ -1,0 +1,26 @@
+
+<div
+	class="formly-wrapper"
+	ng-class="{
+		paused: to.paused
+	}"
+>
+
+	<formly-transclude></formly-transclude>
+
+	<a
+		class="pause-button"
+		ng-if="showToggleButton()"
+		ng-click="pauseToggle()"
+	>
+		<icon-svg
+			class="btn-pause"
+			name="pause-button-circle-filled"
+		></icon-svg>
+		<icon-svg
+			class="btn-play"
+			name="play-button-circle-filled"
+		></icon-svg>
+	</a>
+
+</div>

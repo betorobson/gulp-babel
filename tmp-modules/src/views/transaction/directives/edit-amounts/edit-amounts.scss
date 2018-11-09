@@ -1,0 +1,22 @@
+
+view-transaction-edit-amounts {
+
+	display: block;
+	cursor: default;
+
+	.atendimentoNegocioComissao input {
+		width: 70px;
+	}
+
+}
+
+// desktop
+.popover view-transaction-edit-amounts {
+	width: 240px;
+}
+
+// mobile
+modal-body view-transaction-edit-amounts {
+	position: relative;
+	padding: 0 16px;
+}

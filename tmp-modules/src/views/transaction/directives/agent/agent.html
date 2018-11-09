@@ -1,0 +1,41 @@
+
+<div layout="row" flex>
+	<div
+		class="agent-box-avatar"
+		layout="row"
+		layout-align="start center"
+	>
+		<div class="avatar-picture img-circle">
+			<div
+				class="user-picture img-circle"
+				style="background-image:url({{item.extraInfo.usuarioUrlImagem}})"
+			>
+			</div>
+		</div>
+	</div>
+	<div
+		layout="column"
+		layout-align="center"
+		flex
+		class="agent-box"
+	>
+		<h2
+			class="agent-name"
+			bs-tooltip
+			data-title="{{item.extraInfo.usuarioNome}}, {{item.extraInfo.usuarioApelido}}"
+			data-placement="bottom"
+			data-type="info"
+		>
+			{{item.extraInfo.usuarioNome}}<strong ng-if="item.extraInfo.usuarioApelido">,
+			 {{item.extraInfo.usuarioApelido}}
+			</strong>
+		</h2>
+		<view-transaction-followers
+			transaction-item="item"
+		></view-transaction-followers>
+	</div>
+	<ng-transclude
+		layout="row"
+		layout-align="start center"
+	></ng-transclude>
+</div>

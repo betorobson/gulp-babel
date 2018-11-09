@@ -1,0 +1,7 @@
+
+<list-table ng-if="listObj.listType == 'table'">
+	<div ng-transclude="table"></div>
+</list-table>
+<list-column ng-if="listObj.listType == 'column'">
+	<div ng-transclude="column"></div>
+</list-column>

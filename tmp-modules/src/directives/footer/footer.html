@@ -1,0 +1,44 @@
+
+<div class="container no-padding">
+	<div class="footer-content"
+		layout-xs="column"
+		layout-gt-xs="row"
+	>
+
+			<figure
+				flex
+				layout-xs="column"
+				layout-gt-xs="row"
+			>
+				 <small
+					class="version"
+				>
+					Beta {{::version}}
+				</small>
+				<icon-svg-inline
+					flex-none
+					name="Anapro-Logo-Marca-3paths"
+					class="Anapro-Logo-Marca-3paths-white"
+				></icon-svg-inline>
+			</figure>
+
+		<div layout="row" flex-none>
+			<p>(11) 5082-3353 <br> suporte@anapro.com.br</p>
+			<icon-svg-inline
+				name="chat2"
+				class="icon-chat-support"
+			></icon-svg-inline>
+			<p>
+				Suporte técnico<br />
+				<a href="mailto:suporte@anapro.com.br"
+					class="btn-link"
+					target="{{
+						$root.mainController.device == 'desktop'
+						? '_blank'
+						: '_self'
+					}}"
+				>fale conosco</a>
+			</p>
+		</div>
+	</div>
+</div>

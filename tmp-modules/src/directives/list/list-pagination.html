@@ -1,0 +1,87 @@
+<div
+	layout="column"
+>
+	<div
+		ng-if="listObj.data.links.totalPages > 1"
+		layout="row"
+		layout-align="center start"
+	>
+
+		<a
+			ng-if="listObj.data.links.prev"
+			ng-href="{{linkNavigation(listObj.data.links.prev)}}"
+			class="button previous disabled"
+			flex-none
+			layout="row"
+			layout-align="center center"
+		>
+			<icon-svg name="arrow-left"></icon-svg>
+			<span class="only-desk">Anterior</span>
+		</a>
+
+		<div
+			layout="row"
+			layout-wrap
+			layout-align="center start"
+		>
+			<a
+				class="button"
+				ng-if="limits.fromItem != 1"
+				ng-href="{{linkNavigationFromNumber(1)}}"
+				ng-class="{current: listObj.data.links.currentPage == 1}"
+			>
+				1
+			</a>
+			<span
+				class="ellipsis"
+				ng-if="limits.fromItem > 2"
+			>...</span>
+			<a
+				class="button"
+				ng-if="$index+1 >= limits.fromItem && $index+1 <= limits.toItem"
+				ng-href="{{linkNavigationFromNumber($index+1)}}"
+				ng-class="{current: $index == (listObj.data.links.currentPage-1)}"
+				ng-repeat="item in getPaginationArray() track by $index"
+			>
+				{{$index+1}}
+			</a>
+			<span
+				class="ellipsis"
+				ng-if="limits.toItem < listObj.data.links.totalPages - 1"
+			>...</span>
+			<a
+				class="button"
+				ng-if="limits.toItem != listObj.data.links.totalPages"
+				ng-href="{{linkNavigationFromNumber(listObj.data.links.totalPages)}}"
+				ng-class="{
+					current: listObj.data.links.currentPage == listObj.data.links.totalPages
+				}"
+			>
+				{{listObj.data.links.totalPages}}
+			</a>
+		</div>
+
+		<a
+			ng-if="listObj.data.links.next"
+			ng-href="{{linkNavigation(listObj.data.links.next)}}"
+			class="button next"
+			flex-none
+			layout="row"
+			layout-align="center center"
+		>
+			<span class="only-desk">Seguinte</span>
+			<icon-svg name="arrow-right"></icon-svg>
+		</a>
+
+	</div>
+	<div
+		ng-if="listObj.data.links.totalRows"
+		layout="row"
+		layout-align="center start"
+	>
+		<p><strong>
+			Total: {{listObj.data.links.totalRows}}
+			registro<span ng-show="listObj.data.links.totalRows > 1">s</span>
+		</strong></p>
+	</div>
+</div>

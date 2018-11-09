@@ -1,0 +1,77 @@
+
+<div
+	ng-class="{
+		'multi-types': !!options.data.fieldsByType
+	}"
+>
+
+	<div
+		layout="row"
+	>
+		<label
+			ng-if="to.label"
+			class="control-label "
+		>
+			{{to.label}}
+		</label>
+		<a
+			ng-if="!options.ngModelElAttrs.disabled"
+			class="btn-add"
+			ng-click="add($event)"
+			title="{{options.data.addLabel}}"
+		>
+			<icon-svg name="plus"></icon-svg>
+		</a>
+	</div>
+
+	<div>
+		<div
+			ng-if="!isRemoved(item) && hasMatchFields($index)"
+			ng-repeat="item in model[options.key] track by $index"
+			ng-init="options.multiInputFields[$index] = getFields($index);"
+			layout="row"
+			ng-class="{
+				'error-unique-type': !!form.multiInputForms[options.key][$index].$error.getMultiTypesSelectUniqueValidator
+			}"
+		>
+
+			<formly-form
+				ng-if="!options.data.isArrayOfValues"
+				flex
+				layout="{{options.data.layout}}"
+				fields="options.multiInputFields[$index]"
+				model="modelMultiinput[$index]"
+				form="form.multiInputForms[options.key][$index]"
+			>
+			</formly-form>
+
+			<formly-field
+				ng-if="options.data.isArrayOfValues"
+				options="options.multiInputFields[$index][0]"
+				model="model[options.key]"
+				form="form"
+				index="$index"
+			>
+			</formly-field>
+
+			<div
+				ng-if="!options.multiInputFields[$index][0].templateOptions.readonly"
+				class="btn-remove-wrapper"
+			>
+				<a
+					class="btn-remove"
+					ng-click="remove($index, item)"
+					title="Remover"
+				>
+					<icon-svg name="remove"></icon-svg>
+				</a>
+			</div>
+		</div>
+	</div>
+	<p
+		ng-if="to.hint"
+		class="input-hint"
+	>
+		{{to.hint}}
+	</p>
+</div>

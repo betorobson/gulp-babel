@@ -1,0 +1,231 @@
+
+<div
+	ng-repeat="item in listObj.data.data"
+	ng-if="!item.removed"
+	ng-click="clickItem(item, $event)"
+	ng-class="{slideOutEffect: item.slideOutEffect}"
+	class="card"
+
+	permissions="atd_historico_atendimento"
+	permissions-disable-mode
+	permissions-remove-attrs="ng-click"
+
+	permissions-attrs-when-false:bs-tooltip
+	permissions-attrs-when-false:data-container="list-type-table"
+	permissions-attrs-when-false:data-title="Você não tem permissão para visualizar <br />os detalhes do atendimento"
+	permissions-attrs-when-false:data-trigger="click"
+	permissions-attrs-when-false:data-type="warn"
+
+	permissions-attrs-when-disabled:bs-tooltip
+	permissions-attrs-when-disabled:data-title="Desculpe, este recurso está temporariamente desativado"
+	permissions-attrs-when-disabled:data-trigger="click"
+	permissions-attrs-when-disabled:data-type="error"
+>
+
+	<div
+		class="
+			transaction-status-color
+			border-left
+			{{getStatusClassName(item)}}
+		"
+	></div>
+
+	<div
+		layout="row"
+		layout-align="start center"
+		class="principal-title"
+	>
+		<radial-progress
+			ng-if="item.extraInfo.atendimentoExpiracaoAutomaticaQtdMinutosConf"
+			total="item.extraInfo.atendimentoExpiracaoAutomaticaQtdMinutosConf"
+			value="item.extraInfo.atendimentoExpiracaoAutomaticaQtdMinutosConf - item.extraInfo.atendimentoExpiracaoAutomaticaQtdMinutosRestantesMax"
+			label="getDaysToExpires(item)"
+			class-thresholds="expiresProgressThreshold"
+			class="size-small transaction-expires"
+		></radial-progress>
+		<h3 class="title">
+			<strong>{{item.extraInfo.prospectNome}}</strong>
+		</h3>
+	</div>
+
+	<div class="row form-group">
+		<div class="col-xs-5">
+			<strong>Produto</strong>
+		</div>
+		<div class="col-xs-7 no-padding-left">
+			{{item.extraInfo.produtoNome}}
+		</div>
+	</div>
+
+	<div class="row form-group">
+		<div class="col-xs-5">
+			<strong>Fase</strong>
+		</div>
+		<div
+			ng-if="isOnQueue(item) || isFinished(item)"
+			class="col-xs-7 no-padding-left"
+		>
+			{{item.extraInfo.pipelineStageNome}}
+		</div>
+		<div
+			ng-if="!isOnQueue(item) && !isFinished(item)"
+			class="col-xs-7 no-padding-left"
+		>
+			<div
+				class="form-select"
+				ng-click="setChangeStageElement($event)"
+				preventClickItem
+				stage-form
+			>
+				<select
+					class="form-control"
+					ng-model="item.stageItem"
+					ng-change="changeStage(item)"
+					preventClickItem
+					ng-options="
+						option as option.fields.pipelineStage.pipelineStageNome
+						group by option.fields.pipelineStage.pipelineStageGrupo
+						disable when isPipelineOptionDisable(option, item)
+						for option in listObj.stageSelectOptions
+					"
+				>
+				</select>
+			</div>
+		</div>
+	</div>
+
+	<div class="row form-group">
+		<div class="col-xs-5">
+			<strong>Canal</strong>
+		</div>
+		<div class="col-xs-7 no-padding-left">
+			{{item.extraInfo.canalNome}}
+		</div>
+	</div>
+
+	<div class="row form-group" permissions='atd_midia_mostrar'>
+		<div class="col-xs-5">
+			<strong>Mídia</strong>
+		</div>
+		<div class="col-xs-7 no-padding-left">
+			{{item.extraInfo.midiaNome}}
+		</div>
+	</div>
+
+	<div ng-if="!isOnQueue(item)" class="row form-group">
+		<div class="col-xs-5">
+			<strong>Atendido</strong>
+		</div>
+
+		<td>
+			<div class="col-xs-7 no-padding-left">
+				{{item.fields.atendimento.atendimentoDtAtendido | date:'dd/MM/yy'}}
+			</div>
+		</td>
+	</div>
+
+	<div
+		ng-if="!isOnQueue(item) && !isFinished(item)"
+		class="row form-group"
+	>
+		<div class="col-xs-5">
+			<strong>Pendencias e compromissos</strong>
+		</div>
+		<div class="col-xs-7 no-padding">
+			<p
+				ng-if="!item.extraInfo.alarmeUltimoDtAlarme"
+				class="box color2hue1"
+			>
+				Atendimento sem próximo passo
+			</p>
+			<p
+				ng-if="item.extraInfo.alarmeProximoInteracaoTipoValor"
+				class="box color2"
+				ng-class="{
+					'text-color2hue1': item.extraInfo.alarmeProximoInteracaoQtdMinutosRestantesMax < 0
+				}"
+			>
+				<span ng-if="item.extraInfo.alarmeProximoInteracaoQtdMinutosRestantesMax >= 0">
+					Próxima
+				</span>
+				<span ng-if="item.extraInfo.alarmeProximoInteracaoQtdMinutosRestantesMax < 0">
+					Atrasado
+				</span>
+				{{item.extraInfo.alarmeProximoInteracaoTipoValor}}
+				em {{item.extraInfo.alarmeProximoDtAlarme | date:'dd/MM HH:mm'}}
+			</p>
+			<p
+				ng-if="item.extraInfo.atendimentoInteracaoUsuarioUltimaTipoValor"
+				class="box color1"
+			>
+				Última {{item.extraInfo.atendimentoInteracaoUsuarioUltimaTipoValor}}
+				em {{item.extraInfo.atendimentoInteracaoUsuarioUltimaData | date:'dd/MM HH:mm'}}
+			</p>
+		</div>
+	</div>
+
+	<div
+		layout="row"
+	>
+		<button ng-if="isOnQueue(item)" class="btn btn-primary">
+			Atender
+		</button>
+
+		<a
+			ng-if="isFinished(item)"
+			class="btn btn-secondary"
+			ng-click="transfer(item)"
+			preventClickItem
+
+			permissions="atd_reabrir"
+			permissions-disable-mode
+			permissions-remove-attrs="ng-click"
+
+			permissions-attrs-when-false:bs-tooltip
+			data-title="Você não tem permissão para reabrir atendimentos"
+			permissions-attrs-when-false:data-type="warn"
+
+			permissions-attrs-when-disabled:bs-tooltip
+			permissions-attrs-when-disabled:data-title="Desculpe, este recurso está desabilitado"
+			permissions-attrs-when-disabled:data-type="error"
+		>
+			Reabrir
+		</a>
+
+		<div
+			class="card-actions"
+			layout="row"
+			layout-align="end center"
+			flex
+			preventClickItem
+
+			permissions="atd_visualizar_prospect_telefone||atd_visualizar_prospect_email||atd_encerrar||atd_transf"
+			permissions-remove-attrs="data-toggle"
+		>
+
+			<a
+				ng-if="!isOnQueue(item) && !isFinished(item)"
+				ng-click="showCardActionsModal(item)"
+			><icon-svg name="plus"></icon-svg></a>
+
+			<a
+				ng-if="!isFinished(item)"
+				ng-click="transfer(item)"
+				permissions="atd_transf"
+			><icon-svg name="transfer"></icon-svg></a>
+
+			<a
+				ng-if='!isFinished(item)'
+				ng-click="finish('lost', item)"
+				permissions="atd_encerrar"
+			><icon-svg name="thumb-down"></icon-svg></a>
+
+			<a
+				ng-if='!isFinished(item)'
+				ng-click="finish('won', item)"
+				permissions="atd_encerrar"
+			><icon-svg name="thumb-up"></icon-svg></a>
+
+		</div>
+	</div>
+</div>

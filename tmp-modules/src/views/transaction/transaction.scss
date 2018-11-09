@@ -1,0 +1,119 @@
+
+@include view('transaction') {
+
+	#container {
+
+		view-title {
+
+			.principal-title {
+				padding-left: 12px;
+				padding-bottom: 0;
+				margin-top: 10px;
+			}
+
+			.btn-transfer .icon-svg {
+				margin: 0;
+			}
+
+		}
+
+		.quick-actions .btn-action {
+			min-width: 82px;
+			margin-bottom: 0;
+
+			&.won {
+				background-color: $color2;
+				color: #fff;
+			}
+
+			&.lost {
+				background-color: $color2hue1;
+				color: #fff;
+			}
+		}
+
+		.isFinished card-followup-item .btn-group {
+			display: none;
+		}
+
+	}
+
+	&[device=desktop] {
+
+		#container {
+
+			view-title {
+
+				&.radial-progress {
+
+					.principal-title {
+
+						padding-left: 65px;
+
+						h1 {
+							margin-top: 12px;
+						}
+
+					}
+
+					radial-progress {
+						position: absolute;
+						top: 0;
+						left: 12px;
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+	&[device=mobile] {
+		@extend %main-controller-footer-bar;
+
+		#container {
+
+			view-title {
+
+				&.radial-progress {
+
+					.principal-title {
+
+
+						h1 {
+							padding-left: 55px;
+							margin-top: 5px;
+							margin-bottom: 5px;
+						}
+
+					}
+
+					radial-progress {
+						position: absolute;
+						top: 0;
+						left: 12px;
+					}
+
+				}
+
+				margin-top: 15px;
+
+			}
+
+		}
+
+	}
+
+	.icons {
+		&.won-icon {
+			fill: $color2;
+		}
+
+		&.lost-icon {
+			fill: $color2hue1;
+		}
+	}
+
+}

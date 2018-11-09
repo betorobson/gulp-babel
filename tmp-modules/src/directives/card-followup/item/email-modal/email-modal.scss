@@ -1,0 +1,16 @@
+
+.modal.card-followp-email-modal {
+
+	.box-content{
+		line-height: 1;
+	}
+
+	@media #{$mediaDesktop} {
+
+		.modal-content {
+			max-width: 70%;
+			min-width: 30%;
+		}
+	}
+
+}

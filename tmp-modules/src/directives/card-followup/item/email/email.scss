@@ -1,0 +1,52 @@
+
+email-followup-item {
+
+  $emailFollowupItemBGColor: #eae8e8;
+  $emailFollowupItemBGColorDarken: darken($emailFollowupItemBGColor, 15%);
+
+	display: block;
+	position: relative;
+	cursor: pointer;
+
+	.btn-read-more {
+		margin-top: 5px;
+		margin-bottom: 10px;
+	}
+
+	.display-email-content {
+		padding-bottom: 25px;
+	}
+
+  @media #{$mediaDesktop}{
+      &:hover{
+          .grey-block{
+              background: $emailFollowupItemBGColorDarken;
+          }
+
+          .note-read-more{
+              background: linear-gradient(
+                  rgba($emailFollowupItemBGColorDarken, 0.4),
+                  $emailFollowupItemBGColorDarken
+              );
+          }
+
+      }
+  }
+
+
+  @media #{$mediaMobile}{
+      &:active{
+          .grey-block{
+              background: $emailFollowupItemBGColorDarken;
+          }
+
+          .note-read-more{
+              background: linear-gradient(
+                  rgba($emailFollowupItemBGColorDarken, 0.4),
+                  $emailFollowupItemBGColorDarken
+              );
+          }
+      }
+  }
+
+ }

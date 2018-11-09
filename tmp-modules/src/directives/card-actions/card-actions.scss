@@ -1,0 +1,43 @@
+.acoes .acoes-filtro {
+
+	padding: 0 0 20px 0;
+
+}
+
+.modal-content-scrollable modal-body card-actions {
+
+	#bloco-acoes {
+		margin: 0;
+	}
+
+	.acoes-filtro {
+		padding: 0;
+	}
+
+	.tab-pane {
+		margin: 0;
+		padding: 0;
+	}
+
+	#tab-acoes-note {
+		textarea {
+			height: 80px;
+		}
+	}
+
+}
+
+@media #{$mediaDesktop}{
+	modal-body card-actions{
+		width: 500px;
+		min-height: 160px;
+		display: block;
+	}
+}
+
+@media #{$mediaMobile} and (min-width: 600px){
+	modal-body card-actions{
+		min-width: 350px;
+		display: block;
+	}
+}

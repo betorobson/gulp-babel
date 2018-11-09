@@ -1,0 +1,133 @@
+list-column {
+
+	.column {
+		width: 12.2%;
+		margin-right: 3px;
+		float: left;
+		&:last-child {
+			margin-right: 0px;
+		}
+
+		.col-title {
+			font-size: 12px;
+			line-height: 14px;
+			margin-bottom: 20px;
+		}
+
+		.col-item {
+			border: solid 1px #d6d6d6;
+			border-radius: 2px;
+			padding: 15px 10px;
+			font-size: 12px;
+			line-height: 14px;
+			min-height: 120px;
+			margin-bottom: 3px;
+			a {
+				text-decoration: none;
+			}
+
+			.collapsed {
+				.mark-pendencia, .mark-compromisso {
+					display: inline-block;
+				}
+
+				.mark-pendencia:before {
+					content: "";
+					border: 0px;
+					background: #ff5a5f;
+					border-radius: 30px;
+					width: 15px;
+					height: 15px;
+					margin-right: 5px;
+					margin-top: 5px;
+					display: inline-block;
+				}
+
+			}
+
+			.collapsing .mark-pendencia:before {
+				content: "";
+				border: 0px;
+				background: #ff5a5f;
+				border-radius: 30px;
+				width: 15px;
+				height: 15px;
+				margin-right: 5px;
+				margin-top: 5px;
+				display: inline-block;
+			}
+
+			.collapsed .mark-compromisso:before {
+				content: "";
+				border: 0px;
+				background: #2c3e50;
+				border-radius: 30px;
+				width: 15px;
+				height: 15px;
+				margin-right: 5px;
+				margin-top: 5px;
+				display: inline-block;
+			}
+
+			.collapsing {
+				.mark-compromisso:before {
+					content: "";
+					border: 0px;
+					background: #2c3e50;
+					border-radius: 30px;
+					width: 15px;
+					height: 15px;
+					margin-right: 5px;
+					margin-top: 5px;
+					display: inline-block;
+				}
+
+				display: none;
+			}
+
+			.collapse.in {
+				&.block-pendencia {
+					background: #fff;
+					border: solid 1px #ff5a5f;
+					border-left-width: 5px;
+					border-radius: 0px;
+					padding: 3px;
+					margin: 7px 0;
+				}
+
+				&.block-compromisso {
+					background: #fff;
+					border: solid 1px #2c3e50;
+					border-left-width: 5px;
+					border-radius: 0px;
+					padding: 3px;
+					margin: 7px 0;
+				}
+
+			}
+
+			hr {
+				border: 0px;
+				border-top: solid 1px #cecece;
+				margin: 10px 0px;
+				border-radius: 0px;
+			}
+
+			a {
+				color: #444747;
+			}
+
+		}
+
+	}
+
+	@media #{$mediaMobile} {
+
+		.column {
+			width: 100% !important;
+			float: none !important;
+		}
+
+	}
+
+}

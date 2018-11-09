@@ -1,0 +1,15 @@
+
+@include notification-center-dialog-type('newChat', $color1hue2, $color2){
+
+	dialog-new-chat {
+
+		.avatar-picture {
+
+			background: $color3 url(/assets/imgs/icons/notification-new-chat.svg) center center;
+
+		}
+
+
+	}
+
+}

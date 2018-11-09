@@ -1,0 +1,91 @@
+
+<div
+	ng-if="loading"
+	flex
+	layout-fill
+	layout-align="center center"
+>
+	<loading-spinner
+		class="size-mid"
+	></loading-spinner>
+</div>
+
+<div
+	ng-if="!loading && !error && $root.mainController.device == 'mobile'"
+	class="msg-block table-report-mobile only-mobile"
+
+	permissions="usr_reports"
+>
+	<div class="title-block">
+		<p><strong>Hoje, {{currentDate | date:'dd/MM'}}</strong></p>
+	</div>
+	<div class="row no-margin">
+
+		<div class="col-xs-6 msg-block">
+			<h2>Compromissos</h2>
+			<a
+				href="{{getLinkFilter(data.summary.due)}}"
+				class="msg-block-darkblue"
+			>
+				<strong>{{data.summary.due.total}}</strong>
+			</a>
+		</div>
+
+		<div class="col-xs-6 msg-block">
+			<h2>Pendências</h2>
+			<a
+				href="{{getLinkFilter(data.summary.overdue)}}"
+				class="msg-block-red"
+			>
+				<strong>{{data.summary.overdue.total}}</strong>
+			</a>
+		</div>
+
+		<div class="col-xs-12 msg-block no-margin">
+			<a
+				href="{{getLinkFilter(data.summary.due)}}"
+				class="msg-block-green"
+			>
+				<strong>REALIZADOS {{data.summary.done.total}}</strong>
+			</a>
+		</div>
+
+	</div>
+</div>
+
+<table
+	ng-if="!loading && !error && $root.mainController.device == 'desktop'"
+	class="table table-report table-striped no-margin only-desk"
+
+	permissions="usr_reports"
+>
+	<thead>
+		<tr>
+			<th></th>
+			<th ng-repeat="item in data.items">
+				<strong>{{item.total}}</strong>
+				{{item.name}}
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Compromissos</td>
+			<td ng-repeat="item in data.items">
+				<a ng-href="{{getLinkFilter(item.due)}}">{{item.due.total}}</a>
+			</td>
+		</tr>
+		<tr>
+			<td>Pendências</td>
+			<td ng-repeat="item in data.items">
+				<a ng-href="{{getLinkFilter(item.overdue)}}">{{item.overdue.total}}</a>
+			</td>
+		</tr>
+		<tr>
+			<td>Realizados</td>
+			<td ng-repeat="item in data.items">
+				<a ng-href="{{getLinkFilter(item.done)}}">{{item.done.total}}</a>
+			</td>
+		</tr>
+	</tbody>
+</table>

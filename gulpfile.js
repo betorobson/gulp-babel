@@ -17,7 +17,8 @@ const
 	cached = require('gulp-cached'),
 	gulpDebug = require('gulp-debug'),
 	transform = require('vinyl-transform'),
-	remember = require('gulp-remember');
+	remember = require('gulp-remember'),
+	webpack = require('webpack-stream');
 
 var browserified = transform(function(filename) {
 	var b = browserify(filename);
@@ -52,23 +53,27 @@ gulp.task(
 	'javascript',
 	() =>
 		gulp.src([
+			'tmp-modules/src/app.js',
+			'tmp-modules/src/config/*.js',
+			'tmp-modules/src/**/!(*.config).js', // select modules declarations first
+			'tmp-modules/src/**/*.config.js', // select modules config
+			'tmp-modules/src/**/*.run.js', // select modules run
+			'tmp-modules/src/legacy.js'
 			// 'node_modules/@babel/polyfill/dist/polyfill.min.js',
-			'src/**/*.js',
-			'!src/app.js',
-			// '_tmp/src/**/*.js'
-		]
-		// {since: gulp.lastRun('scripts')}
-		)
-			.pipe(sourcemaps.init())
-			.pipe(cached('scripts'))
-			.pipe(gulpDebug({title: 'javascriptSrcBuild'}))
-			.pipe(remember('scripts'))
-			.pipe(concat('app.min.js'))
+			// 'src/**/*.js',
+			// '!src/app.js',
+			// 'tmp-modules/src/**/*.js'
+		])
+			.pipe(webpack( require('./webpack.config.js') ))
+			// .pipe(sourcemaps.init())
+			// .pipe(cached('scripts'))
+			// .pipe(gulpDebug({title: 'javascriptSrcBuild'}))
+			// .pipe(remember('scripts'))
+			// .pipe(concat('app.min.js'))
 			// .pipe(babel())
 			// .pipe(browserified)
-			.pipe(sourcemaps.write('maps'))
+			// .pipe(sourcemaps.write('maps'))
 			.pipe(gulp.dest('./dist'))
-			// .pipe(bro())
 );
 
 gulp.task(
@@ -103,7 +108,7 @@ gulp.task(
 		var watcher = gulp.watch(
 			[
 				'src/**/*.js',
-				'_tmp/src/**/*.js',
+				'tmp-modules/src/**/*.js',
 			],
 			gulp.series(
 				'javascript',

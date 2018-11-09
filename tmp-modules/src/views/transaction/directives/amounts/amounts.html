@@ -1,0 +1,74 @@
+
+<div
+	ng-if="mainController.device == 'desktop'"
+	layout="row"
+	layout-align="center center"
+	class="amounts"
+	ng-click="setAmount()"
+
+	permissions="resfim_editar_atd_valor||resfim_editar_atd_comissao"
+	permissions-disable-mode
+	permissions-remove-attrs="bsPopover,data-animation,data-title,data-content-template"
+
+	permissions-attrs-when-false:bs-tooltip
+	permissions-attrs-when-false:data-title="Você não tem permissão para alterar valor e comissão"
+	permissions-attrs-when-false:data-type="warn"
+>
+
+	<div permissions="resfim_mostrar_atd_valor">
+		<p>Valor do negócio</p>
+		<strong>{{transactionItem.fields.atendimento.atendimentoNegocioValor | currency : 'R$ '}}</strong>
+	</div>
+	<div permissions="resfim_mostrar_atd_comissao">
+		<p>Comissão</p>
+		<strong>potencial {{transactionItem.extraInfo.atendimentoNegocioComissaoValor | currency : 'R$ '}}</strong>
+	</div>
+
+</div>
+
+<div
+	ng-if="mainController.device == 'mobile'"
+>
+	<div
+		layout="row"
+		layout-align="center center"
+		class="amounts"
+		data-toggle="modal"
+		data-target="#modal-setamounts"
+
+		permissions="resfim_editar_atd_valor||resfim_editar_atd_comissao"
+		permissions-disable-mode
+		permissions-remove-attrs="data-toggle,data-target"
+
+		permissions-attrs-when-false:bs-tooltip
+		permissions-attrs-when-false:data-title="Você não tem permissão para alterar valor e comissão"
+		permissions-attrs-when-false:data-type="warn"
+	>
+
+		<div permissions="resfim_mostrar_atd_valor">
+			<p>Valor do negócio</p>
+			<strong>{{transactionItem.fields.atendimento.atendimentoNegocioValor | currency : 'R$ '}}</strong>
+		</div>
+		<div permissions="resfim_mostrar_atd_comissao">
+			<p>Comissão</p>
+			<strong>potencial {{transactionItem.extraInfo.atendimentoNegocioComissaoValor | currency : 'R$ '}}</strong>
+		</div>
+
+	</div>
+
+	<modal
+		ng-if="canEditWhenNotActive()"
+		permissions="resfim_editar_atd_valor||resfim_editar_atd_comissao"
+		modal-id="modal-setamounts"
+		delegate="modalDelegate"
+	>
+		<modal-title><strong>Alterar valor e comissão</strong></modal-title>
+		<modal-body>
+			<view-transaction-edit-amounts
+				title="Alterar valor e comissão"
+				transaction-item="transactionItem"
+				modal-delegate="modalDelegate"
+			></view-transaction-edit-amounts>
+		</modal-body>
+	</modal>
+</div>

@@ -1,0 +1,395 @@
+
+/*
+
+DOM - just for reference
+- navigation-bar
+-- .navbar
+--- .navbar-header
+--- #navbar
+---- .navbar-nav
+---- .navbar-form
+
+*/
+
+
+navigation-bar {
+
+	#navbar {
+		.form-group {
+			float: left;
+		}
+		form input[type="text"] {
+			background: #202f3e;
+			border: none;
+			//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+			border-radius: 0;
+			color: #fff;
+			height: 34px;
+		}
+
+		.disabled-item {
+
+			a {
+
+				&,
+				&:hover,
+				&:focus {
+					cursor: default;
+					color: #333;
+					font-weight: normal;
+					opacity: .6;
+					background: #fff;
+				}
+
+			}
+
+		}
+
+	}
+
+	.navbar-inverse {
+		background: $color1;
+	}
+
+	.navbar {
+		min-height: 67px;
+	}
+
+	.navbar-brand {
+
+		padding: 12px 15px;
+		position: relative;
+
+		.icon-svg {
+			width: 140px;
+			height: 34px;
+			margin-right: 40px;
+		}
+
+	 .licensed-company {
+			display: block;
+			position: absolute;
+			left: 60px;
+			color: #fefefe;
+			font-size: 10px;
+			top: 40px;
+			letter-spacing: 0.05em;
+		}
+
+	}
+
+	.nav.navbar-nav .separador:before{
+		content: "";
+		display: block;
+		position: absolute;
+		right: 0px;
+		height: 35px;
+		margin-top: 15px;
+		border-right: solid 1px #202f3e;
+	}
+
+	.navbar-inverse .navbar-nav {
+		> .open,
+		> .active {
+			> a,
+			> a:focus,
+			> a:hover {
+				background-color: transparent;
+			}
+		}
+	}
+
+	.navbar-inverse .navbar-nav > li > a {
+
+		.icon-svg {
+			height: 33px;
+			width: 33px;
+		}
+
+		strong {
+			font-weight: 400;
+		}
+
+	}
+
+	.navbar-form {
+		margin-top: 16px;
+		padding: 0 13px;
+		.icon-svg {
+			width: 22px;
+			height: 22px;
+			fill: $color2;
+		}
+	}
+
+	.badget {
+		background-color: $color2hue1;
+		margin: 0;
+		display: inline-block;
+	}
+
+	@media #{$mediaDesktop} {
+
+		.navbar-inverse .navbar-nav > li > a strong {
+			display: none;
+		}
+
+		.logo-beta{
+			color: #28b17f;
+			margin-left: 118px;
+			margin-top: -1px;
+			position: absolute;
+		}
+
+		// hover and click pulse effect
+		.navbar-inverse .navbar-nav > li {
+
+			&.active > a {
+				color: #fff;
+				animation: navBarIconHoverAnimation 0.5s ease-in-out;
+			}
+
+			> a {
+
+				color: $color2;
+
+				&[permissions-disable-mode]{
+					color: rgba($color3,.2);
+					&:hover,
+					&:focus {
+						color: rgba($color3,.2);
+					}
+				}
+
+				&:not([permissions-disable-mode]){
+					transition: transform 0.3s ease-in-out;
+
+					&:hover {
+						transform: scale(1.2);
+					}
+				}
+
+			}
+
+			@keyframes navBarIconHoverAnimation {
+				to {
+					transform: scale(5);
+					opacity: .05;
+				}
+			}
+
+		}
+
+		.badget,
+		.beamer_icon.active, #beamerIcon.active {
+			position: absolute;
+			top: 15px;
+			right: 5px;
+		}
+
+	}
+
+	@media #{$mediaDesktop} and (max-width: 1199px) {
+
+		.nav > li > a {
+			position: relative;
+			display: block;
+			padding: 15px 5px 0 9px;
+		}
+
+		#navbar form input[type="text"] {
+			width: 206px;
+		}
+
+	}
+
+	@media only screen and (min-width: 1200px) {
+
+		#navbar form input[type="text"] {
+			width: 330px;
+		}
+
+	}
+
+	@media #{$mediaMobile}{
+
+		#navbar form.navbar-form {
+			display: none;
+		}
+
+		.navbar-fixed-bottom .navbar-collapse {
+			max-height: initial;
+		}
+		.navbar-fixed-top .navbar-collapse {
+			max-height: initial;
+		}
+
+		.navbar-brand {
+			display: none;
+		}
+		.navbar-collapse {
+
+			background: $color2;
+
+			overflow-y: auto;
+			max-height: none;
+			position: fixed;
+			width: 100%;
+			margin-top: 0;
+			top: 66px;
+			border: 0;
+			border-top: 1px solid $color1hue1;
+			background: transparent;
+			bottom: 0;
+			display: flex;
+			flex-direction: column;
+
+				&:after {
+				display: flex;
+				background: rgba(#000000, 0.7);
+				flex: 1 1 auto;
+				margin: 0 -15px;
+			}
+
+		}
+
+		.btn-nav {
+			margin: 16px 0 0 10px;
+			border: none;
+		}
+
+		.navbar-header {
+
+			min-height: 66px;
+
+			.icon-svg {
+				fill: $color2;
+				width: 28px;
+				height: 28px;
+				&:active {
+					fill: #fff;
+				}
+			}
+
+			.notifications {
+				display: block;
+				padding: 5px 5px 5px 0;
+			}
+
+		}
+		.navbar-inverse {
+
+			.btn-link {
+				color: $color1hue2;
+			}
+
+			.menu-button {
+				outline: none;
+				height: 66px;
+				width: 60px;
+				padding: 21px 0 16px 14px;
+				background-color: transparent;
+				border: none;
+				position: relative;
+
+				&:active .icon-svg {
+					g {
+						fill: $color2;
+					}
+				}
+
+				&.collapsed .icon-svg {
+					g:first-of-type{
+						fill: transparent;
+					}
+					g:last-of-type{
+						fill: $color2;
+					}
+				}
+
+				&:active .icon-svg g,
+				.icon-svg g {
+					g:first-of-type{
+						fill: $color2;
+					}
+				}
+
+			}
+
+			.navbar-nav {
+				background-color: #28b17f;
+				margin: 0 -15px;
+			}
+
+			.navbar-nav > li {
+
+				> a {
+
+					color: #fff;
+
+					&[permissions-disable-mode]{
+						color: rgba($color3,.5);
+						&:hover,
+						&:focus {
+							color: rgba($color3,.5);
+						}
+					}
+
+					&:active,
+					&:focus,
+					&:active:focus {
+						color: #fff;
+						background: rgba(170, 170, 170, .7);
+					}
+				}
+
+				&.active > a {
+					background: rgba($color1, .7);
+				}
+
+			}
+		}
+
+		.nav.navbar-nav .separador:before {
+			display: none;
+		}
+
+		.back-button {
+			padding: 0 15px;
+			height: 46px;
+			background: #28b17f;
+			position: relative;
+			top: 67px;
+			color: #fff;
+			margin-bottom: 10px;
+
+			&:hover {
+				text-decoration: none;
+			}
+
+			&:active {
+				background: $color1hue2;
+			}
+
+			.icon-svg {
+				width: 16px;
+				height: 16px;
+				margin-right: 10px;
+			}
+
+		}
+
+		.badget,
+		.beamer_icon.active, #beamerIcon.active {
+			position: absolute;
+			top: 10px;
+			left: 40px;
+		}
+
+	}
+
+	footer {
+		margin: 0;
+	}
+
+}

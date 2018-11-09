@@ -1,0 +1,6 @@
+
+@mixin view($viewName) {
+		main-controller[view='#{$viewName}'] {
+				@content;
+		}
+}

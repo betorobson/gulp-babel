@@ -1,0 +1,47 @@
+ligacao-followup-item {
+	audio {
+		max-width: 100%;
+	}
+
+	.ligacaoIncompleta {
+		padding: 6px;
+	}
+
+	span{
+		background-color: $color2hue2;
+		color: $color3;
+		padding: 1px 4px;
+		border-radius: 3px;
+		text-align: center;
+
+		&.ligacaoAtendidaPillColor {
+			background-color: $color2;
+			color: $color3;
+			padding: 1px 4px;
+			border-radius: 3px;
+		}
+
+		&.ligacaoCanceladaPillColor {
+			background-color: $color4;
+			color: $color3;
+			padding: 1px 4px;
+			border-radius: 3px;
+		}
+		
+		&.ligacaoSemRespostaPillColor {
+			background-color: $color2hue1;
+			color: $color3;
+			padding: 1px 4px;
+			border-radius: 3px;
+		}
+		
+		&.ligacaoOcupadaPillColor {
+			background-color: $color1;
+			color: $color3;
+			padding: 1px 4px;
+			border-radius: 3px;
+		}
+
+	}
+	
+}

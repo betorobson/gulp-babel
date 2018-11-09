@@ -1,0 +1,97 @@
+<div class="box-content block tarefas clientes-filtro simulacao-proposta">
+
+	<div class="principal-title block">
+		<h2 class="pull-left">
+			<strong>Tarefas</strong>
+		</h2>
+	</div>
+
+	<div
+		ng-if="loading"
+		layout="row"
+		layout-align="center center"
+	>
+		<loading-spinner
+			class="size-large"
+		></loading-spinner>
+	</div>
+
+	<div ng-if="!loading">
+
+		<div
+			layout="row"
+			layout-wrap
+			layout-align="center"
+			class="tarefas-filtro"
+		>
+
+			<div
+				ng-repeat="(key, value) in summary"
+				ng-click="toggleFilterByType(key)"
+				class="col"
+				ng-class="{
+					ellipsis: value > 99,
+					active: isTypeInFilterList(key)
+				}"
+			>
+				<span ng-hide="value > 99" class="qtd">{{value}}</span>
+				<span ng-hide="value < 99" class="qtd">99<small>+</small></span>
+				<hr />
+				<span class="desc">{{summaryLabels[key] || key}}</span>
+			</div>
+
+		</div>
+
+		<div class="row"
+			ng-if="data.fields.overdue.length || data.fields.due.length"
+		>
+			<div class="col-md-12">
+				<div class="principal-title block">
+					<h3><strong>Próximas tarefas</strong></h3>
+				</div>
+			</div>
+
+			<div class="col-md-12 block items">
+
+				<card-followup-item
+					ng-if="isTypeInFilterList(item)"
+					ng-repeat="item in data.fields.overdue track by item.id"
+					item="item"
+					overdue="true"
+					delegate="followupItemDelegate"
+					ng-class="getClass(item)"
+				></card-followup-item>
+
+				<card-followup-item
+					ng-if="isTypeInFilterList(item)"
+					ng-repeat="item in data.fields.due track by item.id"
+					item="item"
+					due="true"
+					delegate="followupItemDelegate"
+					ng-class="getClass(item)"
+				></card-followup-item>
+
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="principal-title block">
+					<h3><strong>Histórico</strong></h3>
+				</div>
+			</div>
+
+			<div class="col-md-12 block items">
+
+				<card-followup-item
+					ng-if="isTypeInFilterList(item)"
+					ng-repeat="item in data.fields.done"
+					item="item"
+					delegate="followupItemDelegate"
+					ng-class="getClass(item)"
+				></card-followup-item>
+
+			</div>
+		</div>
+	</div>
+</div>

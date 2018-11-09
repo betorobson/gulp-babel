@@ -1,0 +1,71 @@
+<div
+	class="form-group"
+>
+
+	<input type="hidden" ng-model="addressModel" />
+
+	<label ng-if="to.label">
+		{{to.label}}
+	</label>
+
+	<formly-form
+		ng-hide="options.ngModelElAttrs.readonly == '' || to.readonly"
+		layout="row"
+		layout-align="space-between center"
+		layout-wrap
+		fields="fields"
+		model="addressModel"
+		form="addressForm"
+		options="addressFormOptions"
+	>
+	</formly-form>
+
+	<div
+		layout="row"
+		class="error-message-space"
+	>
+
+		<loading-spinner class="size-small" ng-if="loading"></loading-spinner>
+
+		<p
+			ng-if="zipcode.formControl.$valid && getPropertie('zipcode') && !loading"
+			bs-tooltip
+			data-title="{{options.data.tooltip.title}}"
+			data-type="{{options.data.tooltip.type}}"
+		>
+			{{getPropertie('street')}},
+			<span ng-show="getPropertie('number')">
+				{{getPropertie('number')}},
+			</span>
+			<span ng-show="getPropertie('street2')">
+				{{getPropertie('street2')}},
+			</span>
+			<span ng-show="getPropertie('neighborhood')">
+				{{getPropertie('neighborhood')}},
+			</span>
+			{{getPropertie('city')}} - {{getPropertie('state')}}
+		</p>
+
+		<div ng-hide="to.noErrorSpace" class="clearfix">
+			<div
+				ng-messages="zipcode.formControl.$error"
+				class="has-error clearfix"
+			>
+				<div
+					ng-message="{{::name}}"
+					ng-repeat="(name, message) in ::options.validation.messages"
+					ng-if="message && (form.$submitted || zipcode.formControl.$touched)"
+					class="help-block"
+				>
+					{{message(
+						zipcode.formControl.$viewValue,
+						zipcode.formControl.$modelValue,
+						this
+					)}}
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>

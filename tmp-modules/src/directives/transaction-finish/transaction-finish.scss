@@ -1,0 +1,25 @@
+
+transaction-finish {
+
+	display: block;
+
+}
+
+.modal transaction-finish {
+	@extend %modal-min-height;
+	padding: 0 10px;
+
+	.modal-content-scrollable {
+		margin-left: 0;
+		margin-right: 0;
+		padding: 0 2px;
+	}
+
+}
+
+@media #{$mediaDesktop} {
+	.modal transaction-finish {
+		width: 600px;
+		min-height: 360px;
+	}
+}

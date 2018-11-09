@@ -1,0 +1,120 @@
+
+<div
+		ng-if="!edit && !loading"
+	>
+		<div
+			class="hashtag-itens"
+			layout="row"
+			layout-wrap
+		>
+
+			<div
+				ng-repeat="hashtag in transactionItem.expand.clients.fields.prospectHashTags"
+				class="hashtag-item"
+			>
+				<a
+					class="link-hashtag"
+					href="{{::getPath(hashtag)}}"
+				>
+					#{{hashtag}}
+				</a>
+
+			</div>
+			<div
+				layout="row"
+			>
+
+				<a
+					ng-click="editHashtag()"
+					class="btn-link"
+					ng-class="{
+						'btn-edit-no-hash': !transactionItem.expand.clients.fields.prospectHashTags.length
+					}"
+					data-title="Editar hashtag"
+					bs-tooltip
+
+					permissions="pro_hashtag_editar"
+					permissions-disable-mode
+					permissions-remove-attrs="ng-click"
+					permissions-attrs-when-false:bs-tooltip
+					permissions-attrs-when-false:data-title="Você não tem permissão para editar hashtag do cliente"
+					permissions-attrs-when-false:data-type="warn"
+					permissions-attrs-when-disabled:bs-tooltip
+					permissions-attrs-when-disabled:data-title="Alterar hashtag do cliente, está momentaneamente desativado"
+					permissions-attrs-when-disabled:data-type="error"
+				>
+
+					<span
+						class="hashtag-edit"
+						ng-if="!transactionItem.expand.clients.fields.prospectHashTags.length"
+					>
+						#IncluirHashtag
+					</span>
+
+					<icon-svg
+						name="edit"
+
+					></icon-svg>
+				</a>
+
+			</div>
+
+		</div>
+
+</div>
+
+	<loading-spinner
+		ng-if="loading"
+		class="size-small"
+		ng-class="submitStatus"
+	></loading-spinner>
+
+	<div
+		ng-if="edit && !loading"
+	>
+
+		<form
+			name="form"
+			novalidate
+			autocomplete="off"
+			ng-submit="patchHashtag()"
+		>
+
+			<div
+				class="form-group"
+			>
+				<textarea
+					class="hashtag-textarea autoExpand form-control"
+					cols="30"
+					rows="3"
+					data-min-rows="3"
+					placeholder="Cadastre suas hastags aqui."
+					ng-model="model.textArea"
+					required
+					submit-on-enter
+				></textarea>
+			</div>
+
+			<div
+				layout="row"
+				layout-align="space-between center"
+			>
+				<button
+					class="btn btn-secondary"
+					ng-click="cancel()"
+					type="button"
+				>
+					Cancelar
+				</button>
+
+				<button
+					class="btn btn-primary"
+					type="submit"
+				>
+					Atualizar
+				</button>
+
+			</div>
+		</form>
+
+	</div>

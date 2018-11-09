@@ -1,0 +1,21 @@
+
+<div
+	flex-xs="50"
+	flex-gt-xs="25"
+	class="btn-bigicon-text-grid-item"
+	layout="row"
+>
+	<a
+		ng-href="{{href}}"
+		flex
+		layout="column"
+		layout-align="center center"
+		ng-disabled="disabled == 'disabled'"
+		ng-class="{active: active}"
+		ng-click="setTabSelected()"
+		class="btn-bigicon-text"
+	>
+		<icon-svg name="{{icon}}"></icon-svg>
+		<span ng-transclude></span>
+	</a>
+</div>

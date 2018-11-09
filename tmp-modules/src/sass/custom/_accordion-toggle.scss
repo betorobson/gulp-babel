@@ -1,0 +1,49 @@
+
+.accordion-toggle {
+	display: inline-block;
+	height: 13px;
+	width: 13px;
+	margin-right: 10px;
+	cursor: pointer;
+	float: right;
+
+	.icon-svg {
+		transition: transform .5s ease;
+		transform: rotate(179deg);
+	}
+
+	&.collapsed .icon-svg {
+		transform: rotate(0deg);
+	}
+
+}
+
+[data-toggle=collapse] {
+
+	cursor: pointer;
+
+	&:hover {
+		color: $color1hue2;
+	}
+
+	&.collapsed .icon-svg{
+		transform: rotate(0deg);
+	}
+
+}
+
+main-controller[device=desktop]{
+
+	.accordion-toggle:hover .icon-svg {
+		fill: $color1hue1;
+	}
+
+}
+
+main-controller[device=mobile]{
+
+	.accordion-toggle:active .icon-svg {
+		fill: $color1hue1;
+	}
+
+}

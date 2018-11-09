@@ -1,0 +1,43 @@
+
+<div class="grey-block">
+	<p
+		layout="row"
+		layout-align="start center"
+	>
+		<icon-svg
+			name="{{
+				item.interacaoAtorPartida.usuario
+				? 'thin-arrow-right'
+				: 'reply'
+			}}"
+		></icon-svg>
+		<span>
+			de
+			<strong>{{item.interacaoEmailRemetente}}</strong>
+			<br/>
+			para
+			<strong>{{getEmailTo()}}</strong>
+		</span>
+	</p>
+	<p
+		class=" item-body email-body"
+		ng-class="{'display-email-content':displayEmailContent}"
+		ng-click="displayEmailContent = !displayEmailContent"
+	>{{emailContent}}</p>
+</div>
+
+<div
+	layout="row"
+	layout-align="center"
+	class="note-read-more"
+	ng-click="displayEmailContent = !displayEmailContent"
+>
+	<div class="btn-read-more"
+	>
+		{{
+			!displayEmailContent
+			? 'Leia mais'
+			: 'Voltar'
+		}}
+	</div>
+</div>

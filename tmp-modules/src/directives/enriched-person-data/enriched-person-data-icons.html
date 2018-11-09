@@ -1,0 +1,16 @@
+<ul class="display-items-row">
+	<li ng-repeat="itemOption in item.options">
+		<a 
+			ng-href="{{itemOption.name}}" 
+			target="_blank"
+			flex
+		> 
+			<img 
+				class="social-icon" 
+				ng-if="item.field == 'enrichPersonUrl' && itemOption.properties.enrichPersonUrl.ImgUrl" 
+				ng-src="//{{itemOption.properties.enrichPersonUrl.ImgUrl}}" 
+				alt="{{itemOption.properties.Host}}"
+			/>
+		</a>
+	</li>
+</ul>

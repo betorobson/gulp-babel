@@ -1,0 +1,118 @@
+
+<div class="box-content simulacao-proposta">
+
+	<div class="principal-title no-padding-left">
+		<h2 class="pull-left">
+			<strong>Informações</strong> do negócio
+		</h2>
+	</div>
+
+	<div layout="column" layout-padding class="no-padding">
+
+		<div flex layout="row" layout-xs="column" layout-sm="column">
+			<strong flex-xs flex-sm flex-gt-sm="30">Data de criação</strong>
+			<span flex>
+				{{
+					transactionItem.fields.atendimento.atendimentoDtInclusao
+					| date:'dd/MM/yyyy HH:mm'
+				}}
+			</span>
+		</div>
+
+		<div flex layout="row" layout-xs="column" layout-sm="column">
+			<strong flex-xs flex-sm flex-gt-sm="30">Canal de origem</strong>
+			<span flex>
+				{{transactionItem.extraInfo.canalNome}}
+			</span>
+		</div>
+
+		<div
+			flex
+			layout="row"
+			layout-xs="column"
+			layout-sm="column"
+			permissions='atd_midia_mostrar'
+		>
+			<strong flex-xs flex-sm flex-gt-sm="30">Mídia de origem</strong>
+			<span flex>
+				{{transactionItem.extraInfo.midiaNome || 'Sem mídia'}}
+			</span>
+		</div>
+
+		<div
+			flex
+			layout="row"
+			layout-xs="column"
+			layout-sm="column"
+			ng-if='transactionItem.extraInfo.pecaNome'
+			permissions='atd_midia_mostrar'
+		>
+			<strong flex-xs flex-sm flex-gt-sm="30">Peça de origem</strong>
+			<span flex>
+				{{transactionItem.extraInfo.pecaNome}}
+			</span>
+		</div>
+
+		<div
+			flex
+			layout="column"
+			ng-if='transactionItem.extraInfo.atendimentoFollowUpEmail'
+		>
+			<strong>Email de integração</strong>
+				<div
+					layout="row"
+				>
+					<a
+						class="integration-email"
+						href="mailto:{{transactionItem.extraInfo.atendimentoFollowUpEmail}}"
+					>
+						{{transactionItem.extraInfo.atendimentoFollowUpEmail}}
+					</a>
+					<p
+						bs-tooltip
+						data-title='Copiar'
+						data-placement="top"
+						data-type="info2"
+						ng-click="copy()"
+					>
+						<icon-svg
+							name="copy"
+							class-name="color1hue2"
+						>
+						</icon-svg>
+					</p>
+				</div>
+		</div>
+
+		<!--div flex layout="row" layout-xs="column" layout-sm="column">
+			<strong flex-xs flex-sm flex-gt-sm="30">Retorno</strong>
+			<ul
+				ng-if="info.transactionsBefore.total > 0"
+				flex
+			>
+
+				<li ng-if="info.transactionsBefore.total == 1">
+					Cliente já fez {{info.transactionsBefore.total}} negócio anteriormente
+				</li>
+				<li ng-if="info.transactionsBefore.total > 1">
+					Cliente já fez {{info.transactionsBefore.total}} negócios anteriores
+				</li>
+
+				<li ng-if="info.transactionsBefore.succeeded > 0">
+					{{info.transactionsBefore.succeeded}}
+					negócio<span ng-if="info.transactionsBefore.succeeded > 1">s</span>
+					bem
+					sucedido<span ng-if="info.transactionsBefore.succeeded > 1">s</span>
+				</li>
+
+				<li ng-if="info.transactionsBefore.declined > 0">
+					{{info.transactionsBefore.declined}}
+					negócio<span ng-if="info.transactionsBefore.declined > 1">s</span>
+					com desistência
+				</li>
+
+			</ul>
+		</div-->
+	</div>
+
+</div>

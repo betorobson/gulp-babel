@@ -1,0 +1,80 @@
+
+chat-followup-item {
+
+    $chatFollowupItemBGColor: #eae8e8;
+    $chatFollowupItemBGColorDarken: darken($chatFollowupItemBGColor, 15%);
+
+    cursor: pointer;
+
+    .chat-body {
+        position: relative;
+        
+        span {
+            display: inline-block;
+            background-color: $color1hue1;
+            color: $color3;
+            padding: 1px 4px;
+            border-radius: 3px;
+
+            &.clientPillColor {
+                background-color: $color2;;
+            }
+        }
+    }
+
+    .chat-leia-mais{
+        position: absolute;
+        bottom: 0;
+        width: 100%; 
+        background: linear-gradient(
+            rgba($chatFollowupItemBGColor, 0.4), 
+            $chatFollowupItemBGColor
+        );
+    }
+
+    .btn-leia-mais{
+        background-color:#5a5959; 
+        display: inline-block;
+        color: #fff;
+        padding: 1px 5px;
+        border-radius: 10px;
+        margin-top: 5px;
+    }
+
+    .display-chat-content .chat-leia-mais{
+        position: relative;
+    }
+
+    @media #{$mediaDesktop}{
+        &:hover{
+            .grey-block{
+                background: $chatFollowupItemBGColorDarken;
+            }
+        
+            .chat-leia-mais{
+                background: linear-gradient(
+                    rgba($chatFollowupItemBGColorDarken, 0.4),
+                    $chatFollowupItemBGColorDarken
+                );
+            }
+        
+        }
+    }
+
+
+    @media #{$mediaMobile}{
+        &:active{
+            .grey-block{
+                background: $chatFollowupItemBGColorDarken;
+            }
+        
+            .chat-leia-mais{
+                background: linear-gradient(
+                    rgba($chatFollowupItemBGColorDarken, 0.4), 
+                    $chatFollowupItemBGColorDarken
+                );
+            }
+        }
+    }
+
+}

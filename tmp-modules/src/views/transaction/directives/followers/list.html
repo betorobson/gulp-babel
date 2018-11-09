@@ -1,0 +1,114 @@
+
+<div
+	ng-if="loading"
+	layout="row"
+	layout-align="center center"
+	layout-fill
+>
+	<loading-spinner
+		class="size-mid"
+		layout="column"
+		layout-align="center center"
+	></loading-spinner>
+</div>
+
+<div ng-if="empty">
+	<h3>
+		Não existem usuários disponíveis para seguir
+		na campanha e canal deste atendimento.
+	</h3>
+</div>
+
+<div
+	ng-if="!loading && !empty"
+>
+
+	<form
+		ng-if="canEditWhenNotActive()"
+		flex
+		layout="column"
+		name="form"
+		ng-submit="submit()"
+		novalidate
+		disabled="true"
+		autocomplete="off"
+	>
+		<formly-form
+			flex
+			form="form"
+			fields="fields"
+			model="model"
+			options="formOptions"
+		>
+		</formly-form>
+	</form>
+
+	<div
+		ng-repeat="item in getList() | limitTo: getLimitTo()"
+		class="follower-item"
+		layout="row"
+		layout-align="start center"
+		layout-margin
+	>
+			<avatar imgsrc="::item.properties.usuarioUrlImagem"></avatar>
+			<div
+				flex
+				layout="column"
+				layout-align="center start"
+				class="follower-desc"
+			>
+				<p class="name">
+					{{item.name}}
+					<small ng-hide="!item.properties.usuarioApelido">
+						({{item.properties.usuarioApelido}})
+					</small>
+				</p>
+				<p class="email">
+					<small>{{item.properties.usuarioEmail}}</small>
+				</p>
+			</div>
+
+			<button
+				ng-if="isFollowing(item) && canEditWhenNotActive()"
+				class="btn btn-delete"
+				ng-click="remove(item)"
+
+				permissions="atd_add_seguidores"
+				permissions-disable-mode
+				permissions-remove-attrs="ng-click"
+
+				permissions-attrs-when-false:bs-tooltip
+				permissions-attrs-when-false:data-title="Você não tem permissão para remover seguidores"
+				permissions-attrs-when-false:data-type="warn"
+
+				permissions-attrs-when-disabled:bs-tooltip
+				permissions-attrs-when-disabled:data-title="Desculpe, adicionar ou remover seguidores está momentaneamente desligado"
+				permissions-attrs-when-disabled:data-type="error"
+			>
+				<icon-svg name="star-remove-filled"></icon-svg>
+				Remover
+			</button>
+			<button
+				ng-if="!isFollowing(item) && canEditWhenNotActive()"
+				class="btn btn-primary"
+				ng-click="add(item)"
+
+				permissions="atd_add_seguidores"
+				permissions-disable-mode
+				permissions-remove-attrs="ng-click"
+
+				permissions-attrs-when-false:bs-tooltip
+				permissions-attrs-when-false:data-title="Você não tem permissão para adicionar seguidores"
+				permissions-attrs-when-false:data-type="warn"
+
+				permissions-attrs-when-disabled:bs-tooltip
+				permissions-attrs-when-disabled:data-title="Desculpe, adicionar ou remover seguidores está momentaneamente desligado"
+				permissions-attrs-when-disabled:data-type="error"
+			>
+				<icon-svg name="star-filled"></icon-svg>
+				Adicionar
+			</button>
+
+	</div>
+
+</div>

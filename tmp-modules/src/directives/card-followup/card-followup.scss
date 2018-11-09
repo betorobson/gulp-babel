@@ -1,0 +1,79 @@
+
+.tarefas {
+
+	.items {
+		// terrible gambis MOFO!
+		// background: url(/assets/imgs/icons/pixel-cinza.png) repeat-y 45px;
+	}
+
+}
+
+.tarefas-filtro .col {
+	border-radius: 3px;
+	width: 80px;
+	// width: 17%;
+	// margin-right: 3%;
+	// display: block;
+	border: solid 1px #39afe2;
+	// float: left;
+	text-align: center;
+	background: #fff;
+	margin:  0 5px 10px 5px;
+	cursor: pointer;
+	color: #39afe2;
+
+	@media #{$mediaDesktop}{
+		&:hover {
+			background-color: $color1;
+			text-decoration: none;
+		}
+	}
+
+	&:active {
+		background-color: rgba($color1, .7);
+	}
+
+	&.active {
+		background-color: $color1hue2;
+		color: #fff;
+
+		hr {
+			border-color: #fff;
+		}
+	}
+
+
+	&.ellipsis {
+		.qtd {
+			font-size: 30px;
+			small {
+				font-size: 16px;
+			}
+		}
+	}
+
+	span {
+		text-decoration: none;
+	}
+
+	.qtd {
+		display: block;
+		margin-top: 10px;
+		padding-bottom: 5px;
+		font-size: 48px;
+		line-height: 48px;
+	}
+
+	hr {
+		margin: 0 10px 5px 10px;
+		border-top: solid 1px $color1hue2;
+	}
+
+	.desc {
+		display: block;
+		font-size: 14px;
+		line-height: 16px;
+		padding: 5px 0;
+	}
+
+}

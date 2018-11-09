@@ -1,0 +1,197 @@
+
+	<div
+		flex
+		class="item-calendar no-margin"
+		ng-class="{
+			overdue: interaction.tarefa.alarme.alarmeOverdue,
+			expanded: expandedDescription
+		}"
+		layout="column"
+	>
+
+	<loading-spinner
+		class="fill"
+		ng-class="submitStatus"
+		ng-if="loading"
+	></loading-spinner>
+
+		<div
+			layout="column"
+			class="action-buttons"
+			ng-if="$root.mainController.device == 'desktop'"
+			preventClickItem
+		>
+			<a
+				ng-click="reschedule()"
+				class="dropdown-toggle"
+				data-toggle="dropdown"
+				preventClickItem
+				bs-tooltip
+				data-title='Reagendar'
+				data-placement="top"
+				data-type='info2'
+				ng-if="hasAlarm"
+			>
+			<icon-svg name="clock"></icon-svg>
+		</a>
+
+		<a
+			ng-click="done()"
+			bs-tooltip
+			preventClickItem
+			data-title='Marcar como Feito'
+			data-placement="top"
+			data-type='info2'
+			ng-if="hasTaskToBeDone"
+		>
+			<icon-svg name="checked"></icon-svg>
+		</a>
+
+		<a
+			ng-click="addNewAppointment()"
+			class="info-client"
+			bs-tooltip
+			preventClickItem
+			data-title='Ações'
+			data-placement="top"
+			data-type='info2'
+			ng-if="hasTaskToBeDone"
+		>
+			<icon-svg name="plus"></icon-svg>
+		</a>
+
+		</div>
+
+
+		<div
+			class="date-hour-wrapper"
+			layout="column"
+			layout-xs="row"
+		>
+
+			<avatar
+				item="interaction.interacaoAtorPartida.usuario"
+			>
+			</avatar>
+			<p
+				class="date"
+				flex-none
+				layout-xs="column"
+			>
+				{{interaction.tarefa.tarefaDtTarefa | date:'dd/MM'}}
+				<small>{{interaction.tarefa.tarefaDtTarefa | date:'yyyy'}}</small>
+			</p>
+			<div
+				class="date-border"
+				ng-if="$root.mainController.device == 'desktop'"
+			></div>
+			<p
+				class="description"
+				layout-xs="row"
+				layout-sm="row"
+				layout-gt-sm="column"
+				layout-align-xs="start center"
+				layout-align-gt-sm="center center"
+				flex
+			>
+				<strong>{{interaction.tarefa.tarefaDtTarefa | date:'HH:mm'}}</strong>
+				<span>{{item.extraInfo.prospectNome}}</span>
+			</p>
+		</div>
+
+		<p
+			class="description-task"
+			flex
+			ng-click="expandDescription($event)"
+		>
+			<small
+				ng-if="showItemUser"
+				class="userName"
+			>
+				{{interaction.interacaoAtorPartida.usuario.usuarioNome}},
+				<strong ng-if="interaction.interacaoAtorPartida.usuario.usuarioApelido">
+					{{interaction.interacaoAtorPartida.usuario.usuarioApelido}}
+				</strong>
+			</small>
+			<small
+				ng-if="getType()"
+				class="type-interaction"
+			>
+				{{interaction.interacaoTipoSub}}
+			</small>
+			<span
+				class="description-task-text"
+				ng-bind-html="descriptionItem"
+			></span>
+		</p>
+
+		<div
+			ng-if="canExpandDescription"
+			layout="row"
+			layout-align="center"
+			class="note-read-more"
+			ng-click="expandDescription($event)"
+			preventClickItem
+		>
+			<div class="btn-read-more"
+			>
+				<icon-svg name="arrow-down"></icon-svg>
+			</div>
+		</div>
+
+		<div
+			ng-if="$root.mainController.device == 'mobile'"
+			class="actions-buttons-mobile"
+			layout="row"
+			layout-wrap
+			layout-align="center start"
+			flex
+			preventClickItem
+		>
+
+			<button
+				layout="column"
+				layout-align="center center"
+				flex-xs
+				flex-sm
+				class="btn btn-secondary btn-icon"
+				ng-click="reschedule()"
+				ng-if="hasAlarm"
+			>
+				<icon-svg name="clock"></icon-svg>
+				<strong>Remarcar</strong>
+			</button>
+
+			<button
+				layout="column"
+				layout-align="center center"
+				flex-xs
+				flex-sm
+				class="btn btn-secondary  btn-icon"
+				ng-click="done()"
+				ng-if="hasTaskToBeDone"
+			>
+				<icon-svg name="checked"></icon-svg>
+				<strong>Feito</strong>
+			</button>
+
+			<button
+				layout="column"
+				layout-align="center center"
+				flex-xs
+				flex-sm
+				class="btn btn-secondary btn-icon"
+				ng-click="addNewAppointment()"
+				ng-if="hasTaskToBeDone"
+			>
+				<icon-svg name="plus"></icon-svg>
+				<strong>Ações</strong>
+			</button>
+
+		</div>
+
+	</div>
+
+
+
+

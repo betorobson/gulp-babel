@@ -1,0 +1,66 @@
+
+<breadcrumbs
+    class="only-desk"
+	trail="breadcrumbs">
+
+</breadcrumbs>
+
+
+<view-title
+	title="viewTitle.title"
+	desc="viewTitle.desc"
+	flex
+>
+	<div
+		layout="row"
+		layout-align="end center"
+		layout-margin
+		ng-if="$root.mainController.device == 'desktop'"
+	>
+		<button
+			class="btn btn-primary"
+			ng-click="addNewAppointment()"
+		>
+			Novo agendamento
+		</button>
+
+		<button
+			class="btn btn-secondary"
+			ng-click="showModalLinkIntegration()"
+		>
+			Integre com sua agenda
+		</button>
+
+	</div>
+</view-title>
+
+
+<list-filter ng-if="!loading">
+	<view-calendar-list-filter></view-calendar-list-filter>
+</list-filter>
+
+<loading-spinner
+	class="size-mid"
+	ng-if="loading && !error"
+></loading-spinner>
+
+<list ng-if="!loading && !empty && !error">
+	<list-type-table>
+		<view-calendar-list></view-calendar-list>
+	</list-type-table>
+</list>
+
+<div class="box-content" ng-show="empty">
+	<h1 class="text-center">
+		Você não tem nenhum agendamento para este mês com os filtros aplicados.
+	</h1>
+</div>
+
+<div class="box-content" ng-show="error">
+	<h1 class="text-center">
+		{{error.title}}
+	</h1>
+	<h2 class="text-center">
+		{{error.message}}
+	</h2>
+</div>

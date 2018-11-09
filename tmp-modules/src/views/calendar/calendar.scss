@@ -1,0 +1,106 @@
+
+@include view('calendar') {
+
+	.calendar {
+		background-color: #fff;
+	}
+
+	calendar-list-filter-form{
+		display: block;
+	}
+
+	@media #{$mediaMobile} and (min-width: 600px) {
+		.calendar {
+			.item-calendar{
+				font-size: 25px;
+
+				avatar{
+					position: absolute;
+				}
+
+			}
+		}
+	}
+
+	&[device="desktop"]{
+
+		.calendar {
+			margin-left: -8px;
+			margin-right: -8px;
+		}
+
+		.field-month{
+			width: 150px;
+
+			.form-group{
+				margin-bottom: 0;
+			}
+		}
+
+		.followup-schedule-status{
+			border-right: solid 1px #d6d6d6;
+			padding-right: 10px;
+			margin-right: 10px;
+			.form-group{
+				margin-bottom: 0;
+			}
+		}
+
+		.followup-schedule-opcao{
+			margin-left: 10px;
+			margin-right: 10px;
+			padding-left: 10px;
+			padding-right: 10px;
+			border-left: solid 1px #d6d6d6;
+			border-right: solid 1px #d6d6d6;
+
+			.form-group{
+				margin-bottom: 0;
+			}
+
+		}
+
+		view-title{
+			.btn{
+				margin: 0 5px;
+
+				&:last-of-type{
+					margin-right: 0;
+				}
+			}
+		}
+
+
+		calendar-list-filter-form{
+
+			label{
+				display: none;
+			}
+
+			.btn-primary,
+			.btn-secondary {
+				margin-top: 5px;
+				margin-bottom: 5px;
+			}
+
+			.btn-secondary {
+				margin-right: 10px;
+			}
+
+		}
+
+	}
+
+	&[device="mobile"]{
+
+		@extend %main-controller-footer-bar;
+
+		.calendar {
+			padding: 10px;
+			margin-bottom: 5px;
+		}
+
+	}
+
+
+}

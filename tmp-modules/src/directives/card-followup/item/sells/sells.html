@@ -1,0 +1,29 @@
+
+<div class="grey-block"
+		ng-click="displayChatContent = !displayChatContent"
+>
+	<div
+			class="item-body"
+			ng-class="{'display-chat-content':displayChatContent}"
+	>
+		<view-transaction-sell-interaction
+			interaction="item"
+		>
+		</view-transaction-sell-interaction>
+		<div
+				flex
+				layout="row"
+				layout-align="center"
+				class="wrapper-btn-leia-mais"
+		>
+			<div class="btn-leia-mais">
+					{{
+							displayChatContent
+							? 'Voltar'
+							: 'Leia mais'
+					}}
+			</div>
+		</div>
+	</div>
+
+</div>

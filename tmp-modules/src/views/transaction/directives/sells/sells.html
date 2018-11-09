@@ -1,0 +1,35 @@
+
+<div class="box-content simulacao-proposta">
+
+	<div
+		class="principal-title no-padding-right"
+	>
+		<h2>
+			<strong>Vendas</strong>
+		</h2>
+	</div>
+
+	<loading-spinner
+		class="size-mid"
+		ng-if="loading"
+	></loading-spinner>
+
+	<div
+		ng-if="!loading && !empty"
+	>
+
+		<view-transaction-sell-interaction
+			ng-repeat="item in interactions"
+			interaction="item.fields.interacaoNegociacao"
+		>
+		</view-transaction-sell-interaction>
+
+	</div>
+
+	<div
+		ng-show="empty"
+	>
+		<h4 class="text-center">Ainda não foi vendido nada para esse cliente</h4>
+	</div>
+
+</div>

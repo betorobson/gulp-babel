@@ -1,0 +1,263 @@
+
+perfil-transactions-summary {
+
+	.container,
+	.panel-body {
+		min-height: 170px;
+	}
+
+	.loading-wrapper {
+		overflow: hidden;
+	}
+
+	.title-block {
+
+		padding: 0 10px 10px 10px;
+		margin-bottom: 10px;
+		border-bottom: 2px solid $color2;
+
+		.icon-svg {
+			width: 27px;
+			height: 27px;
+			margin-right: 10px;
+		}
+
+	}
+
+	.msg-block-white {
+		margin-top: 10px;
+	}
+
+	.tableWrapper {
+
+		table {
+			width: 100%;
+			min-width: 100%;
+			// min-height: 100%;
+		}
+	}
+
+	.nestedStages {
+		.table {
+			th {
+				min-width: 180px;
+				font-size: 12px;
+				line-height: 12px;
+			}
+		}
+	}
+
+	.buttons {
+		svg {
+			margin: 0;
+			cursor: pointer;
+			color: $color2;
+			width: 30px;
+			height: 30px;
+		}
+	}
+
+	.table {
+
+		margin-bottom: 0;
+		&.table-two > tbody > tr > td {
+
+			padding: 4px 8px 4px 8px;
+
+			&:last-child {
+				border-right: none;
+			}
+
+			&.td-bg-dark > div,
+			&.td-bg > div {
+				border-radius: 2px;
+			}
+
+		}
+		> thead > tr > th {
+
+			&:first-child {
+				vertical-align: top;
+			}
+
+			font-weight: 500;
+			font-size: 14px;
+			line-height: 14px;
+
+			&.stage-column {
+
+				span {
+					display: block;
+					margin-bottom: 5px;
+					margin-right: 0px;
+					border-bottom: 1px solid #d6d6d6;
+					.stage-name {
+						margin-right: 30px;
+						margin-bottom: -6px;
+						border-bottom: 2px solid $color2;
+					}
+				}
+
+				.steps {
+					margin-bottom: 10px;
+					margin-right: 30px;
+				}
+			}
+		}
+
+	}
+
+	td.stage-transactions{
+		a{
+			color: $color2hue2;
+		}
+	}
+
+	.stage-substages-step {
+		cursor: pointer;
+	}
+
+	.actived-sub-stage {
+		position: relative;
+		z-index: 5;
+
+		a {
+			transition: all .2s ease-in-out;
+
+			color: inherit;
+			&.btn-hide-stage {
+				cursor: pointer;
+				width: 18px;
+				height: 18px;
+				margin-top: -15px;
+				margin-right: -15px;
+				background: $color3hue1;
+				border-radius: 50%;
+				box-shadow: -4px 4px 7px -1px rgba(0, 0, 0, 0.58);
+			}
+			&:hover {
+				transform: scale(1.1);
+			}
+		}
+
+		&-content {
+			cursor: default;
+			animation: actived-sub-stage 500ms ease forwards;
+			position: absolute;
+			margin: 0;
+			padding: 5px;
+			top: -34px;
+			left: 0;
+			min-width: 100%;
+			height: auto;
+			box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.58);
+
+			&.white-text{
+				color: #fff;
+			}
+
+			.icon-svg {
+				display: block;
+				width: 20px;
+				height: 20px;
+
+				&.hide-stage-icon {
+					color: $color1;
+				}
+
+			}
+
+			.line {
+				text-align: left;
+				padding-left: 10px;
+				height: 30px;
+			}
+
+			.transactions {
+				border-bottom: 1px solid #ddd;
+			}
+
+			.amount {
+				line-height: 34px;
+
+				p {
+					margin-right: 5px;
+					white-space: nowrap;
+				}
+			}
+
+		}
+
+		.substage-title {
+			height: 40px;
+			font-size: 13px;
+			line-height: 13px;
+			font-weight: 500;
+			overflow: hidden;
+			padding-top: 2px;
+		}
+	}
+
+}
+
+main-controller[device=desktop] {
+	perfil-transactions-summary {
+
+		.perfil-transactions-summary-overall {
+			min-width: 250px;
+		}
+
+		.msg-information {
+
+			// p {
+			// 	margin-top: 0;
+			// }
+
+			&:hover {
+				background: $color1hue2;
+			}
+		}
+
+		.buttons svg:hover {
+			color: $color1hue2;
+		}
+
+	}
+}
+
+main-controller[device=mobile] {
+	perfil-transactions-summary {
+
+		.container,
+		.panel-body {
+			min-height: 237px;
+			width: 100%;
+		}
+
+		.msg-information{
+			min-height: 88px;
+
+			&:active {
+			background: $color1hue2;
+			}
+
+			.msg-block-white {
+				margin: 5px 0 0 0;
+			}
+		}
+
+		.buttons svg:active {
+			color: $color1hue2;
+		}
+
+	}
+}
+
+@keyframes actived-sub-stage {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}

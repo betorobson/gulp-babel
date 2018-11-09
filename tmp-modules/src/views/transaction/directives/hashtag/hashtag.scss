@@ -1,0 +1,76 @@
+
+hashtag{
+	display: block;
+	margin-top: 5px;
+
+	.hashtag-itens{
+		word-break: break-all;
+	}
+
+	.hashtag-item{
+		margin-left: 5px;
+	}
+
+	.hashtag-edit{
+		margin: 0;
+		color: $color1hue2;
+
+		&:hover{
+			text-decoration: underline;
+		}
+
+	}
+
+	.link-hashtag{
+		text-transform: lowercase;
+
+		&:hover{
+			color: $color1hue2;
+		}
+
+	}
+
+	.btn-link{
+		padding: 1px 3px;
+
+		&[permissions-disable-mode],
+		&[permissions-disable-mode]:hover {
+			cursor: default;
+			color: #9e9a9a;
+		}
+
+		&:hover{
+			cursor: pointer;
+		}
+
+
+		&.btn-edit-no-hash{
+
+			.icon-svg-edit{
+				margin-bottom: -2px;
+			}
+		}
+
+		.icon-svg-edit{
+			width: 15px;
+			height: 15px;
+			margin-left: 5px;
+		}
+
+	}
+
+	textarea{
+		overflow: hidden;
+	}
+
+	.remove-hashtag{
+		cursor: pointer;
+	}
+
+	.hashtag-textarea{
+		text-transform: lowercase;
+		max-width: 100%;
+	}
+
+
+}

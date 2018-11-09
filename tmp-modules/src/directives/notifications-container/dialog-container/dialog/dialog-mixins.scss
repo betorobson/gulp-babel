@@ -1,0 +1,80 @@
+
+@mixin notification-center-dialog-type-parameters($name, $baseColor, $colorHue1){
+
+	$baseColor: $baseColor;
+	$bounceColor: $baseColor;
+	$bounceDuration: 10;
+	$newLeadBtnLaterColor: lighten($baseColor, 25%);
+	$newLeadBtnAttend: desaturate($colorHue1, 30%);
+
+	&.minimizing {
+		animation:
+			bounceInit 0.7s ease normal forwards,
+			minimizing .1s $baseAnimationDuration ease forwards,
+			bounceOut#{$name} #{$bounceDuration}s #{($baseAnimationDuration + .1)} ease infinite;
+	}
+
+	&:not(.minimizing){
+		$animation:
+			bounceInit 0.7s ease normal forwards,
+			bounceOut#{$name} #{$bounceDuration}s 0.5s ease infinite;
+
+		animation: $animation;
+	}
+
+	&.minimized:hover {
+		cursor: pointer;
+		box-shadow: 0 0 10px 5px rgba($bounceColor, 0.9);
+		background-color: rgba($baseColor, 1);
+		animation: bounceInit 0.7s ease normal forwards;
+	}
+
+	background-color: rgba($baseColor, 0.9);
+
+	h1 {
+		color: lighten($baseColor, 40%);
+	}
+
+	p {
+		color: lighten($baseColor, 60%);
+	}
+
+	.btn-later {
+		background-color: $newLeadBtnLaterColor;
+		border-color: $newLeadBtnLaterColor;
+		color: darken($baseColor, 30%);
+
+		&:hover {
+			background-color: lighten($newLeadBtnLaterColor, 15%);
+		}
+	}
+
+	.btn-attend {
+		background-color: $newLeadBtnAttend;
+		border-color: $newLeadBtnAttend;
+		color: $color3hue2;
+
+		&:hover {
+			background-color: lighten($newLeadBtnAttend, 15%);
+		}
+	}
+
+	@-webkit-keyframes bounceOut#{$name} {
+		0% { box-shadow: $notificationCenterDialogShadow, 0 0 0 0 rgba($bounceColor, 0.5); }
+		#{round(percentage(32 / ($bounceDuration * 100)))} { box-shadow: $notificationCenterDialogShadow, 0 0 10px 10px rgba($bounceColor, 0.5); }
+		#{round(percentage(64 / ($bounceDuration * 100)))}, 100% { box-shadow: $notificationCenterDialogShadow, 0 0 20px 20px rgba($bounceColor, 0); }
+	}
+
+}
+
+@mixin notification-center-dialog-type($name, $baseColor, $colorHue1) {
+
+		.dialog-#{$name} {
+
+			@include notification-center-dialog-type-parameters($name, $baseColor, $colorHue1);
+
+			@content;
+
+		}
+
+}

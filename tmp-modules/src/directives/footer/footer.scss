@@ -1,0 +1,70 @@
+
+footer {
+
+	figure {
+
+		position: relative;
+
+		.version {
+			color: $color2;
+			position: absolute;
+		}
+
+		.icon-svg-Anapro-Logo-Marca-3paths {
+			border-right: solid 1px $color2;
+			padding-right: 15px;
+			margin-right: 15px;
+			width: 140px;
+			height: 34px;
+		}
+
+	}
+
+	.version {
+		width: 64px;
+		text-align: right;
+		top: -2px;
+	}
+
+	.icon-chat-support {
+		width: 42px;
+		height: 42px;
+		color: $color2;
+		margin-left: 15px;
+	}
+
+
+	@media #{$mediaDesktop} {
+		.version {
+			left: 60px;
+		}
+	}
+
+	@media #{$mediaMobile} {
+
+		.version {
+			left: 86px;
+		}
+
+		figure {
+
+			margin-bottom: 15px;
+
+			.icon-svg-Anapro-Logo-Marca-3paths {
+				border: none;
+				padding: 0;
+				margin: 0 0 15px 10px;
+			}
+
+		}
+
+	}
+
+	@media #{$mediaMobile} and (min-width: 600px) {
+		.version {
+			top: 50px;
+			left: 10px;
+		}
+	}
+
+}

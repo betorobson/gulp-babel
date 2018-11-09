@@ -1,0 +1,34 @@
+
+<li>
+	<a
+		class="navigation-bar-chat"
+
+		title="Chat"
+		permissions="chat_atender"
+		permissions-disable-mode
+		permissions-remove-attrs="bs-popover,title"
+		data-placement="bottom"
+		data-animation="am-flip-x"
+		data-placement="bottom"
+		data-content-template="navigation-bar/chat/popover-content.html"
+		data-auto-close="1"
+		bs-popover="popover"
+
+		permissions-attrs-when-false:bs-tooltip
+		permissions-attrs-when-false:data-title="Desculpe, você não tem permissão para o Chat"
+		permissions-attrs-when-false:data-type="warn"
+		permissions-attrs-when-disabled:bs-tooltip
+		permissions-attrs-when-disabled:data-title="Desculpe, o Chat está desativado momentaneamente"
+		permissions-attrs-when-disabled:data-type="error"
+	>
+		<div class="icon-wrapper">
+			<icon-svg name="chat" class="icons"></icon-svg>
+			<div
+				permissions="chat_atender"
+				class="status-bullet badget"
+				ng-class="getBulletClass()"
+			>{{getTotalChats()}}</div>
+		</div>
+		<strong>Chat</strong>
+	</a>
+</li>

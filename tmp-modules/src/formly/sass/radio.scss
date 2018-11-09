@@ -1,0 +1,15 @@
+
+
+.formly-field-radio {
+
+	&[layout="row"] {
+
+		.control-label,
+		.form-radio,
+		.radio-group .radio {
+			display: inline-block;
+		}
+
+	}
+
+}

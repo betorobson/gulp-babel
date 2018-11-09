@@ -1,0 +1,102 @@
+
+%input-layout-row {
+
+	&[layout="row"] {
+
+		&.input-nogrow {
+
+			.form-group .form-input-extras {
+				flex: none;
+			}
+
+		}
+
+		&:not(.input-nogrow){
+			.form-group {
+				select,
+				input[type=text],
+				input[type=number],
+				input[type=tel],{
+					display: flex;
+					flex: 1 1 auto;
+					width: 50px;
+				}
+			}
+		}
+
+		.form-group {
+
+			flex: 1 0 auto;
+			width: 100%;
+
+			> div {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+
+				label {
+					padding-top: 8px;
+					flex: 0 0 auto;
+				}
+
+				.form-input-extras {
+					flex: 1 0;
+				}
+
+				.input-hint,
+				.error-message-space {
+					width: 10px;
+					flex: 1 1 100%;
+				}
+
+			}
+
+		}
+
+	}
+
+}
+
+.formly-field-input,
+.formly-field-numberInput,
+.formly-field-multiinput,
+.formly-field-maskedInput,
+.formly-field-anaproDate,
+.formly-field-anaproDateTime,
+.formly-field-anaproTime,
+.formly-field-anaproEmail,
+.formly-field-nya-select,
+.formly-field-anaproSelectButtons,
+.formly-field-select-async {
+
+	@extend %input-layout-row;
+
+	&.icon-right input {
+		@extend input.icon-right;
+	}
+
+}
+
+.formly-field.align-right {
+	input.form-control {
+		text-align: right;
+	}
+}
+
+.formly-field{
+	&.layout-reverse{
+		.form-input-extras{
+			flex-direction: row-reverse;
+		}
+	}
+}
+
+.formly-field-anaproDate,
+.formly-field-anaproDateTime{
+	.icon{
+		&:hover{
+			background-color: $color1hue1;
+			cursor: pointer;
+		}
+	}
+}

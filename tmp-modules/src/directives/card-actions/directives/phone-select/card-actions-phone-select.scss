@@ -1,0 +1,18 @@
+card-actions-phone-select{
+
+    .btn{
+        font-size: 18px;
+    }
+
+    @media #{$mediaMobile}{
+        .btn{
+            width: 100%;
+        }
+    }
+
+    @media #{$mediaDesktop}{
+        .btn{
+            width: 190px;
+        }
+    }
+}

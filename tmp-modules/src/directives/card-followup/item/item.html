@@ -1,0 +1,208 @@
+
+<div
+	layout="row"
+	class="item clearfix {{getType()}}"
+	ng-class="getItemClass()"
+>
+
+	<loading-spinner
+		class="fill"
+		ng-class="submitStatus"
+		ng-if="loading"
+	></loading-spinner>
+
+	<div
+		flex-none
+		layout="row"
+		layout-align="center start"
+		class="column-avatar"
+	>
+
+		<div class="vertical-line"></div>
+
+		<avatar ng-if="hasAvatar()" item="avatarItem">
+
+			<div ng-if="getSVGIcon()" class="icon-wrapper">
+				<icon-svg name="{{getSVGIcon()}}"></icon-svg>
+			</div>
+		</avatar>
+
+		<div class="followup-default-avatar" ng-if="!hasAvatar()" >
+			<icon-svg-inline
+				name="Anapro-Logo-2paths"
+				class="system-default-avatar"
+			></icon-svg-inline>
+			<div ng-if="getSVGIcon()" class="icon-wrapper">
+				<icon-svg name="{{getSVGIcon()}}"></icon-svg>
+			</div>
+		</div>
+	</div>
+
+	<div layout="column" flex class="info">
+
+		<div
+			layout="row"
+			class="grey-block item-description-row"
+			ng-class="{'has-hidden-content': showButtonMoreContent}"
+			ng-click="toggleHiddenContent()"
+		>
+
+			<div
+				class="item-body description-body"
+				flex
+				layout-xs="column"
+				layout-gt-xs="row"
+
+			>
+
+				<div layout-xs="row" layout-gt-xs="column" class="horario">
+					<strong>{{dateTemplate | date:'dd|MM'}}</strong>
+					<span>{{dateTemplate | date:'HH:mm'}}</span>
+				</div>
+
+				<div
+					class="descricao description-body"
+					ng-class="getDescriptionBodyClass()"
+
+					flex
+					layout="row"
+					layout-align="start center"
+				>
+					<p
+						class="description-content"
+					>
+						<small
+							class="type-interaction"
+							ng-if="getTypeInteraction()"
+						>
+							{{interaction.interacaoTipoSub}}
+						</small>
+						<span
+							class="content-body"
+							ng-bind-html="content"
+						>
+						</span>
+						<span ng-if="isType('interacaoChat')">
+							entre {{item.fields.interacaoChat.interacaoChatDataInicio | date:'HH:mm'}}
+							e {{item.fields.interacaoChat.interacaoChatDataFim | date:'HH:mm'}}
+						</span>
+						<span ng-show="isOverdue()">(atrasado)</span>
+					</p>
+
+					<div
+						layout="row"
+						layout-align="center"
+						class="note-read-more"
+						ng-if="showButtonMoreContent"
+					>
+						<div class="btn-read-more"
+						>
+							{{
+								isContentHidden
+								? 'Leia mais'
+								: 'Voltar'
+							}}
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div ng-if="hasTask && (hasAlarm || hasAlarm)">
+				<div class="btn-group">
+
+					<a
+						bs-tooltip
+						data-title='Reagendar'
+						data-placement="top"
+						permissions="atd_interacao_editar"
+						class="icon-interaction"
+						data-type='info2'
+						ng-if="hasAlarm"
+						ng-click="activeEdit()"
+					>
+						<icon-svg name="clock"></icon-svg>
+					</a>
+					<a
+						class="icon-interaction"
+						bs-tooltip
+						data-title='Marcar com Feito'
+						data-placement="top"
+						data-type='info2'
+						ng-click="done()"
+					>
+						<icon-svg name="checked"></icon-svg>
+					</a>
+						<!--li
+							permissions="atd_interacao_editar"
+						>
+							<a ng-click="deleteItem()">Excluir</a>
+						</li-->
+				</div>
+			</div>
+
+			<div ng-if="isType('interacaoEmail')">
+				<div
+					permissions="atd_visualizar_prospect_email"
+					class="btn-group"
+				>
+					<a
+						class="icon-interaction"
+						href="mailto:{{item.fields.interacaoEmail.interacaoEmailDestinatario}}
+						?subject={{item.fields.interacaoEmail.interacaoEmailAssunto}}"
+						target="_blank"
+					>
+						<icon-svg name="reply"></icon-svg>
+						<span class="only-desktop">Responder</span>
+					</a>
+
+					<a
+						class="icon-interaction"
+						ng-click="getOriginalEmail()"
+					>
+						<icon-svg name="view-mail"></icon-svg>
+						<span class="only-desktop">Email original</span>
+					</a>
+						<!--
+ 						<li><a href="#">Encaminhar</a></li>
+						<li><a href="#">Reenviar</a></li>
+						<li><a href="#">Imprimir</a></li>
+ 						-->
+				</div>
+			</div>
+
+		</div>
+
+		<card-actions-note
+			delegate="itemDelegate"
+			edit="true"
+			item="item"
+			ng-if="isType('interacaoNota') && edit"
+		></card-actions-note>
+
+		<card-actions-activity
+			delegate="itemDelegate"
+			edit="true"
+			item="item"
+			ng-if="isType('interacaoAtividade') && edit"
+		></card-actions-activity>
+
+		<div ng-if="isType('interacaoEmail')" class="subitem">
+			<email-followup-item item="item.fields.interacaoEmail"></email-followup-item>
+		</div>
+
+		<div ng-if="isType('interacaoChat')" class="subitem">
+			<chat-followup-item item="item.fields.interacaoChat"></chat-followup-item>
+		</div>
+
+		<div ng-if="isType('interacaoLigacao')" class="subitem">
+			<ligacao-followup-item item="item.fields.interacaoLigacao"></ligacao-followup-item>
+		</div>
+
+		<div ng-if="isType('interacaoNegociacao')" class="subitem">
+			<sells-followup-item item="item.fields.interacaoNegociacao"></sells-followup-item>
+		</div>
+
+	</div>
+
+</div>

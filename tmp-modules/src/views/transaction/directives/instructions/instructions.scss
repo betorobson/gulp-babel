@@ -1,0 +1,33 @@
+
+view-transaction-instructions {
+
+	display: block;
+
+	.instruction-item {
+
+		&:not(:last-of-type){
+			border-bottom: solid 1px #d6d6d6;
+			margin-bottom: 20px;
+		}
+
+		h4 {
+			.icon-svg {
+				width: 18px;
+				height: 18px;
+				margin-right: 5px;
+			}
+
+			.accordion-toggle{
+				line-height: 1px;
+				margin-left: 10px;
+
+				.icon-svg{
+					width: 13px;
+					height: 13px;
+				}
+
+			}
+		}
+	}
+
+}

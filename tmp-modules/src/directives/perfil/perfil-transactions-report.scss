@@ -1,0 +1,102 @@
+
+perfil-transactions-report {
+
+	display: block;
+
+	.table.table-report {
+
+		strong {
+			font-size: 18px;
+			line-height: 19px;
+		}
+
+		th {
+			text-align: center;
+			vertical-align: middle;
+		}
+
+		tr {
+			&:nth-child(1) a {
+				color: #444747;
+				&:hover {
+					background: #444747;
+					color: #fff;
+				}
+
+			}
+
+			&:nth-child(2) a {
+				background: #fff;
+				color: #ff5a5f;
+				&:hover {
+					background: #ff5a5f;
+					color: #fff;
+				}
+
+			}
+
+			&:nth-child(3) a {
+				color: #28b17f;
+				&:hover {
+					background: #28b17f;
+					color: #fff;
+				}
+
+			}
+
+			&:nth-of-type(odd) {
+				background: transparent;
+			}
+
+		}
+
+		td {
+			vertical-align: middle;
+			a {
+				background: #f4f4f4;
+				border: solid 1px #eae8e8;
+				font-weight: bold;
+				display: block;
+				padding-top: 5px;
+				margin: auto;
+				text-align: center;
+				width: 65px;
+				&:hover {
+					color: #fff;
+					text-decoration: none;
+				}
+
+			}
+
+		}
+
+		th, td {
+			border: none;
+			font-size: 14px;
+			line-height: 16px;
+		}
+
+		tbody tr:hover {
+			background: #eae8e8 !important;
+		}
+
+	}
+
+	.table-report-mobile {
+
+		h2 {
+			font-size: 20px;
+			font-weight: 700;
+		}
+
+		.msg-block {
+			padding: 0 3px;
+
+			> a {
+				display: block;
+			}
+		}
+
+	}
+
+}

@@ -1,0 +1,16 @@
+
+	<modal
+		modal-id="modal-iframe-anaprov1"
+		delegate="modalDelegate"
+	>
+		<modal-title><strong>{{title}}</strong></modal-title>
+		<modal-body>
+			<div layout="column" class="iframe-wrapper">
+				<iframe
+					ng-if="data"
+					flex
+					ng-src="{{iframeURL}}"
+				></iframe>
+			</div>
+		</modal-body>
+	</modal>

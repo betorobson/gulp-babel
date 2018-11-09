@@ -1,0 +1,19 @@
+<modal
+	class="acoes"
+	modal-id="modal-acoes"
+	delegate="delegate"
+>
+	<modal-title><strong>{{title}}</strong></modal-title>
+		<modal-body>
+			<card-actions
+				data="cardActionsAttrs.data"
+				resource="cardActionsAttrs.resource"
+				delegate="cardActionsAttrs.delegate"
+				modal-delegate="delegate"
+				only-tab-buttons="{{cardActionsAttrs.onlyTabButtons}}"
+				tab-button-activated="{{cardActionsAttrs.tabButtonActivated}}"
+				tab-button-attrs="cardActionsAttrs.tabButtonAttrs"
+				hide-tab-buttons="hideTabButtons"
+			></card-actions>
+		</modal-body>
+</modal>

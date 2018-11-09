@@ -1,0 +1,39 @@
+
+view-title {
+
+	position: relative;
+	display: block;
+
+	.principal-title {
+		height: auto;
+		min-height: 55px;
+	}
+
+	h1 {
+		font-weight: 200;
+	}
+
+	h1.title + h5.extra {
+		margin-top: 10px;
+	}
+
+	h5.extra {
+		margin: 0 0 4px 0;
+	}
+
+}
+
+main-controller[device=desktop] {
+
+	view-title {
+
+		h1 {
+			small	{
+				white-space: nowrap;
+				padding: 2px 0 0 4px;
+			}
+		}
+
+	}
+
+}

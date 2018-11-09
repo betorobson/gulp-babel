@@ -1,0 +1,68 @@
+
+<div
+	flex
+	layout="column"
+>
+	<form
+		flex
+		layout="column"
+		name="form"
+		ng-submit="submit()"
+		novalidate
+		disabled="true"
+		class="position-relative"
+	>
+
+		<loading-spinner
+			class="fill size-mid"
+			ng-class="submitStatus"
+			ng-if="loading"
+		></loading-spinner>
+
+		<div
+			flex
+			layout="column"
+			class="modal-content-scrollable"
+		>
+			<h4>{{item.extraInfo.prospectNome}}</h4>
+
+			<h4 ng-if="action == 'won'">Parabéns! Agora nos dê algumas informações sobre a venda.</h4>
+
+			<formly-form
+				flex
+				form="form"
+				fields="fields"
+				model="model"
+				options="formOptions"
+			>
+			</formly-form>
+		</div>
+
+		<div
+			flex-none
+			layout="row"
+			layout-align="space-between center"
+		>
+
+			<button
+				flex-gt-xs="33"
+				type="button"
+				class="btn btn-secondary"
+				ng-disabled="loading"
+				ng-click="cancel()"
+			>
+				Cancelar
+			</button>
+
+			<button
+				flex-gt-xs="33"
+				class="btn btn-primary"
+				type="submit"
+			> 
+				{{submitLabel()}}
+			</button>
+
+		</div>
+
+	</form>
+</div>

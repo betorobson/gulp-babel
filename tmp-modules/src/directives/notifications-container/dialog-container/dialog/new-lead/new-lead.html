@@ -1,0 +1,19 @@
+
+<avatar imgsrc="newLeadImg"></avatar>
+
+<div
+	layout="column"
+	layout-align="center"
+	flex
+>
+	<h1>Você tem um novo cliente</h1>
+	<p>{{dialog.data.prospectNome}}</p>
+	<div
+		layout="row"
+		layout-align="center end"
+		class="buttons"
+	>
+		<button ng-click="dialog.minimize()" class="btn btn-action btn-later">Depois</button>
+		<button ng-click="open()" class="btn btn-action btn-attend">Atender</button>
+	</div>
+</div>

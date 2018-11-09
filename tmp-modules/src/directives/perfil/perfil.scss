@@ -1,0 +1,110 @@
+
+main-controller[device='mobile'] {
+
+	perfil {
+		display: none;
+	}
+
+	&[view='home'] perfil,
+	&[view='transactions'] perfil {
+		display: block;
+	}
+
+}
+
+perfil {
+
+	avatar {
+
+		border-right: solid 1px #eae8e8;
+		margin-right: 15px;
+		padding-right: 5px;
+		width: 97px;
+
+	}
+
+	.box-welcome {
+
+		.alert-pending {
+
+			font-size: 12px;
+
+			.icon-alert {
+				width: 40px;
+				height: 40px;
+				margin-right: 10px;
+				background: $color2hue1;
+			}
+
+			.icon-svg {
+				width: 70%;
+				height: 70%;
+				fill: #fff;
+			}
+		}
+
+	}
+
+	.panel-heading {
+
+		&:hover {
+			cursor: pointer;
+			background: $color1hue2;
+
+			.listAllChannels p,
+			.accordion-toggle .icon-svg {
+				color: #fff;
+			}
+		}
+
+		.container > div {
+			height: 30px;
+		}
+
+		.accordion-toggle {
+			margin-top: 3px;
+		}
+
+		user-status-bullet {
+
+			height: 30px;
+			color: #333;
+
+			.popover.bottom-left {
+				margin-top: 20px;
+				label {
+					color: #333;
+				}
+			}
+
+		}
+
+	}
+
+	@media #{$mediaDesktop}{
+		.panel-default .box-welcome {
+			border-right: solid 1px #eae8e8;
+			.alert-pending {
+				padding-top: 10px;
+			}
+		}
+	}
+
+	@media #{$mediaMobile}{
+
+		.panel-default .box-welcome {
+
+			.title-block {
+				padding-right: 5px;
+			}
+
+			background: #eae8e8;
+			padding: 15px 10px;
+			width: 100%;
+			margin-bottom: 10px;
+
+		}
+
+	}
+
+}

@@ -1,0 +1,12 @@
+
+<div layout="row">
+
+	<avatar imgsrc="transactionItem.extraInfo.prospectUrlImagem"></avatar>
+
+	<div layout="column" layout-align="center" flex>
+		<h3>{{transactionItem.extraInfo.prospectNome}}</h3>
+		<small ng-if="extra">{{extra}}</small>
+		<div ng-transclude></div>
+	</div>
+
+</div>

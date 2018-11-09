@@ -1,0 +1,93 @@
+
+<div
+	flex
+	layout="column"
+>
+	<form
+		flex
+		layout="column"
+		name="form"
+		ng-submit="submit()"
+		novalidate
+		disabled="true"
+		class="position-relative"
+		autocomplete="off"
+	>
+
+		<loading-spinner
+			class="fill size-mid"
+			ng-class="submitStatus"
+			ng-if="loading"
+		></loading-spinner>
+
+		<div
+			flex
+			class="modal-content-scrollable"
+		>
+			<formly-form
+				form="form"
+				fields="fields"
+				model="model"
+				options="formOptions"
+				layout="column"
+			>
+			</formly-form>
+
+			<div
+				ng-if="!model.atendimentoActionRequestOpcaoAvancado"
+				flex-none
+				layout="row"
+				layout-padding
+				class="no-padding-left no-padding-right"
+			>
+				<button
+					flex-noshrink
+					class="btn btn-fat btn-primary"
+					type="submit"
+				>
+					<span>Adicionar</span>
+				</button>
+			</div>
+
+		</div>
+
+		<div
+			flex-none
+			layout="row"
+			layout-align="space-between center"
+		>
+
+			<button
+				flex-gt-xs="33"
+				type="button"
+				class="btn btn-secondary"
+				ng-disabled="loading"
+				ng-click="cancel()"
+			>
+				Cancelar
+			</button>
+
+			<button
+				ng-if="model.atendimentoActionRequestOpcaoAvancado"
+				flex-gt-xs="33"
+				class="btn btn-primary"
+				type="submit"
+			>
+				<span>Adicionar</span>
+			</button>
+
+			<button
+				ng-if="!model.atendimentoActionRequestOpcaoAvancado"
+				flex-gt-xs="33"
+				type="button"
+				class="btn btn-secondary"
+				ng-disabled="loading"
+				ng-click="setAdvanced()"
+			>
+				Opções Avançadas
+			</button>
+
+		</div>
+
+	</form>
+</div>

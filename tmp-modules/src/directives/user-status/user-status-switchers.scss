@@ -1,0 +1,190 @@
+
+user-status-switchers {
+
+	&.user-status-switchers-popover {
+		width: 250px;
+		margin: 0 -14px;
+
+		label,
+		.additional-options .buttons {
+			padding-left: 12px;
+			padding-right: 12px;
+		}
+
+		label {
+
+			&:hover {
+				background-color: $color3;
+			}
+
+		}
+	}
+
+	display: block;
+
+	// label {
+	// 	.switch-pill-status {
+
+	// 		&.pause,
+	// 		&.offline,
+	// 		&.online {
+	// 			color: #fff;
+	// 		}
+
+	// 		&.pause {
+	// 			background-color: $color4;
+	// 		}
+
+	// 		&.offline {
+	// 			background-color: $color2hue1;
+	// 		}
+
+	// 		&.online {
+	// 			background-color: $color2;
+	// 		}
+
+	// 	}
+	// }
+
+	.formly-wrapper {
+
+		position: relative;
+
+		.pause-button {
+
+			cursor: pointer;
+			position: absolute;
+			top: 50%;
+			right:60px;
+			margin-top: -10px;
+			color: $color2;
+			width: 20px;
+			height: 20px;
+			display: block;
+			transition: all 0.4s ease;
+			border-radius: 50%;
+			box-shadow:
+				0 1px 3px 0 rgba(0,0,0,.2),
+				0 1px 1px 0 rgba(0,0,0,.14),
+				0 2px 1px -1px rgba(0,0,0,.12);
+
+			.icon-svg {
+				width: 20px;
+				height: 20px;
+			}
+
+			@media #{$mediaDesktop}{
+
+				&:hover {
+					.btn-pause {
+						color: lighten($color2, 10%);
+					}
+					.btn-play {
+						color: lighten($color4, 10%);
+					}
+				}
+
+			}
+
+			@media #{$mediaMobile}{
+
+				&:active {
+					.btn-pause {
+						color: lighten($color2, 10%);
+					}
+					.btn-play {
+						color: lighten($color4, 10%);
+					}
+				}
+
+			}
+
+		}
+
+		.btn-play {
+			display: none;
+		}
+
+		.btn-pause {
+			display: block;
+		}
+
+		&.paused {
+
+			.btn-play {
+				display: block;
+			}
+
+			.btn-pause {
+				display: none;
+			}
+
+			.pause-button {
+				color: $color4;
+				right: 12px;
+			}
+
+			.slider {
+
+				display: none;
+
+				// background-color: rgba($color4,0.12);
+
+				// &:before {
+				// 	background-color: $color4;
+				// }
+
+			}
+
+		}
+
+	}
+
+	.additional-options {
+
+		.option:hover {
+			.bullet:before {
+				display: block;
+				content: ' ';
+				border-radius: 50%;
+				width: 12px;
+				height: 12px;
+				background-color: $color1hue2;
+			}
+		}
+
+		.bullet {
+			padding: 3px 0 0 3px;
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			margin-right: 10px;
+			border: 1px solid rgba($color1, .3);
+		}
+
+		.empty-addtional-options {
+
+			height: auto;
+
+			&:hover {
+				background-color: transparent;
+				cursor: default;
+			}
+
+			.icon-svg {
+				color: $color4;
+				width: 20px;
+				height: 20px;
+				margin-right: 10px;
+			}
+
+		}
+
+		.buttons {
+			padding-top: 12px;
+			cursor: default;
+		}
+
+	}
+
+}

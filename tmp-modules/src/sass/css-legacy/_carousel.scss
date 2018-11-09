@@ -1,0 +1,161 @@
+/* Removes the default 20px margin and creates some padding space for the indicators and controls */
+/* line 4, ../sass/carousel.scss */
+.carousel {
+  margin-bottom: 0;
+  padding: 0 40px 15px 40px;
+}
+
+/* Reposition the controls slightly */
+/* line 9, ../sass/carousel.scss */
+.carousel-control {
+  left: -12px;
+  width: 4%;
+  top: 45%;
+}
+
+/* line 14, ../sass/carousel.scss */
+.carousel-control.right {
+  right: 0px;
+}
+.carousel-control.left {
+  left: 0px;
+}
+
+/* line 17, ../sass/carousel.scss */
+.carousel-control.right,
+.carousel-control.left {
+  background: transparent;
+  font-size: 45px;
+  box-shadow: none;
+  color: #eae8e8;
+}
+
+/* line 25, ../sass/carousel.scss */
+.carousel-inner {
+  /* style */
+}
+/* line 27, ../sass/carousel.scss */
+.carousel-inner h1 {
+  border-bottom: solid 1px #28b17f;
+  font-family: "sf_ui_displaylight";
+  font-size: 60px;
+  font-weight: lighter;
+  clear: both;
+  margin: 0 65px 20px;
+  padding-bottom: 10px;
+  position: relative;
+}
+
+/* line 36, ../sass/carousel.scss */
+.carousel-inner h2 {
+  font-family: "sf_ui_displaylight";
+  font-size: 14px;
+  margin: 0 65px 20px;
+}
+/* line 42, ../sass/carousel.scss */
+.carousel-inner h3 {
+  font-family: "sf_ui_displaylight";
+  font-size: 36px;
+  margin-top: 50px;
+}
+/* line 47, ../sass/carousel.scss */
+.carousel-inner h3 + hr {
+  border-color: #28b17f;
+  width: 130px;
+  margin: 15px auto;
+}
+/* line 55, ../sass/carousel.scss */
+.carousel-inner h3:nth-child(1), .carousel-inner h3:nth-child(2) {
+  margin-top: 0;
+}
+/* line 59, ../sass/carousel.scss */
+.carousel-inner .item {
+  margin: 25px 0;
+}
+/* line 62, ../sass/carousel.scss */
+.carousel-inner .item .sub-item {
+  border-right: solid 1px #eae8e8;
+  margin-top: 10px;
+}
+/* line 66, ../sass/carousel.scss */
+.carousel-inner .item .sub-item .sup {
+  cursor: pointer;
+  display: block;
+  margin-top: 30px;
+  text-align: right;
+  font-size: 12px;
+  margin-right: 20px;
+  width: 32px;
+  float: right;
+}
+/* line 76, ../sass/carousel.scss */
+.carousel-inner .item .sub-item .sup span {
+  display: block;
+}
+/* line 81, ../sass/carousel.scss */
+.carousel-inner .item .sub-item p {
+  font-size: 14px;
+}
+/* line 85, ../sass/carousel.scss */
+.carousel-inner .item .sub-item .img {
+  height: 40px;
+}
+/* line 89, ../sass/carousel.scss */
+.carousel-inner .item .sub-item .popover {
+  font-family: "Myriad Pro";
+  background: #28b17f;
+  border-color: #28b17f;
+  border-bottom: solid 4px #32d398;
+  border-radius: 4px;
+  color: #fff;
+  text-align: justify;
+  box-shadow: none;
+  width: 102px;
+}
+
+.carousel-inner .item .sub-item .popover.red {
+  font-family: "Myriad Pro";
+  background: #ff686a;
+  border-color: #ff686a;
+  border-bottom: solid 4px #ff9697;
+  border-radius: 4px;
+  color: #fff;
+  text-align: justify;
+  box-shadow: none;
+  width: 102px;
+}
+
+/* line 99, ../sass/carousel.scss */
+.carousel-inner .item .sub-item .popover img {
+  float: left;
+  vertical-align: top;
+  margin-right: 5px;
+}
+/* line 105, ../sass/carousel.scss */
+.carousel-inner .item .sub-item .popover .arrow {
+  border-top-color: #32d398 !important;
+}
+/* line 107, ../sass/carousel.scss */
+.carousel-inner .item .sub-item .popover .arrow:after {
+  border-top-color: #32d398 !important;
+}
+
+.carousel-inner .item .sub-item .popover.red .arrow {
+  border-top-color: #ff9697 !important;
+}
+.carousel-inner .item .sub-item .popover.red .arrow:after {
+  border-top-color: #ff9697 !important;
+}
+
+/* line 112, ../sass/carousel.scss */
+.carousel-inner .item .sub-item .popover .popover-content {
+  padding: 5px;
+  font-size: 12px;
+}
+
+.carousel-indicators li{
+  background-color: #d6d6d6;
+}
+.carousel-indicators li.active{
+  background-color: #28b17f;
+}

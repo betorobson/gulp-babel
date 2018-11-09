@@ -1,0 +1,34 @@
+
+#appLoading {
+
+	svg {
+		max-width: 900px;
+	}
+
+	.st0 {
+		fill: #4f4d4f;
+	}
+
+	.st1{
+		animation: appLoading 3.5s ease-in-out infinite;
+		animation-direction: alternate;
+	}
+
+	.st2{
+		animation: appLoading 3s ease-in-out infinite;
+		animation-direction: alternate-reverse;
+	}
+
+	@keyframes appLoading {
+		0%{
+			fill: #4f4d4f;
+		}
+		50% {
+			fill: #8a8d92;
+		}
+		100%{
+			fill: #5f6266;
+		}
+	}
+
+}

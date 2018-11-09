@@ -1,0 +1,25 @@
+
+<div
+	class="form-input-extras"
+	layout="row"
+>
+	<formly-transclude></formly-transclude>
+	<div
+		ng-if="to.icon"
+		flex-none
+		class="icon"
+		ng-click="iconClick($event)"
+	>
+		<icon-svg
+			name="{{to.icon}}"
+		>
+		</icon-svg>
+	</div>
+</div>
+
+<p
+	ng-if="to.hint"
+	class="input-hint"
+>
+	{{to.hint}}
+</p>

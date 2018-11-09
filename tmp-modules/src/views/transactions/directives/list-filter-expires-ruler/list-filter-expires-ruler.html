@@ -1,0 +1,52 @@
+
+<div
+	layout="row"
+	class="expires-ruler-container"
+>
+	<div
+		layout="column"
+		class="expires-ruler-label"
+	>
+		<p>Próximos dias</p>
+		<p>Perder clientes</p>
+	</div>
+
+	<div
+		layout="column"
+		layout-align="center"
+		flex
+		class="expires-ruler-items"
+	>
+
+		<div
+			layout="row"
+			layout-align="space-between center"
+			class="expires-ruler-items-wrapper"
+		>
+			<div
+				ng-repeat="item in filterObj.templateOptions.options | limitTo:
+					$root.mainController.device == 'desktop'
+					? 10
+					: 5
+				"
+				class="expires-ruler-day"
+			>
+				<div class="day-number">{{item.name}}</div>
+				<a
+					ng-click="setFilter(item)"
+					class="day-total badget red"
+					ng-class="{
+						active: isActive(item)
+					}"
+				>
+					{{item.properties.intValue}}
+				</a>
+			</div>
+		</div>
+
+		<div
+			class="expires-ruler-line"
+		></div>
+
+	</div>
+</div>

@@ -1,0 +1,469 @@
+
+<div
+  layout='row'
+  layout-align='start center'
+>
+	<breadcrumbs flex class="only-desk" trail="breadcrumbs"></breadcrumbs>
+
+	<div
+		layout="row"
+		layout-align="end center"
+		class="only-desk quick-actions"
+		ng-if="!loading && !error"
+	>
+
+		<button
+			class="btn-action no-margin-top no-margin-right"
+			ng-click="transfer()"
+			ng-if='isFinished()'
+
+			permissions="atd_reabrir"
+			permissions-disable-mode
+			permissions-remove-attrs="ng-click"
+
+			permissions-attrs-when-false:bs-tooltip
+			permissions-attrs-when-false:data-title="Você não tem permissão para reabrir atendimentos"
+			permissions-attrs-when-false:data-type="warn"
+
+			permissions-attrs-when-disabled:bs-tooltip
+			permissions-attrs-when-disabled:data-title="Desculpe, este recurso está desabilitado"
+			permissions-attrs-when-disabled:data-type="error"
+		>
+			<icon-svg name="padlock" class-name="color1hue2"></icon-svg>
+				Reabrir
+		</button>
+
+		<button
+			class="btn-action won no-margin-top"
+			ng-click="finish('won')"
+			ng-if='!isFinished()'
+			layout='row'
+			layout-align='center'
+
+			permissions="atd_encerrar"
+			permissions-disable-mode
+			permissions-remove-attrs="ng-click"
+			permissions-attrs-when-false:bs-tooltip
+			permissions-attrs-when-false:data-title="Você não tem permissão para fechar atendimentos"
+
+			permissions-attrs-when-false:data-type="warn"
+			permissions-attrs-when-disabled:bs-tooltip
+			permissions-attrs-when-disabled:data-title="Desculpe, este recurso está desabilitado"
+
+			permissions-attrs-when-disabled:data-type="error"
+		>
+			<icon-svg	name="thumb-up" class-name="icons"></icon-svg>
+			Ganho
+		</button>
+
+		<button
+			class="btn-action lost no-margin-right no-margin-top"
+			ng-click="finish('lost')"
+			ng-if='!isFinished()'
+			layout='row'
+			layout-align='center'
+
+			permissions="atd_encerrar"
+			permissions-disable-mode
+			permissions-remove-attrs="ng-click"
+			permissions-attrs-when-false:bs-tooltip
+			permissions-attrs-when-false:data-title="Você não tem permissão para encerrar atendimentos"
+
+			permissions-attrs-when-false:data-type="warn"
+			permissions-attrs-when-disabled:bs-tooltip
+			permissions-attrs-when-disabled:data-title="Desculpe, este recurso está desabilitado"
+
+			permissions-attrs-when-disabled:data-type="error"
+		>
+			<icon-svg	name="thumb-down"	class-name="icons"></icon-svg>
+				Perdido
+		</button>
+
+	</div>
+
+</div>
+
+<loading-spinner
+	class="size-mid"
+	ng-if="loading && !error"
+></loading-spinner>
+
+<div class="box-content" ng-show="error">
+	<h1 class="text-center">
+		{{error.title}}
+	</h1>
+	<h2 class="text-center">
+		{{error.message}}
+	</h2>
+</div>
+
+<section
+ ng-if="!loading && !error"
+ class="section"
+ ng-class="{isFinished: isFinished()}"
+>
+
+	<view-title
+		title="transactionItem.extraInfo.prospectNome"
+		desc="viewTitleDesc"
+		extra="viewTitleExtra"
+		ng-class="{
+			'radial-progress': !isFinished() && transactionItem.extraInfo.atendimentoExpiracaoAutomaticaQtdMinutosConf
+		}"
+	>
+
+		<div
+			class="
+				transaction-status-color
+				border-left
+				{{getStatusClassName()}}
+			"
+		></div>
+
+		<radial-progress
+			ng-if="!isFinished() && transactionItem.extraInfo.atendimentoExpiracaoAutomaticaQtdMinutosConf"
+			total="transactionItem.extraInfo.atendimentoExpiracaoAutomaticaQtdMinutosConf"
+			value="transactionItem.extraInfo.atendimentoExpiracaoAutomaticaQtdMinutosConf - transactionItem.extraInfo.atendimentoExpiracaoAutomaticaQtdMinutosRestantesMax"
+			label="getDaysToExpires(transactionItem)"
+			tooltip="getExpiresTooltip(transactionItem)"
+			class-thresholds="expiresProgressThreshold"
+			class="size-small transaction-expires"
+		></radial-progress>
+
+		<view-transaction-amounts
+			ng-if="$root.mainController.device == 'desktop'"
+			permissions="resfim_mostrar_atd_valor||resfim_mostrar_atd_comissao"
+			class="pull-left"
+			transaction-item="transactionItem"
+		></view-transaction-amounts>
+
+		<div layout='column'>
+
+			<div
+			layout='row'
+			layout-align='end center'
+			layout-align-xs='start center'>
+
+				<view-transaction-agent item='transactionItem'>
+
+					<button
+						ng-if='!isFinished()'
+
+						class="btn-action btn-transfer no-margin-right no-margin-top no-margin-bottom"
+						ng-click="transfer()"
+
+						permissions="atd_transf"
+						permissions-disable-mode
+						permissions-remove-attrs="ng-click"
+						permissions-attrs-when-false:bs-tooltip
+						permissions-attrs-when-false:data-title="Você não tem permissão para transferir atendimentos"
+
+						permissions-attrs-when-false:data-type="warn"
+						permissions-attrs-when-disabled:bs-tooltip
+						permissions-attrs-when-disabled:data-title="Desculpe, este recurso está desabilitado"
+
+						permissions-attrs-when-disabled:data-type="error"
+					>
+						<icon-svg name="transfer" class="icons color1hue2"></icon-svg>
+
+					</button>
+
+				</view-transaction-agent>
+
+			</div>
+
+			<div flex></div>
+
+		</div>
+
+	</view-title>
+
+	<div
+		ng-if="$root.mainController.device == 'desktop'"
+	>
+
+		<view-transaction-stage
+			ng-if="!isFinished()"
+			transaction-item="transactionItem"
+			delegate="delegates.stage"
+		></view-transaction-stage>
+
+		<div
+			layout="row"
+			layout-padding
+			class="no-padding"
+		>
+
+			<div
+				flex="50"
+				class="no-padding-top no-padding-left"
+			>
+
+				<view-transaction-client
+					transaction-item="transactionItem"
+					delegate="delegates.cardClient"
+				></view-transaction-client>
+
+				<card-client-profile
+					ng-if="canEditWhenNotActive()"
+					title="Perfil do cliente"
+					client="clientItem"
+					blocks="informacoespessoais,contato"
+					permissions="atd_prospect && pro_acessar_cadastro_de_prospect"
+				></card-client-profile>
+
+				<view-transaction-details
+					transaction-item="transactionItem"
+				></view-transaction-details>
+
+				<view-transaction-info
+					transaction-item="transactionItem"
+				></view-transaction-info>
+
+				<view-transaction-sells
+					delegate="delegates.cardSells"
+				>
+				</view-transaction-sells>
+
+			</div>
+
+			<div
+				flex="50"
+				class="no-padding-top no-padding-right"
+			>
+
+				<view-transaction-instructions
+					ng-if="!isFinished()"
+					transaction-item="transactionItem"
+				></view-transaction-instructions>
+
+				<card-actions
+					ng-if="!isFinished()"
+					delegate="delegates.cardActions"
+					data="cardActionsData"
+					resource="cardActionsResource"
+				>
+				</card-actions>
+
+				<card-followup
+					delegate="delegates.cardFollowup"
+					resource="cardActionsResource"
+				></card-followup>
+
+			</div>
+
+		</div>
+	</div>
+
+	<div
+		ng-if="$root.mainController.device == 'mobile'"
+	>
+		<div>
+
+			<div tab-transaction>
+				<div
+					layout="row"
+					class="green-block nav-tabs"
+				>
+					<a
+						ng-if="canEditWhenNotActive()"
+						flex
+						data-toggle="tab"
+						data-target="[tab-transaction] #bloco-contato"
+						permissions="atd_prospect"
+						class="client-tab-button contato"
+					>
+						Contato
+					</a>
+					<a
+						flex
+						class="active client-tab-button informacoespessoais"
+						data-toggle="tab"
+						data-target="[tab-transaction] #bloco-informacoes"
+					>
+						Informações
+					</a>
+					<a
+						flex
+						data-toggle="tab"
+						data-target="[tab-transaction] #bloco-linhadotempo"
+						class="client-tab-button linhadotempo"
+					>
+						Linha do tempo
+					</a>
+				</div>
+
+				<view-transaction-instructions
+					ng-if="!isFinished()"
+					transaction-item="transactionItem"
+				></view-transaction-instructions>
+
+				<div class="tab-content">
+
+					<div
+						id="bloco-contato"
+						class="tab-pane"
+						permissions="atd_prospect && pro_acessar_cadastro_de_prospect"
+					>
+
+						<card-client-profile
+							ng-if="canEditWhenNotActive()"
+							client="clientItem"
+							blocks="contato"
+							expanded-blocks="contato"
+							hide-title-blocks="contato"
+						></card-client-profile>
+
+					</div>
+
+					<div id="bloco-informacoes" class="tab-pane active">
+
+						<view-transaction-stage
+							ng-if="!isFinished()"
+							transaction-item="transactionItem"
+							delegate="delegates.stage"
+						></view-transaction-stage>
+
+						<view-transaction-amounts
+							transaction-item="transactionItem"
+							permissions="resfim_mostrar_atd_valor||resfim_mostrar_atd_comissao"
+						></view-transaction-amounts>
+
+						<view-transaction-client
+							transaction-Item="transactionItem"
+							delegate="delegates.cardClient"
+						></view-transaction-client>
+
+						<card-client-profile
+							ng-if="canEditWhenNotActive()"
+							title="Perfil do cliente"
+							client="clientItem"
+							blocks="informacoespessoais"
+							expanded-blocks="informacoespessoais"
+							permissions="atd_prospect && pro_acessar_cadastro_de_prospect"
+						></card-client-profile>
+
+						<view-transaction-details
+							transaction-item="transactionItem"
+						></view-transaction-details>
+
+						<view-transaction-info
+							transaction-item="transactionItem"
+						></view-transaction-info>
+
+						<view-transaction-sells
+							delegate="delegates.cardSells"
+						>
+						</view-transaction-sells>
+
+					</div>
+
+					<div id="bloco-linhadotempo" class="tab-pane">
+
+						<card-followup
+							delegate="delegates.cardFollowup"
+							resource="cardActionsResource"
+						></card-followup>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+
+		<div class="tab-bar hide-on-softkeyboard">
+			<div layout="row">
+				<div
+				  	ng-if="isFinished()"
+					flex
+				>
+					<a
+						ng-click="transfer()"
+						class="tab-bar-button"
+
+						permissions="atd_reabrir"
+						permissions-disable-mode
+						permissions-remove-attrs="ng-click"
+						permissions-attrs-when-false:bs-tooltip
+						permissions-attrs-when-false:data-title="Você não tem permissão para reabrir atendimentos"
+
+						permissions-attrs-when-false:data-type="warn"
+						permissions-attrs-when-disabled:bs-tooltip
+						permissions-attrs-when-disabled:data-title="Desculpe, este recurso está desabilitado"
+						permissions-attrs-when-disabled:data-type="error"
+					>
+						<icon-svg name="padlock" class="icons"></icon-svg>
+						<strong>Reabrir</strong>
+					</a>
+				</div>
+
+
+				<div
+					ng-if="!isFinished()"
+					flex
+				>
+					<a
+						ng-click="showModal()"
+						class="tab-bar-button"
+					>
+						<icon-svg name="actions" class="icons"></icon-svg>
+						<strong>Ações</strong>
+					</a>
+				</div>
+				<div
+					flex
+					ng-if='!isFinished()'
+				>
+					<a
+						layout="column"
+						ng-click="finish('won')"
+						class="tab-bar-button"
+
+						permissions="atd_encerrar"
+						permissions-disable-mode
+						permissions-remove-attrs="ng-click"
+
+						permissions-attrs-when-false:bs-tooltip
+						permissions-attrs-when-false:data-title="Você não tem permissão para encerrar atendimentos"
+						permissions-attrs-when-false:data-type="warn"
+
+						permissions-attrs-when-disabled:bs-tooltip
+						permissions-attrs-when-disabled:data-title="Desculpe, este recurso está desabilitado"
+						permissions-attrs-when-disabled:data-type="error"
+					>
+						<icon-svg name="thumb-up" class="icons won-icon"></icon-svg>
+						<strong>Ganho</strong>
+					</a>
+				</div>
+				<div
+				flex
+				ng-if='!isFinished()'
+			>
+				<a
+					layout="column"
+					ng-click="finish('lost')"
+					class="tab-bar-button"
+
+					permissions="atd_encerrar"
+					permissions-disable-mode
+					permissions-remove-attrs="ng-click"
+
+					permissions-attrs-when-false:bs-tooltip
+					permissions-attrs-when-false:data-title="Você não tem permissão para encerrar atendimentos"
+					permissions-attrs-when-false:data-type="warn"
+
+					permissions-attrs-when-disabled:bs-tooltip
+					permissions-attrs-when-disabled:data-title="Desculpe, este recurso está desabilitado"
+					permissions-attrs-when-disabled:data-type="error"
+				>
+					<icon-svg name="thumb-down" class="icons lost-icon"></icon-svg>
+					<strong>Perdido</strong>
+				</a>
+			</div>
+			</div>
+		</div>
+
+	</div>
+
+</section>

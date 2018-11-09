@@ -1,0 +1,53 @@
+enriched-person-data {
+	
+	li {
+		p {
+			margin-bottom: 7px;
+			line-height: 1;
+		}
+	}
+
+	.social-icon {
+		width: 45px;
+		height: 45px;
+		padding-right: 10px;
+	}
+
+	.person-photo-container {
+
+		position: relative;
+		padding-right: 5px;
+
+		.person-photo {
+			width: 60px;
+			height: 60px;
+			border: solid 1px $color3;
+			background-color: $color3;
+		}
+
+		.person-photo-source-icon-wrapper{
+			position: absolute;
+			width: 25px;
+			height: 25px;
+			background-color: $color3hue1;
+			border: 1px solid $color3;
+			border-radius: 50%;
+			right: 0;
+			bottom: -5px;
+
+			.person-photo-source-icon {
+				width: 15px;
+				height: 15px;
+				margin: 4px;
+			}
+		}
+		
+	}
+	
+	.display-items-row {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+}

@@ -1,0 +1,112 @@
+@include view('user-profile') {
+
+	.logo2 {
+		width: 300px;
+		height: 300px;
+	}
+
+	#container {
+
+		.avatar-wrapper {
+			background-color: $backgroundColor;
+			border-radius: 4px;
+		}
+
+		form {
+
+			position: relative;
+			padding: 10px 15px;
+			margin: -10px -15px;
+
+			.dividerPassword hr {
+				margin-top: 0;
+			}
+
+		}
+
+		ng-form div[ng-transclude]:last-child {
+			display: none;
+		}
+
+		.formly-user-profile {
+			min-height: 300px;
+		}
+
+		.user-profile-phones-field > div {
+			width: 150px;
+		}
+
+	}
+
+	&[device=desktop] {
+		#container{
+
+			.avatar-wrapper {
+
+				width: 160px;
+				height: 160px;
+				margin-right: 20px;
+
+				.avatar-picture{
+					width: 100px;
+					height: 100px;
+				}
+			}
+
+			.formly-field {
+
+				flex: 1 1 45%;
+				max-width: 45%;
+
+				&.fieldCPF {
+					flex: none;
+					width: 150px;
+				}
+
+				&.dividerPassword {
+					flex: 1 1 100%;
+					max-width: 100%;
+					min-height: 100%;
+				}
+
+				&.fieldPassword {
+					flex: 1 1 30%;
+					max-width: 30%;
+				}
+
+			}
+
+			.form-buttons {
+				padding-bottom: 30px;
+
+				button {
+					margin-left: 15px;
+				}
+			}
+
+		}
+	}
+
+	&[device=mobile] {
+		#container{
+
+			.avatar-wrapper {
+
+				width: 120px;
+				height: 120px;
+
+				.avatar-picture{
+					width: 80px;
+					height: 80px;
+				}
+
+			}
+
+			form {
+				margin-top: 10px;
+			}
+
+		}
+	}
+
+}

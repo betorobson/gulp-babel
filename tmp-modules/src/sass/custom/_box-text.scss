@@ -1,0 +1,9 @@
+
+.box-text {
+
+	p {
+		// replaced by *:not(.box-text) > p at sass/typography.scss
+		// margin-bottom: 10px;
+	}
+
+}

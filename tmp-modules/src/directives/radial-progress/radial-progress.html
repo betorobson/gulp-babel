@@ -1,0 +1,33 @@
+
+<div
+	layout-fill
+	layout="row"
+	layout-align="center center"
+	class="{{::getClassThreshold()}}"
+>
+	<div
+		ng-if="hasLabel()"
+		class="label"
+		layout="row"
+		layout-align="center center"
+	>
+		<p class="label-text">{{label}}</p>
+	</div>
+	<svg class="circular" viewBox="25 25 50 50">
+		<circle
+			class="path-border"
+			cx="50"
+			cy="50"
+			r="20"
+			stroke-miterlimit="10"
+		/>
+		<circle
+			class="path"
+			cx="50"
+			cy="50"
+			r="20"
+			stroke-miterlimit="10"
+			ng-style="getStyle()"
+		/>
+	</svg>
+</div>

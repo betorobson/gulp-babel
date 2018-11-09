@@ -1,0 +1,70 @@
+
+	<calendar-list-filter-form
+		ng-if="$root.mainController.device == 'desktop'"
+	></calendar-list-filter-form>
+
+
+<section
+		ng-if="$root.mainController.device == 'mobile'"
+		class="section list-filter"
+	>
+
+		<div class="tab-bar hide-on-softkeyboard">
+			<div layout="row">
+
+				<div
+					class="no-padding"
+					flex
+				>
+					<a
+						class="tab-bar-button"
+						data-toggle="modal"
+						data-target="#modal-filtrar">
+						<icon-svg name="funnel" class="icons"></icon-svg>
+						<strong>Filtrar</strong>
+					</a>
+				</div>
+
+				<div
+					class="no-padding"
+					flex
+				>
+					<a
+						class="tab-bar-button"
+						ng-click="addNewAppointment()"
+					>
+						<icon-svg name="appointment" class="icons"></icon-svg>
+						<strong>Agendar</strong>
+					</a>
+				</div>
+
+				<div
+					class="no-padding"
+					flex
+				>
+					<a
+						class="tab-bar-button"
+						ng-click="showModalLinkIntegration()"
+					>
+						<icon-svg name="calendar-download" class="icons"></icon-svg>
+						<strong>Integração</strong>
+					</a>
+				</div>
+
+			</div>
+		</div>
+
+	<modal
+		modal-id="modal-filtrar"
+		delegate="listFilter.modalDelegate"
+		class="calendar-list-filter"
+	>
+		<modal-title>
+			<strong>Filtrar agenda</strong>
+		</modal-title>
+		<modal-body-custom layout="column">
+			<calendar-list-filter-form></calendar-list-filter-form>
+		</modal-body-custom>
+	</modal>
+
+</section>

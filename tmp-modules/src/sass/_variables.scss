@@ -1,0 +1,83 @@
+
+// media queries
+$breakpointMobile: 960px;
+$mediaMobile: "only screen and (max-width: " + ($breakpointMobile - 1) + ")";
+$mediaDesktop: "only screen and (min-width: " + $breakpointMobile + ")";
+
+// font
+$fontsSrc: '../assets/fonts/';
+
+$fonts:
+	('sf_ui_displaylight', 'SanFranciscoDisplay-Ultralight', '100'),
+	('sf_ui_displaylight', 'SanFranciscoDisplay-Thin', '200'),
+	('sf_ui_displaylight', 'SanFranciscoDisplay-Light', '300'),
+	('sf_ui_displaylight', 'SanFranciscoDisplay-Regular', '400'),
+	('sf_ui_displaylight', 'SanFranciscoDisplay-Medium', '500'),
+	('sf_ui_displaylight', 'SanFranciscoDisplay-Semibold', '600'),
+	('sf_ui_displaylight', 'SanFranciscoDisplay-Bold', '700'),
+	('sf_ui_displaylight', 'SanFranciscoDisplay-Heavy', '800'),
+	('sf_ui_displaylight', 'SanFranciscoDisplay-Black', '900');
+
+// Colors
+$backgroundColor: #eae8e8;
+
+$color1: #2c3e50;
+	$color1hue1: #202f3e;
+	$color1hue2: #2dafe6;
+
+$color2: #28b17f;
+	$color2hue1: #ff5a5f;
+	$color2hue2: #444747;
+
+$color3: #e1eae6;
+	$color3hue1: #ecefee;
+	$color3hue2: #fffcee;
+
+$color4: #dea400;
+	$color4hue1: #ffc276;
+	$color4hue2: #b9ad9e;
+
+$color5: #8b5d98;
+	$color5hue1: #c099cc;
+	$color5hue2: #867a8a;
+
+$color6: #0c5dcc;
+	$color6hue1: #5d93dc;
+	$color6hue2: #355682;
+
+$colors:
+		(1, $color1, $color1hue1, $color1hue2),
+		(2, $color2, $color2hue1, $color2hue2),
+		(3, $color3, $color3hue1, $color3hue2),
+		(4, $color4, $color4hue1, $color4hue2),
+		(5, $color5, $color5hue1, $color5hue2),
+		(6, $color6, $color6hue1, $color6hue2);
+
+// Stages SubStages Steps Colors
+$stepColors:
+	// #fffff
+	// #eefbf7
+	#def7ee
+	#cdf4e6
+	#bcf0dd
+	#acecd5
+	#9be8cc
+	#8be5c4
+	#7ae1bb
+	#69ddb3
+	#59d9aa
+	#48d5a2
+	#37d299
+	#2dc88f
+	#28b17f
+	#26a677
+	#22966b
+	#1e855f
+	#1a7453
+	#176447
+	#13533c
+	#0f4330
+	// #0b3224
+	// #082118
+	// #04110c
+;

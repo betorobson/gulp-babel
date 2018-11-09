@@ -1,0 +1,147 @@
+
+navigation-bar-mobile-user-status {
+
+	display: block;
+	margin: 0 -15px;
+	background-color: $color1;
+	padding: 0;
+	color: $color3;
+
+	.mobile-user-status-avatar {
+
+		padding: 10px 15px 15px 10px;
+
+		h3 {
+			line-height: 0.8;
+		}
+
+		small {
+			color: $color1hue2;
+		}
+
+	}
+
+	avatar {
+
+		width: 100px;
+
+		.user-status-bullet {
+			border: none;
+			width: 16px;
+			height: 16px;
+		}
+
+	}
+
+	.arrow {
+		width: 0;
+		height: 0;
+	}
+
+	.menu-item-row,
+	.status-row,
+	.additional-options .buttons {
+		padding: 0 15px;
+		margin: 0;
+		height: 60px;
+	}
+
+	.status-row {
+		font-size: 20px;
+		line-height: 20px;
+		font-weight: 400;
+	}
+
+	.menu-item-row {
+
+		color: $color3;
+		text-decoration: none;
+		border-bottom: 1px solid $color1;
+
+		&:active {
+			background-color: lighten($color1hue1, 15%);
+		}
+
+		.icon-svg {
+			width: 33px;
+			height: 33px;
+		}
+
+		strong {
+			font-weight: 400;
+			display: block;
+			font-size: 14px;
+			line-height: 14px;
+		}
+
+	}
+
+	.user-status-menu {
+		display: none;
+		background-color: $color1hue1;
+		overflow: hidden;
+	}
+
+	.arrow {
+		border-left: 6px solid transparent;
+		border-right: 6px solid transparent;
+		border-bottom: 0;
+		border-top: 6px solid $color3;
+		transition: .4s;
+		transform: rotate(0deg);
+	}
+
+	.show {
+
+		.arrow {
+			transform: rotate(180deg);
+		}
+
+		.user-status-menu {
+			display: block;
+		}
+
+	}
+
+	user-status-switchers {
+
+		.formly-field-anaproSwitch {
+
+			label {
+				@extend .status-row;
+
+				&:active {
+					background-color: lighten($color1hue1, 15%);
+				}
+
+			}
+
+			.formly-wrapper {
+
+				&.paused {
+					.pause-button {
+						right: 15px;
+					}
+				}
+
+				.pause-button {
+					right: 75px;
+				}
+
+			}
+
+			.slider {
+				background-color: rgb(150, 157, 165);
+			}
+
+		}
+
+	}
+
+	.additional-options {
+		.bullet {
+			background-color: $color1;
+		}
+	}
+
+}

@@ -1,0 +1,95 @@
+
+
+@each $font in $fonts {
+
+	@font-face {
+		font-family: '#{nth($font,1)}';
+		src:	url($fontsSrc + "#{nth($font,2)}.woff2") format("woff2"),
+					url($fontsSrc + "#{nth($font,2)}.woff") format("woff");
+		font-weight: #{nth($font,3)};
+		font-style: normal;
+    font-display: fallback;
+	}
+
+}
+
+body {
+  background: #eae8e8;
+  font-size: 14px;
+  line-height: 16px;
+  font-family: "sf_ui_displaylight", Arial;
+}
+
+h1, h2, h3 {
+  margin: 0;
+}
+
+strong {
+  font-weight: 600;
+}
+
+small {
+  font-size: 11px;
+  line-height: 1;
+}
+
+em {
+  font-style: italic;
+}
+
+hr {
+  clear: both;
+  border: 0px;
+  border-top: solid 1px #d6d6d6;
+  border-radius: 0px;
+}
+
+*:not(.box-text) > p {
+  margin-bottom: 2px;
+  line-height: 18px;
+}
+
+@each $color in $colors {
+
+    // base color
+    .text-color#{nth($color,1)} {
+      color: nth($color,2);
+    }
+
+    // hue 1
+    .text-color#{nth($color,1)}hue1 {
+      color: nth($color,3);
+    }
+
+    // hue 2
+    .text-color#{nth($color,1)}hue2 {
+      color: nth($color,4);
+    }
+
+}
+
+// Try legacy
+// @font-face {
+// 	font-family: 'sf_ui_displaybold';
+// 	src: url("../fonts/sf-ui-display-bold-webfont.woff2") format("woff2"), url("../fonts/sf-ui-display-bold-webfont.woff") format("woff");
+// 	font-weight: normal;
+// 	font-style: normal;
+// }
+// @font-face {
+// 	font-family: 'sf_ui_displaylight';
+// 	src: url("../fonts/sf-ui-display-light-webfont.woff2") format("woff2"), url("../fonts/sf-ui-display-light-webfont.woff") format("woff");
+// 	font-weight: normal;
+// 	font-style: normal;
+// }
+// @font-face {
+// 	font-family: 'sf_ui_displayregular';
+// 	src: url("../fonts/sf-ui-display-regular-webfont.woff2") format("woff2"), url("../fonts/sf-ui-display-regular-webfont.woff") format("woff");
+// 	font-weight: normal;
+// 	font-style: normal;
+// }
+// @font-face {
+// 	font-family: 'sf_ui_displaysemibold';
+// 	src: url("../fonts/sf-ui-display-semibold-webfont.woff2") format("woff2"), url("../fonts/sf-ui-display-semibold-webfont.woff") format("woff");
+// 	font-weight: normal;
+// 	font-style: normal;
+// }

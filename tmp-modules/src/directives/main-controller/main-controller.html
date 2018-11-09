@@ -1,0 +1,22 @@
+
+<navigation-bar ng-if="isLogged"></navigation-bar>
+
+<perfil ng-if="isLogged"></perfil>
+
+<div class="container mobile-container no-padding" id="container">
+	<div class="row-fluid">
+		<div
+			ng-view
+			class="col-md-12"
+		>
+		</div>
+	</div>
+</div>
+
+<footer ng-if="mainController.device == 'desktop' " id="footer"></footer>
+
+<chat ng-if="isLogged" id="chat"></chat>
+
+<modal-iframe-anapro-v1></modal-iframe-anapro-v1>
+
+<notifications-container></notifications-container>

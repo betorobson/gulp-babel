@@ -1,0 +1,148 @@
+
+<div class="box-content simulacao-proposta client-item">
+
+	<div
+		data-toggle="collapse"
+		data-target="#bloco-clientes"
+		class="principal-title no-padding-right"
+	>
+		<h2 class="pull-left">
+			<strong>Cliente</strong>
+		</h2>
+		<a class="accordion-toggle">
+			<icon-svg name="down-arrow-inside-circle" class-name="color1hue2"></icon-svg>
+		</a>
+	</div>
+
+	<div
+		id="bloco-clientes"
+		class="accordion-content row simulacao-dados panel-collapse collapse in"
+	>
+		<div
+			layout="column"
+			class="box-content no-padding-top"
+		>
+
+		<client-avatar
+			transaction-item="transactionItem"
+		>
+			<hashtag
+				transaction-item="transactionItem"
+				ng-if="canEditWhenNotActive()"
+			></hashtag>
+		</client-avatar>
+
+		<client-contacts
+			item="transactionItem"
+			resource="clientContactsResource"
+			ng-if="canEditWhenNotActive()"
+		>
+		</client-contacts>
+
+
+			<div
+				class="buttons"
+				ng-if="canEditWhenNotActive()"
+			>
+				<div
+					layout="row"
+					layout-margin
+					layout-wrap
+					layout-align="center center"
+					class="no-margin"
+
+					permissions="view.clients"
+				>
+					<a flex-none ng-href="{{clientPath}}" class="btn btn-secondary">
+						Ver detalhes desse perfil
+					</a>
+					<!--a flex href="#" class="btn btn-secondary">
+						Ficha de pesquisa
+					</a-->
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div
+		layout="row"
+		layout-align-xs="space-between center"
+		layout-align-sm="space-between center"
+		layout-align-gt-sm="center center"
+
+		permissions="pro_acessar_cadastro_de_prospect"
+	>
+
+		<a
+			ng-if="$root.mainController.device == 'desktop' && canEditWhenNotActive()"
+			class="btn btn-primary"
+			ng-click="editData()"
+
+		>
+			<icon-svg name="edit"></icon-svg>
+			Editar Dados do cliente
+		</a>
+
+		<a
+			ng-if="$root.mainController.device == 'desktop' && !canEditWhenNotActive()"
+			class="btn btn-primary"
+			disabled
+			bs-tooltip
+			data-title="Você não pode editar dados do cliente que não está em atendimento"
+			data-type="warn"
+		>
+			<icon-svg name="edit"></icon-svg>
+			Editar Dados do cliente
+		</a>
+
+		<a
+			ng-if="$root.mainController.device == 'mobile' && canEditWhenNotActive()"
+			class="btn btn-primary"
+			ng-click="editData('informacoespessoais')"
+		>
+			<icon-svg name="edit"></icon-svg>
+			Editar Dados
+		</a>
+		<a
+			ng-if="$root.mainController.device == 'mobile' && canEditWhenNotActive()"
+			class="btn btn-primary"
+			ng-click="editData('contato')"
+		>
+			<icon-svg name="edit"></icon-svg>
+			Editar Contato
+		</a>
+
+
+		<a
+			ng-if="$root.mainController.device == 'mobile' && !canEditWhenNotActive()"
+			class="btn btn-primary"
+			disabled
+			bs-tooltip
+			data-title="Você não pode editar dados do <br/> cliente que não está em atendimento"
+			data-type="warn"
+		>
+			<icon-svg name="edit"></icon-svg>
+			Editar Dados
+		</a>
+
+		<a
+			ng-if="$root.mainController.device == 'mobile' && !canEditWhenNotActive()"
+			class="btn btn-primary"
+			disabled
+			bs-tooltip
+			data-title="Você não pode editar dados do <br/> cliente que não está em atendimento"
+			data-type="warn"
+		>
+			<icon-svg name="edit"></icon-svg>
+			Editar Contato
+		</a>
+
+	</div>
+
+	<enriched-person-data
+		ng-if="transactionItem.expand.clients.embed.enrichPerson"
+		person="transactionItem.expand.clients.embed.enrichPerson"
+	>
+	</enriched-person-data>
+</div>

@@ -1,0 +1,43 @@
+<form
+	layout-gt-sm="row"
+	layout-align-gt-sm="none center"
+	name="formFilters"
+	ng-submit="setFilters($event)"
+	novalidate
+	class="modal-content-scrollable"
+	>
+	<formly-form
+		model="listFilter.model.filters"
+		fields="fields"
+		form="formFilters"
+		layout-gt-sm="row"
+		layout-align="start center"
+		layout-wrap
+	>
+	</formly-form>
+	<div
+		layout-margin
+		layout-align="space-between end"
+		layout="row"
+		input-nogrow
+	>
+
+	<button
+		type="button"
+		class="btn btn-secondary"
+		ng-click="resetFilters()"
+	>
+		Limpar
+	</button>
+
+	<button
+		ng-if="$root.mainController.device == 'mobile'"
+		ng-click="setFilters()"
+		type="button"
+		class="btn btn-primary"
+	>
+		Filtrar
+	</button>
+
+	</div>
+</form>

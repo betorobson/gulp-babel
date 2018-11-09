@@ -1,0 +1,61 @@
+
+<div
+	layout="row"
+	layout-align="center center"
+>
+
+	<div
+		layout="column"
+		flex-xs="100"
+		flex-gt-xs="30"
+	>
+
+		<icon-svg-inline
+			name="Anapro-Logo-Marca-3paths"
+			class="logo"
+		></icon-svg-inline>
+
+		<form
+			ng-if="showForm"
+			flex
+			layout="column"
+			layout-padding
+			class="position-relative"
+			name="form"
+			ng-submit="loginSubmit()"
+			novalidate
+		>
+
+			<loading-spinner
+				class="fill size-large"
+				ng-class="submitStatus"
+				ng-if="loading"
+			></loading-spinner>
+
+			<formly-form
+				form="forms.auth"
+				fields="fields"
+				model="model"
+			>
+			</formly-form>
+
+			<div
+				layout="row"
+				layout-align="center center"
+			>
+
+				<button
+					type="submit"
+					class="btn btn-primary"
+					ng-disabled="loading"
+				>
+					Entrar
+				</button>
+
+			</div>
+
+		</form>
+
+	</div>
+
+</div>

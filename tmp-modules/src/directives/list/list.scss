@@ -1,0 +1,53 @@
+
+list {
+
+	display: block;
+
+	ul.table-filter {
+		background: #28b17f;
+		border-radius: 2px;
+		padding: 5px;
+		display: inline-block;
+		vertical-align: middle;
+		li {
+			display: inline-block;
+			width: 3.635%;
+			text-align: center;
+			color: #fff;
+			padding: 0px;
+			a {
+				color: #fff;
+				display: block;
+				width: 70%;
+				margin: 0 auto;
+				padding: 1px 0;
+				text-decoration: none;
+			}
+
+			&.active a {
+				background: #fff;
+				border-radius: 2px;
+				color: #28b17f;
+			}
+
+			a {
+				&.active, &:hover {
+					background: #fff;
+					border-radius: 2px;
+					color: #28b17f;
+				}
+
+			}
+
+		}
+
+	}
+
+
+	@media only screen and (max-width: 1199px) {
+		ul.table-filter li {
+			width: 3.55% !important;
+		}
+	}
+
+}

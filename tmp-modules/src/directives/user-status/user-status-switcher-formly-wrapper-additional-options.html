@@ -1,0 +1,58 @@
+
+<div>
+	<div ng-hide="options.data.selectAdditionalOption">
+		<formly-transclude></formly-transclude>
+	</div>
+	<div
+		ng-if="options.data.selectAdditionalOption"
+		layout="column"
+		class="additional-options"
+	>
+
+		<label
+			layout="row"
+			layout-align="start center"
+		>
+			<span>{{to.label}} selecione:</span>
+		</label>
+
+		<label
+			layout="row"
+			layout-align="start center"
+			ng-click="setChannelWithAdditionalOption(item)"
+			ng-repeat="item in getAdditionalOptions()"
+			class="option"
+		>
+			<div class="bullet"></div>
+			<span>{{item | mask:'tel'}}</span>
+		</label>
+
+		<label
+			ng-if="hasAdditionalOptions && !getAdditionalOptions().length"
+			layout="row"
+			class="empty-addtional-options"
+		>
+			<icon-svg name="attention-sign-filled"></icon-svg>
+			<span ng-if="options.key == 'phone'">Você não tem telefones</span>
+		</label>
+
+		<div
+			layout="row"
+			layout-align="space-between center"
+			class="buttons"
+		>
+			<button ng-click="cancelAdditionalOption()" class="btn btn-secondary">Cancelar</button>
+			<button
+				layout="row"
+				layout-align="space-between center"
+				ng-click="addAdditionalOption()"
+				class="btn btn-primary"
+				hide-mobile-menu-on-tap
+			>
+				<span ng-if="options.key == 'phone'">Novo telefone</span>
+				<icon-svg name="arrow-right"></icon-svg>
+			</button>
+		</div>
+
+	</div>
+</div>

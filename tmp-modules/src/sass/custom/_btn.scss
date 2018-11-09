@@ -1,0 +1,117 @@
+
+.btn,
+.btn-action {
+	&[permissions-disable-mode],
+	&[permissions-disable-mode]:hover {
+		background-color: rgba(#000,.1);
+		cursor: default;
+		color: #9e9a9a;
+		border-color: rgba(#000,.1);
+	}
+}
+
+.btn-mais {
+	background: #2dafe6;
+	color: #fff;
+	border-radius: 2px 5px 5px 2px;
+	border: none;
+	position: relative;
+	padding: 0 70px 0 30px;
+	margin: 20px 0 0 20px;
+	height: 26px;
+
+	&:not[permissions-disable-mode] {
+		&:hover .btn-more {
+			background-color: #fff;
+		}
+	}
+
+	&[permissions-disable-mode] {
+
+		color: #7b7b7b;
+
+		background-color: rgba(#9e9a9a,.3);
+
+		.btn-more {
+			background-color: rgba(#9e9a9a,.5);
+		}
+
+		.icons-menu-more {
+			mix-blend-mode: luminosity;
+		}
+
+	}
+
+}
+
+.btn-lupa {
+	background: #202f3e;
+	border: none;
+	padding: 7px 10px;
+	display: inline-block;
+	height: 34px;
+}
+
+.btn-more {
+	position: absolute;
+	background-color: #202f3e;
+	top: 0;
+	right: 0;
+	width: 40px;
+	height: 26px;
+	vertical-align: middle;
+	padding-top: 6px;
+	border-radius: 0 2px 2px 0;
+
+	&:hover {
+		background-color: #fff;
+	}
+
+	.icon-svg {
+		width: 14px;
+		height: 14px;
+		color: $color1hue2;
+	}
+
+}
+
+.btn-action {
+
+	background-color: #fff;
+	height: 30px;
+	border-radius: 4px;
+	border: solid 1px #d6d6d6;
+	text-align: left;
+	margin: 8px;
+	white-space: nowrap;
+
+	&:not([permissions-disable-mode]).active {
+		border-color: #000;
+	}
+
+	@include btn-media-focus-hover(#fff, lighten($color1, 20%), inherit)
+
+	.icon-svg {
+		width: 17px;
+		height: 17px;
+		margin: 0 4px -4px 0;
+	}
+
+	small {
+		@extend .badget;
+	}
+
+}
+
+.btn.btn-delete {
+
+	@extend .btn.btn-default-border-radius;
+	@extend .btn.btn-default-padding;
+
+	background-color: $color2hue1;
+	border: solid 1px $color2hue1;
+	color: #fff;
+
+	@include btn-media-focus-hover(darken($color2hue1, 10%), $color2hue1, #fff)
+
+}

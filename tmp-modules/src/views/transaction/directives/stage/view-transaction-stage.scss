@@ -1,0 +1,206 @@
+
+view-transaction-stage {
+
+	position: relative;
+	display: block;
+	background-color: #fff;
+	margin-bottom: 20px;
+	padding: 0 10px;
+
+	.swiper-container {
+		padding-bottom: 20px;
+	}
+
+	.stage {
+
+		position: relative;
+		border-radius: 4px;
+		padding: 10px 15px;
+		margin: 10px 0;
+		width: 100px;
+
+		.steps-wrapper {
+			padding-top: 2px;
+		}
+
+		.cell-stage {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			padding-left: 5px;
+		}
+
+		@media #{$mediaDesktop}{
+			&:not(.hide-overlay){
+				&:not([permissions-disable-mode]):hover {
+					cursor: pointer;
+					background-color: $color3;
+					.transaction-stage-overlay {
+						display: block;
+					}
+				}
+			}
+		}
+
+		&:not([permissions-disable-mode]):active {
+			background-color: $color3hue1;
+		}
+
+		.group-stage-duration {
+			color: $color2;
+		}
+
+	}
+
+	.step-wrapper {
+
+		.step-line {
+			height: 2px;
+			margin-bottom: 2px;
+			background-color: #d6d6d6;
+		}
+
+		&.done {
+			.step-line {
+				background-color: $color2;
+			}
+		}
+
+		&:first-child .step {
+			margin-left: 0;
+		}
+
+		&:last-child .step {
+			margin-right: 0;
+		}
+
+	}
+
+	.stage-substages-step {
+
+		&:not(.done){
+			background-color: rgba(#ccc, 0.3);
+			color: rgba(#000, 0.2);
+			&:hover {
+				background-color: $color3hue2;
+			}
+		}
+
+		&.done {
+			color: rgba(#2b2306, 0.6);
+		}
+	}
+
+	// only mobile
+	.modal-stages {
+
+		padding: 0 15px;
+
+		.stage-substages-step {
+			text-align: left;
+			margin: 6px 0;
+			padding: 10px;
+			height: auto;
+
+			&:not(.done){
+				background-color: rgba(#ccc, 0.7);
+				color: rgba(#000, 0.5);
+			}
+
+			&:not(.block-backwards) {
+
+				&:hover {
+					box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.57);
+				}
+
+				&:active {
+					background-color: $color2;
+				}
+
+			}
+
+		}
+
+	}
+
+	i {
+		color: $color2;
+		font-style: italic;
+	}
+
+	#modal-setstage {
+
+		modal-body {
+			display: block;
+			position: relative;
+		}
+
+		form {
+			padding: 0 16px;
+		}
+
+	}
+
+}
+
+.transaction-stage-overlay {
+
+	display: none;
+	position: absolute;
+	width: 100%;
+	top: 30px;
+	left: 0;
+	padding: 10px;
+	background-color: $color3;
+	border-radius: 4px;
+	box-shadow: 0px 0px 6px rgba(0,0,0, 0.5);
+	cursor: default;
+
+	.stage-substages-step {
+
+		cursor: pointer;
+
+		// &:hover {
+		// 	box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.57);
+		// }
+
+		&:not(.done):hover {
+			background-color: rgba(#ccc, 0.9);
+		}
+
+		&:not(.done) {
+			color: rgba(#000, .7);
+			background-color: rgba(#fff, 0.6);
+		}
+
+		&.block-backwards {
+			cursor: not-allowed;
+		}
+
+		margin: 6px 0;
+		text-align: left;
+		padding: 2px 10px;
+		height: auto;
+		color: rgba(#000, 0.7);
+	}
+
+}
+
+main-controller[device=desktop] view-transaction-stage-form form,
+.form-select view-transaction-stage-form form {
+
+	@extend .transaction-stage-overlay;
+	display: block;
+	cursor: default;
+	z-index: 1;
+	width: 200px;
+	top: -5px;
+	left: -5px;
+
+}
+
+main-controller[device=mobile]{
+	view-transaction-stage {
+		min-height: 100px;
+	}
+}

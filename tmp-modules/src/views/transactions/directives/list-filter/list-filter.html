@@ -1,0 +1,516 @@
+
+<section ng-if="$root.mainController.device == 'desktop'"
+	class="section list-filter">
+
+	<div
+		layout="row"
+		layout-align="start end"
+		class="row no-margin"
+	>
+
+		<div class="col-md-2 no-padding">
+			<a
+				class="btn btn-primary btn-fat no-padding col-md-12"
+				ng-click="showModalAddClient()"
+
+				permissions="pro_acessar_cadastro_de_prospect_incluir"
+				permissions-disable-mode
+				permissions-remove-attrs="ng-click"
+
+				permissions-attrs-when-false:bs-tooltip
+				permissions-attrs-when-false:data-title="Você não tem permissão para adicionar um novo cliente"
+				permissions-attrs-when-false:data-type="warn"
+
+				permissions-attrs-when-disabled:bs-tooltip
+				permissions-attrs-when-disabled:data-title="Desculpe, o cadastro de clientes está temporariamente desligado"
+				permissions-attrs-when-disabled:data-type="error"
+			>
+				Novo cliente
+			</a>
+		</div>
+
+		<div class="col-md-5">
+			<form
+				novalidate
+				name="listFilterFormQ"
+				class="list-filter-form"
+				ng-submit="listFilter.formQSubmit(listFilterFormQ)"
+				autocomplete="off"
+			>
+			<label for="busca"
+				class="no-padding no-margin-bottom col-md-12"
+				ng-class="{
+					'has-error':	listFilterFormQ.q.$invalid
+												&& listFilterFormQ.q.$touched
+												&& listFilterFormQ.q.$viewValue
+				}"
+			>
+				Busca
+				<input
+					type="text"
+					class="form-control icones-busca"
+					placeholder="Busca por cliente, email, código, telefone ou #hashtag"
+					id="busca"
+					name="q"
+					minlength="3"
+					ng-model="listFilter.model.q"
+				/>
+				<icon-svg name="search"></icon-svg>
+			</label>
+			</form>
+		</div>
+
+		<div
+			layout="column"
+			class="col-md-5 no-padding"
+		>
+
+			<span>Para hoje</span>
+			<div
+				layout="row"
+				layout-align="end end"
+
+			>
+
+				<button
+					flex
+					class="btn-action no-margin-left no-margin-bottom"
+					ng-class="{active: transactionsWithorWithoutTasks.atendimentoPendencias.selected}"
+					ng-click="showTransactionsWithOrWithoutTasks('atendimentoPendencias')"
+
+					permissions="view.transactoins.filter.with-tasks"
+					permissions-disable-mode
+					permissions-remove-attrs="ng-click"
+
+					permissions-attrs-when-disabled:bs-tooltip
+					permissions-attrs-when-disabled:data-title="Desculpe, mas o filtro por pendências está temporariamente desabilitado."
+					permissions-attrs-when-disabled:data-type="error"
+				>
+					<small class="red">
+						{{transactionsWithorWithoutTasks.atendimentoPendencias.total}}
+					</small>
+					pendências
+				</button>
+
+				<button
+					flex
+					class="btn-action no-margin-right no-margin-bottom"
+					ng-class="{active: transactionsWithorWithoutTasks.atendimentoCompromissos.selected}"
+					ng-click="showTransactionsWithOrWithoutTasks('atendimentoCompromissos')"
+
+					permissions="view.transactoins.filter.with-tasks"
+					permissions-disable-mode
+					permissions-remove-attrs="ng-click"
+
+					permissions-attrs-when-disabled:bs-tooltip
+					permissions-attrs-when-disabled:data-title="Desculpe, mas o filtro por compromissos está temporariamente desabilitado."
+					permissions-attrs-when-disabled:data-type="error"
+				>
+					<small class="black">
+						{{transactionsWithorWithoutTasks.atendimentoCompromissos.total}}
+					</small>
+					compromissos
+				</button>
+
+				<div class="btn-group col-md-4 no-padding-right">
+
+					<button type="button"
+						class="dropdown-toggle col-md-12 btn-mais"
+						data-toggle="dropdown"
+						aria-haspopup="true"
+						aria-expanded="false"
+					>
+						Filtros
+						<span class="btn-more">
+							<icon-svg name="plus"></icon-svg>
+						</span>
+					</button>
+
+					<div class="dropdown-menu dropdown-menu-keepopen ddl-negocios filter-options-popover">
+
+						<div
+							layout="row"
+							layout-padding
+							layout-align="start center"
+						>
+
+							<h2 flex="100" class="principal-title no-border">
+								<strong>Filtrar negócios</strong>
+							</h2>
+
+							<div layout="row" class="filter-options-popover-buttons" flex>
+
+								<button
+									ng-if="listFilter.advanced"
+									class="btn btn-secondary"
+									ng-click="toggleAdvancedFilters($event)"
+								>
+									<icon-svg
+										name="arrow-left"
+										class="no-margin-left"
+									></icon-svg>
+									Voltar
+								</button>
+
+								<button
+									ng-if="listFilter.advanced"
+									type="button"
+									class="btn btn-primary"
+									ng-click="delegateListFilter.setFilters($event)"
+								>Filtrar</button>
+
+								<button
+									ng-if="!listFilter.advanced"
+									class="btn btn-secondary"
+									ng-click="toggleAdvancedFilters($event)"
+								>
+									Avançado
+									<icon-svg
+										name="arrow-right"
+										class="no-margin-right"
+									></icon-svg>
+								</button>
+
+							</div>
+
+						</div>
+
+						<list-filter-options
+							delegate-list-filter="delegateListFilter"
+						></list-filter-options>
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+	<div
+		class="row no-margin"
+	>
+
+		<div
+			layout="row"
+			layout-align="start end"
+		>
+
+			<a
+				class="btn btn-get-newlead btn-secondary no-margin-left col-md-2"
+				flex
+				flex-none
+				ng-click="getNewLead()"
+
+				ng-disabled="isAutomateNewLeadDisabled()"
+				bs-tooltip
+				data-type="warn"
+				ng-attr-data-title="{{getAutomateNewLeadButtonTitle() }}"
+			>
+				<icon-svg name="leads-stroke" class-name="icons"></icon-svg>
+				Oferta ativa
+			</a>
+
+			<button
+				ng-if="showTransactionsOnQueueButton()"
+				class="btn-action no-margin-top no-margin-bottom"
+				flex
+				flex-none
+				ng-click="showTransactionsOnQueue()"
+			>
+				<small class="red">
+					{{getTotalTransactionsOnQueue()}}
+				</small>
+				aguardando atendimento
+			</button>
+
+			<button
+				ng-if="showAttendedTransactionsButton()"
+				class="btn-action no-margin-top no-margin-bottom"
+				flex
+				flex-none
+				ng-click="showAttendedTransactions()"
+			>
+				<icon-svg name="users2" class-name="color1hue2"></icon-svg>
+				todos clientes
+			</button>
+
+			<!--view-transactions-list-filter-expires-ruler
+				flex
+			>
+			</view-transactions-list-filter-expires-ruler-->
+
+			<!-- <button
+				class="btn-action no-margin-top no-margin-bottom"
+				flex
+				flex-none
+				ng-click="sendEmailMarketing()"
+
+				permissions="email_marketing"
+				permissions-disable-mode
+				permissions-remove-attrs="ng-click"
+
+				permissions-attrs-when-disabled:bs-tooltip
+				permissions-attrs-when-disabled:data-title="O envio de e-mail marketing está temporariamente desabilitado."
+				permissions-attrs-when-disabled:data-type="error"
+			>
+				<icon-svg name="envelope" class-name="color1hue2"></icon-svg>
+				enviar email marketing
+			</button> -->
+
+		</div>
+
+		<!--div class="col-md-6 no-padding">
+
+			<div
+				class="btn-group no-margin pull-right"
+				ng-class="{active : listObj.listType == 'column'}"
+			>
+				<a
+					class="btn btn-secondary btn-icon no-padding"
+					ng-click="listObj.setListType('column')"
+				>
+					<icon-svg name="columns"></icon-svg>
+				</a>
+			</div>
+
+			<div
+				class="btn-group no-margin pull-right"
+				ng-class="{active : listObj.listType == 'table'}"
+			>
+				<a
+					class="btn btn-secondary btn-icon no-padding"
+					ng-click="listObj.setListType('table')"
+				>
+					<icon-svg name="list"></icon-svg>
+				</a>
+			</div>
+
+			<div class="btn-group no-margin pull-right">
+				<span>Visualização</span>
+			</div>
+
+		</div-->
+
+	</div>
+
+	<hr>
+</section>
+
+<section ng-if="$root.mainController.device == 'mobile'"
+	class="section list-filter">
+
+	<div>
+
+		<form
+			class="clearfix list-filter-form"
+			novalidate
+			name="listFilterFormQ"
+			ng-submit="listFilter.formQSubmit(listFilterFormQ)"
+			autocomplete="off"
+		>
+			<label
+				class="col-xs-12 no-padding no-margin"
+				ng-class="{
+					'has-error':	listFilterFormQ.q.$invalid
+												&& listFilterFormQ.q.$touched
+												&& listFilterFormQ.q.$viewValue
+				}"
+			>
+				<input
+					type="text"
+					class="form-control icones-busca icon-right"
+					placeholder="Busca por cliente, email, código, telefone ou #hashtag"
+					id="busca"
+					name="q"
+					minlength="3"
+					ng-model="listFilter.model.q"
+				/>
+				<icon-svg name="search"></icon-svg>
+			</label>
+		</form>
+
+		<!--view-transactions-list-filter-expires-ruler
+			flex
+		>
+		</view-transactions-list-filter-expires-ruler-->
+
+	</div>
+
+	<div layout="row">
+		<button
+			flex
+			class="btn-action no-margin-left"
+			ng-class="{active: transactionsWithorWithoutTasks.atendimentoPendencias.selected}"
+			ng-click="showTransactionsWithOrWithoutTasks('atendimentoPendencias')"
+
+			permissions="view.transactoins.filter.with-tasks"
+			permissions-disable-mode
+			permissions-remove-attrs="ng-click"
+
+			permissions-attrs-when-disabled:bs-tooltip
+			permissions-attrs-when-disabled:data-title="Desculpe, mas o filtro por pendências está temporariamente desabilitado."
+			permissions-attrs-when-disabled:data-type="error"
+		>
+			<small class="red">
+				{{transactionsWithorWithoutTasks.atendimentoPendencias.total}}
+			</small>
+			pendências
+		</button>
+
+		<button
+			flex
+			class="btn-action no-margin-right"
+			ng-class="{active: transactionsWithorWithoutTasks.atendimentoCompromissos.selected}"
+			ng-click="showTransactionsWithOrWithoutTasks('atendimentoCompromissos')"
+
+			permissions="view.transactoins.filter.with-tasks"
+			permissions-disable-mode
+			permissions-remove-attrs="ng-click"
+
+			permissions-attrs-when-disabled:bs-tooltip
+			permissions-attrs-when-disabled:data-title="Desculpe, mas o filtro por compromissos está temporariamente desabilitado."
+			permissions-attrs-when-disabled:data-type="error"
+		>
+			<small class="black">
+				{{transactionsWithorWithoutTasks.atendimentoCompromissos.total}}
+			</small>
+			compromissos
+		</button>
+	</div>
+
+	<div class="tab-bar hide-on-softkeyboard">
+		<div layout="row">
+
+			<div class="no-padding-right" flex>
+				<a
+					class="tab-bar-button"
+					ng-click="showModalAddClient()"
+					permissions="pro_acessar_cadastro_de_prospect_incluir"
+					permissions-disable-mode
+					permissions-remove-attrs="ng-click"
+				>
+					<icon-svg name="add-user" class="icons"></icon-svg>
+					<strong>Novo cliente</strong>
+				</a>
+			</div>
+
+			<div class="no-padding-right" flex>
+					<a
+						class="tab-bar-button"
+						ng-click="getNewLead()"
+						ng-disabled="isAutomateNewLeadDisabled()"
+						bs-tooltip
+						data-type="warn"
+						ng-attr-data-title="{{getAutomateNewLeadButtonTitle()}}"
+
+						permissions="get_automate_lead"
+						permissions-disable-mode
+						permissions-remove-attrs="ng-click, ng-attr-data-title"
+
+						permissions-attrs-when-disabled:bs-tooltip
+						permissions-attrs-when-disabled:data-title="A oferta ativa está temporariamente desabilitada."
+						permissions-attrs-when-disabled:data-type="error"
+					>
+						<icon-svg name="leads-filled" class="icons"></icon-svg>
+						<strong>Oferta ativa</strong>
+					</a>
+				</div>
+
+			<div
+				ng-if="showTransactionsOnQueueButton()"
+				class="no-padding"
+				flex
+			>
+				<a
+					ng-click="showTransactionsOnQueue()"
+					class="tab-bar-button"
+				>
+					<span>{{getTotalTransactionsOnQueue()}}</span>
+					<strong>Aguardando</strong>
+				</a>
+			</div>
+
+			<div
+				ng-if="showAttendedTransactionsButton()"
+				class="no-padding attendedTransactions"
+				flex
+			>
+				<a
+					ng-click="showAttendedTransactions()"
+					class="tab-bar-button"
+				>
+					<icon-svg name="users2" class="icons"></icon-svg>
+					<strong>Todos</strong>
+				</a>
+			</div>
+
+			<div class="no-padding" flex>
+				<a
+					class="tab-bar-button"
+					data-toggle="modal"
+					data-target="#modal-filtrar">
+					<icon-svg name="funnel" class="icons"></icon-svg>
+					<strong>Filtrar</strong>
+				</a>
+			</div>
+
+			<!--div class="no-padding" flex>
+				<a href="#"
+					data-toggle="modal"
+					data-target="#modal-visualizacao"
+					class="btn btn-block icons-filtrar">
+					Visualização
+				</a>
+			</div-->
+
+		</div>
+	</div>
+
+	<modal
+		modal-id="modal-filtrar"
+		delegate="listFilter.modalDelegate"
+	>
+		<modal-title>
+			<strong>Filtrar negócios</strong>
+		</modal-title>
+		<modal-body-custom layout="column">
+			<list-filter-options
+				layout="column"
+				delegate-list-filter="delegateListFilter"
+			></list-filter-options>
+		</modal-body-custom>
+	</modal>
+
+	<!--modal
+		modal-id="modal-visualizacao"
+	>
+		<modal-title><strong>Visualização</strong></modal-title>
+		<modal-body>
+			<div class="col-xs-12 no-padding">
+				<div class="form-group">
+				<p>
+					<a
+						class="btn btn-link"
+						ng-click="setListType('table')"
+						data-dismiss="modal"
+					>
+						tabela
+					</a>
+				</p>
+				<p>
+					<a
+						class="btn btn-link"
+						ng-click="setListType('column')"
+						data-dismiss="modal"
+					>
+						colunas
+					</a>
+				</p>
+				</div>
+			</div>
+		</modal-body>
+	</modal-->
+
+</section>

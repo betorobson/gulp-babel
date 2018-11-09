@@ -1,0 +1,77 @@
+<div
+	layout="row"
+	layout-align="start center"
+	class="followers-row"
+>
+
+	<a
+		ng-if="canEditWhenNotActive()"
+		class="btn-follow"
+		ng-class="btnLikeClassName"
+		ng-click="toggleFollowing()"
+
+		permissions="atd_add_seguidores"
+		permissions-disable-mode
+		permissions-remove-attrs="ng-click"
+
+		permissions-attrs-when-false:bs-tooltip
+		permissions-attrs-when-false:data-title="Você não tem permissão para adicionar ou remover seguidores"
+		permissions-attrs-when-false:data-type="warn"
+
+		permissions-attrs-when-disabled:bs-tooltip
+		permissions-attrs-when-disabled:data-title="Desculpe, adicionar ou remover seguidores está momentaneamente desligado"
+		permissions-attrs-when-disabled:data-type="error"
+	>
+		<icon-svg
+			name="{{
+				btnLikeClassName.active
+					? 'star-filled'
+					: 'star'
+			}}"
+		>
+		</icon-svg>
+	</a>
+
+	<a
+		ng-if="!canEditWhenNotActive()"
+		class="btn-follow"
+		ng-class="btnLikeClassName"
+
+		bs-tooltip
+		data-title="Você não pode adicionar ou remover seguidores<br/> em um cliente que não esta em atendimento"
+		data-type="warn"
+	>
+		<icon-svg
+			name="{{
+				btnLikeClassName.active
+					? 'star-filled'
+					: 'star'
+			}}"
+		>
+		</icon-svg>
+	</a>
+
+	<p class="text">
+		<a
+			class="link-modal"
+			ng-click="showListModal()"
+		>
+			<span ng-if="!summary.total && canEditWhenNotActive()">
+				Adicione seguidores
+			</span>
+
+			<span ng-if="!summary.total && !canEditWhenNotActive()">
+				Não há seguidores
+			</span>
+
+			<span ng-if="summary.total && summary.total <= 2">
+				{{summary.names}}<br />
+			 	seguindo
+			</span>
+			<span ng-if="summary.total > 2">
+				{{summary.names}}<br />
+				+ {{summary.total - 2}} outro<span ng-if="summary.total > 3">s</span> seguindo
+			</span>
+		</a>
+	</p>
+</div>

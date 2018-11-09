@@ -1,0 +1,36 @@
+
+    <div class="grey-block"
+        ng-click="displayChatContent = !displayChatContent"
+    >
+        <div
+            class="item-body chat-body"
+            ng-class="{'display-chat-content':displayChatContent}"
+        >
+            <p ng-repeat="message in item.interacaoChatConversas">
+                <span
+                    ng-class="{
+                        clientPillColor: clientName == message.interacaoChatConversaParticipanteNome
+                    }"
+                >
+                    {{message.interacaoChatConversaParticipanteNome}}
+                </span>
+                {{message.interacaoChatConversaTexto}}
+            </p>
+            <div
+                flex
+                layout="row"
+                layout-align="center"
+                class="chat-leia-mais"
+            >
+                <div class="btn-leia-mais">
+                    {{
+                        displayChatContent
+                        ? 'Voltar'
+                        : 'Leia mais'
+                    }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+

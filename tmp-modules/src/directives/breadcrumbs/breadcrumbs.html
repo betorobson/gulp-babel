@@ -1,0 +1,7 @@
+
+<div class="breadcrumbs" ng-if="trail.length > 1">
+	<a ng-href="{{item.path}}" class="btn-link" ng-repeat="item in trail" ng-if="item.path">
+		{{item.label}} &gt;
+	</a>
+	<span ng-repeat="item in trail" ng-if="!item.path"> {{item.label}}</span>
+</div>

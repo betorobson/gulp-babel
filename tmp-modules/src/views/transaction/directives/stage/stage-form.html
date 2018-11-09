@@ -1,0 +1,47 @@
+
+<form
+	ng-if="formFields.fields.length"
+	name="formFields.form"
+	ng-submit="submit()"
+	novalidate
+	disabled="true"
+	flex
+	layout="column"
+>
+
+	<formly-form
+		layout="column"
+		form="formFields.form"
+		options="formFields.options"
+		fields="formFields.fields"
+		model="formFields.model"
+	>
+	</formly-form>
+
+	<div
+		layout="row"
+		layout-align="space-between center"
+	>
+
+		<button
+			flex="45"
+			type="button"
+			class="btn btn-secondary"
+			ng-disabled="loading"
+			ng-click="cancel()"
+		>
+			Cancelar
+		</button>
+
+		<button
+			flex="45"
+			type="submit"
+			class="btn btn-primary"
+			ng-disabled="loading"
+		>
+			Enviar
+		</button>
+
+	</div>
+
+</form>

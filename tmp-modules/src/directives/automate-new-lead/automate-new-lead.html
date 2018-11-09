@@ -1,0 +1,19 @@
+
+<loading-spinner
+	class="fill size-mid"
+	ng-class="submitStatus"
+	ng-if="loading"
+></loading-spinner>
+
+<div layout='column'>
+	<p>Escolha um produto</p>
+	<button
+		title='Clique para receber um lead deste produto.'
+		ng-repeat="item in items"
+		class="btn btn-primary"
+		ng-click="getLead(item)"
+	>
+		<span>{{item.fields.produtoNome}}</span>
+		<small ng-if="campaignIsNeeded(item)">({{item.fields.campanhaNome}})</small>
+	</button>
+</div>

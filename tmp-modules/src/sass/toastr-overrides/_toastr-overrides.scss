@@ -1,0 +1,24 @@
+
+#toast-container .toast {
+
+	opacity: .9;
+
+	&.toast-warning {
+		background-color: $color4;
+	}
+
+	&.toast-error {
+		background-color: $color2hue1;
+	}
+
+	&.toast-volume-mute {
+		background-image: url(/assets/imgs/icons/volume-muted.png)!important;
+		background-size: 26px;
+	}
+
+	&.notifications-disabled {
+		background-image: url(/assets/imgs/icons/notifications-disabled.png)!important;
+		background-size: 26px;
+	}
+
+}

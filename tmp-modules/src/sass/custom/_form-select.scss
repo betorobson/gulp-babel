@@ -1,0 +1,44 @@
+
+.form-select {
+
+	position: relative;
+
+	&:after {
+		content: '<>';
+		font: 15px "Consolas", monospace;
+		color: #28b17f;
+		-webkit-transform: rotate(90deg);
+		-moz-transform: rotate(90deg);
+		-ms-transform: rotate(90deg);
+		transform: rotate(90deg);
+		right: 8px;
+		top: 7px;
+		padding: 0 0 2px;
+		position: absolute;
+		pointer-events: none;
+	}
+
+	select {
+		font-size: 14px;
+		height: 34px;
+		padding: 3px 25px 3px 10px;
+		margin: 0;
+		outline: none;
+		display: inline-block;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		cursor: pointer;
+		width: 100%;
+		border-radius:2px;
+		border-color: #d6d6d6;
+		
+		&[permissions-disable-mode] {
+			background-color: rgba(#000,.1);
+			color: #9e9a9a;
+			cursor: not-allowed;
+		}
+	}
+
+
+}

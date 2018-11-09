@@ -1,0 +1,106 @@
+
+<div
+	layout="column"
+	permissions="atd_visualizar_prospect_telefone||atd_visualizar_prospect_email"
+>
+
+	<loading-spinner
+		class="size-small"
+		ng-if="loading"
+	></loading-spinner>
+
+	<h4
+		ng-if="
+			!clientItem.fields.prospectTelefones.length
+			&&
+			!clientItem.fields.prospectEmails.length
+		"
+	>
+		Esse cliente não tem telefone e<br />e-mail cadastrado.
+	</h4>
+
+	<ul
+		ng-if="clientItem.fields.prospectTelefones
+		&& clientItem.fields.prospectTelefones.length"
+		permissions="atd_visualizar_prospect_telefone"
+	>
+
+		<li
+			class="contact-entry"
+			layout="row"
+			layout-align="start center"
+			ng-repeat="phone in clientItem.fields.prospectTelefones"
+		>
+			{{phone.prospectTelefoneFull | mask:'tel'}}
+
+			<span
+				bs-tooltip
+				data-type="{{phone.prospectTelefoneVerificado?'success':'warn'}}"
+				data-placement="top-left"
+				data-title="Telefone {{phone.prospectTelefoneVerificado?'verificado!':'não verificado!'}}"
+			>
+				<icon-svg
+					name="{{
+						phone.prospectTelefoneVerificado
+						? 'checked'
+						: 'remove'
+					}}"
+				></icon-svg>
+			</span>
+
+			<a
+				ng-click="showCardActionsModal(phone.prospectTelefoneFull, 'whatsapp')"
+			>
+				<icon-svg name="whatsapp"></icon-svg>
+			</a>
+
+			<a
+				ng-click="showCardActionsModal(phone.prospectTelefoneFull, 'call-activity')"
+				permissions="atd_visualizar_prospect_telefone"
+			>
+				<icon-svg name="phone"></icon-svg>
+			</a>
+
+		</li>
+
+	</ul>
+
+	<ul
+			ng-if="clientItem.fields.prospectEmails
+			&& clientItem.fields.prospectEmails.length"
+			permissions="atd_visualizar_prospect_email"
+		>
+		<li
+			class="contact-entry"
+			layout="row"
+			layout-align="start center"
+			ng-repeat="email in clientItem.fields.prospectEmails"
+			bs-tooltip
+			data-type="{{email.prospectEmailVerificado?'success':'warn'}}"
+			data-placement="top-left"
+			data-title="Email {{email.prospectEmailVerificado ? 'verificado!' : 'não verificado!'}}"
+		>
+
+			{{email.prospectEmailValor}}
+
+			<span>
+				<icon-svg
+					name="{{
+						email.prospectEmailVerificado
+						? 'checked'
+						: 'remove'
+					}}"
+				></icon-svg>
+			</span>
+
+			<a
+				href="{{sendEmail(email.prospectEmailValor).email}}"
+				target="_blank"
+			>
+				<icon-svg name="envelope"></icon-svg>
+			</a>
+
+		</li>
+	</ul>
+
+</div>

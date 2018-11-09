@@ -1,0 +1,84 @@
+
+sells-followup-item {
+
+    $followupItemBGColor: #eae8e8;
+    $followupItemBGColorDarken: darken($followupItemBGColor, 15%);
+
+    cursor: pointer;
+
+    .item-body {
+
+        position: relative;
+		word-break: break-word;
+
+    }
+
+    .box-product {
+        display: none;
+    }
+
+    .wrapper-btn-leia-mais {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: linear-gradient(
+            rgba($followupItemBGColor, 0.4),
+            $followupItemBGColor
+        );
+    }
+
+    .btn-leia-mais{
+        background-color:#5a5959;
+        display: inline-block;
+        color: #fff;
+        padding: 1px 5px;
+        border-radius: 10px;
+        margin-top: 5px;
+    }
+
+    .display-chat-content .chat-leia-mais{
+        position: relative;
+    }
+
+    view-transaction-sell-interaction {
+        display: block;
+        margin-bottom: 20px;
+
+        .list-particulars {
+            margin-top: 10px;
+        }
+    }
+
+    @media #{$mediaDesktop}{
+        &:hover{
+            .grey-block{
+                background: $followupItemBGColorDarken;
+            }
+
+            .wrapper-btn-leia-mais{
+                background: linear-gradient(
+                    rgba($followupItemBGColorDarken, 0.4),
+                    $followupItemBGColorDarken
+                );
+            }
+
+        }
+    }
+
+
+    @media #{$mediaMobile}{
+        &:active{
+            .grey-block{
+                background: $followupItemBGColorDarken;
+            }
+
+            .wrapper-btn-leia-mais{
+                background: linear-gradient(
+                    rgba($followupItemBGColorDarken, 0.4),
+                    $followupItemBGColorDarken
+                );
+            }
+        }
+    }
+
+}

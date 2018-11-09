@@ -1,0 +1,82 @@
+
+<div class="box-content simulacao-proposta">
+
+	<div
+		class="principal-title no-padding-right"
+	>
+		<h2>
+			<strong>Detalhes</strong> do negócio
+		</h2>
+	</div>
+
+	<div
+		class="box-text"
+		layout="column"
+		layout-margin
+	>
+		<p>Escolha abaixo o produto de preferência do cliente.</p>
+		<p><strong>Produto de interesse</strong></p>
+	</div>
+
+	<div
+		ng-if="loading"
+		layout="row"
+		layout-align="center center"
+	>
+		<loading-spinner
+			class="size-small"
+			ng-class="submitStatus"
+			layout="column"
+			layout-align="center center"
+		></loading-spinner>
+	</div>
+
+	<div
+		ng-if="!loading && item"
+		class="products"
+	>
+		<view-transaction-details-product
+			flex
+		></view-transaction-details-product>
+	</div>
+
+	<div
+		ng-if="total"
+		layout="row"
+		layout-align="center center"
+		layout-padding
+		class="no-padding-left no-padding-right"
+	>
+		<button
+			ng-if="canEditWhenNotActive()"
+			class="btn btn-primary wrap"
+			ng-click="showProducts()"
+
+			permissions="atd_editar_produto"
+			permissions-disable-mode
+			permissions-remove-attrs="ng-click"
+			permissions-attrs-when-false:bs-tooltip
+			permissions-attrs-when-false:data-title="Você não tem permissão para alterar o produto do cliente"
+			permissions-attrs-when-false:data-type="warn"
+			permissions-attrs-when-disabled:bs-tooltip
+			permissions-attrs-when-disabled:data-title="Alterar produto do cliente, está momentaneamente desativado"
+			permissions-attrs-when-disabled:data-type="error"
+		>
+			Selecione um entre {{total}} produto(s) disponíveis
+		</button>
+
+		<a
+			ng-if="!canEditWhenNotActive()"
+			class="btn btn-primary wrap"
+			disabled
+
+			bs-tooltip
+			data-title="Você não pode editar o produto do<br/> cliente que não esta em atendimento"
+			data-type="warn"
+		>
+			Selecione um entre {{total}} produto(s) disponíveis
+		</a>
+
+	</div>
+
+</div>

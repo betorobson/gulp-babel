@@ -1,0 +1,95 @@
+
+.no-padding {
+	padding: 0px !important;
+}
+
+.no-padding-left {
+	padding-left: 0px !important;
+}
+
+.no-padding-right {
+	padding-right: 0px !important;
+}
+
+.no-padding-top {
+	padding-top: 0px !important;
+}
+
+.no-padding-bottom {
+	padding-bottom: 0px !important;
+}
+
+.no-margin {
+	margin: 0px !important;
+}
+
+.no-margin-top {
+	margin-top: 0px !important;
+}
+
+.no-margin-bottom {
+	margin-bottom: 0px !important;
+}
+
+.no-margin-left {
+	margin-left: 0px !important;
+}
+
+.no-margin-right {
+	margin-right: 0px !important;
+}
+
+.no-border {
+	border: 0px !important;
+}
+
+.position-relative {
+	position: relative !important;
+}
+
+.no-background {
+	background: transparent !important;
+}
+
+.text-sucess {
+	color: #28b17f;
+}
+
+.value {
+	white-space: nowrap;
+}
+
+.display-none {
+	display: none !important;
+}
+
+.text-danger {
+	color: #ff5a5f;
+}
+
+.box-separator {
+	clear: both;
+	width: 100%;
+	height: 20px;
+}
+
+.block {
+	display: inline-block;
+	width: 100%;
+	margin-bottom: 20px !important;
+}
+
+.inline-block {
+	display: inline-block !important;
+	margin-bottom: 20px !important;
+}
+
+.input-copy-hidden{
+	top: -9999px;
+}
+
+@media only screen and (max-height: 400px){
+	.hide-on-softkeyboard {
+		display: none;
+	}
+}

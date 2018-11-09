@@ -1,0 +1,60 @@
+
+.card {
+
+	padding: 15px 20px;
+	background-color: #fff;
+
+	.card-actions {
+
+		margin: 0 -10px -5px -10px;
+
+		a {
+
+			cursor: pointer;
+			color: rgba($color1hue1, .5);
+			border-radius: 4px;
+			padding: 8px;
+			line-height: 0.8rem;
+			margin: 0 5px;
+
+			@media #{$mediaDesktop} {
+
+				&:hover {
+					background-color: $color3;
+				}
+
+				&:active {
+					opacity: 0.8;
+					background-color: $color3;
+				}
+
+			}
+
+			@media #{$mediaMobile} {
+
+				&:hover {
+					color: rgba($color1hue1, .5);
+				}
+
+				&:active {
+					color: $color1hue1;
+					opacity: 0.8;
+					background-color: $color3;
+				}
+
+			}
+
+		}
+
+		.icon-svg {
+			width: 24px;
+			height: 24px;
+		}
+
+		.tooltip{
+			max-width: none;
+		}
+
+	}
+
+}

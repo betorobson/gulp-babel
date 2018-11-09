@@ -1,0 +1,34 @@
+<div
+	ng-if="!listAllChannels()"
+	class="user-status-bullet"
+	ng-class="getClass()"
+></div>
+
+<div
+	class="listAllChannels"
+	layout="{{layout}}"
+	ng-if="listAllChannels()"
+>
+
+	<p class="labelAllChannels"><strong>
+		Canais de atendimento:
+	</strong></p>
+
+	<div
+		class="channel"
+		ng-repeat="(channel, status) in allUserStatus.channels"
+		ng-if="canUserChangeChannelStatus(channel)"
+		layout="row"
+	>
+		<div
+			class="user-status-bullet"
+			ng-class="getChannelClass(channel)"
+		></div>
+		<p>
+			{{getChannelLabel(channel)}}
+			{{getChannelValueLabel(channel)}}
+			{{getNextPositionInQueues(channel)}}
+		</p>
+	</div>
+
+</div>

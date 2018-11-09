@@ -1,0 +1,93 @@
+
+.formly-field-multiinput {
+
+	margin-bottom: 15px;
+
+	&.input-nogrow {
+		display: inline-flex;
+	}
+
+	.form-group {
+		margin-bottom: 2px;
+	}
+
+	.btn-remove,
+	.btn-add {
+		display: block;
+		cursor: pointer;
+
+		.icon-svg {
+			width: 12px;
+			height: 12px;
+		}
+
+	}
+
+	.btn-remove{
+		padding: 10px 0 0 6px;
+		color: $color1hue2;
+		&:hover {
+			color: $color2hue1;
+		}
+	}
+
+	&.align-btn-remove-center .btn-remove-wrapper {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		align-content: center;
+		justify-content: center;
+	}
+
+	.btn-add {
+		color: $color2;
+		padding: 0 0 0 6px;
+		&:hover {
+			color: $color1hue2;
+		}
+	}
+
+	.multiinput-align-fields-row-padding {
+		padding: 0 10px;
+	}
+
+	.multi-types {
+
+		[formly-field] {
+			&:not(:first-child){
+				margin-left: 10px;
+			}
+		}
+
+	}
+
+	.error-unique-type {
+		[formly-field] {
+
+			&:not(.multi-type-select){
+				display: none;
+			}
+
+			&.multi-type-select {
+
+				.form-group > div {
+					display: flex;
+					flex-direction: row;
+				}
+
+				.error-message-space {
+
+					display: flex;
+					flex-direction: column;
+					flex-direction: column;
+					justify-content: center;
+					padding-left: 10px;
+
+				}
+
+			}
+
+		}
+	}
+
+}

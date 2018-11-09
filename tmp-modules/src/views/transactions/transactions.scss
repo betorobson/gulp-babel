@@ -1,0 +1,254 @@
+
+
+@include view('transactions') {
+
+
+	#container {
+
+		list-table .table {
+			table-layout: fixed;
+		}
+
+		list-table .table tbody tr{
+
+			@media #{$mediaDesktop}{
+				&:hover{
+					.card{
+						background: transparent;
+						visibility: visible;
+						a{
+							margin: 0;
+
+							&:hover{
+								background-color: darken($backgroundColor, 11%);
+							}
+						}
+
+						.card-actions{
+							background-color: $backgroundColor;
+							margin: 0;
+
+							.icon-svg{
+								width: 20px;
+								height: 20px;
+							}
+						}
+
+						.card-actions-gradient{
+							width: 20px;
+							background: linear-gradient(
+								to right,
+								rgba($backgroundColor,0) 0%,
+								rgba($backgroundColor,1) 100%
+							);
+						}
+
+					}
+
+
+				}
+			}
+
+		}
+
+		.col-channel,
+		.col-midia {
+
+			width: 100px;
+
+			span {
+				// width: 100px;
+				display: block;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+
+		}
+
+		.col-attend-date {
+			width: 80px;
+		}
+
+		.col-tasks {
+
+			width: 250px;
+			padding: 0;
+
+			.box-interaction {
+				font-size: 12px;
+				p {
+					line-height: 14px;
+				}
+			}
+
+		}
+
+
+		list-table .table tbody tr td {
+
+			position: relative;
+
+			.card {
+				visibility: hidden;
+				background: $backgroundColor;
+				position: absolute;
+				right: 0;
+    			top: 0;
+    			padding: 0;
+				height: 100%;
+
+			}
+
+			&:first-child {
+				position: relative;
+				padding-left: 12px;
+			}
+
+			.label-check {
+				position: relative;
+			}
+
+			.label-check::after {
+				content: '';
+				position: absolute;
+				top: -50%;
+				left: -15%;
+				width: 140%;
+				height: 230%;
+			}
+
+		}
+
+		list-filter {
+
+			.btn-get-newlead {
+				margin: 8px 8px 0 0;
+			}
+
+			.ipt-days {
+				input {
+					width: 70px;
+				}
+			}
+
+		}
+
+		.filter-options-popover {
+
+			width: auto;
+
+			&:before {
+				right: 20px;
+				left: auto;
+			}
+
+			.principal-title {
+
+				margin: 0;
+				padding-top: 0;
+				padding-bottom: 0;
+
+			}
+
+			.filter-options-popover-buttons {
+
+				.btn {
+
+					padding: 6px 12px;
+
+					&:last-child {
+						margin-left: 16px;
+					}
+
+				}
+
+			}
+
+			.filter-options-form {
+
+				width: 350px;
+
+				&.advanced {
+
+					overflow: hidden;
+
+					&.ng-enter {
+						animation: filter-options-form-advanced-animation .3s ease forwards;
+					}
+
+					&.ng-leave {
+						animation: filter-options-form-advanced-animation .3s ease reverse forwards;
+					}
+
+				}
+
+				@keyframes filter-options-form-advanced-animation {
+					from {
+						width: 0;
+					}
+					to {
+						width: 350px;
+					}
+				}
+
+				> .formly {
+					display: block;
+					width: 350px;
+				}
+
+			}
+
+			.filter-form-buttons {
+				padding: 0 16px;
+			}
+
+		}
+
+		.modal {
+
+			.filter-options-form {
+
+				&.advanced {
+
+					overflow: hidden;
+
+					&.ng-enter {
+						animation: filter-options-form-advanced-animation-mobile .3s ease forwards;
+					}
+
+					&.ng-leave {
+						animation: filter-options-form-advanced-animation-mobile .3s ease reverse forwards;
+					}
+
+					@keyframes filter-options-form-advanced-animation-mobile {
+						from {
+							height: 0;
+						}
+						to {
+							height: 300px;
+						}
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+	radial-progress {
+		margin-right: 10px;
+	}
+
+	&[device=mobile] {
+		@extend %main-controller-footer-bar;
+
+		#container {
+			margin-top: 0;
+		}
+
+	}
+
+}

@@ -1,0 +1,199 @@
+
+<div
+	ng-if="showInstructions()"
+	class="box-content simulacao-proposta"
+>
+
+	<div
+		class="principal-title no-padding-right"
+	>
+		<h2 class="pull-left">
+			<strong>Orientações ou pendências</strong>
+		</h2>
+	</div>
+
+	<div layout="column" layout-padding class="no-padding">
+		<div flex class="no-padding-top">
+
+			<div
+				ng-if="!transactionItem.extraInfo.alarmeProximoDtAlarme"
+				class="instruction-item "
+			>
+
+				<h4
+					layout="row"
+					layout-align="start center"
+					class="collapsed"
+					data-toggle="collapse"
+					data-target="#bloco-falta-agendamento"
+				>
+					<icon-svg name="attention-sign-filled" flex-none class="color2hue1"></icon-svg>
+					Falta o agendamento da atividade do próximo passo!
+					<a class="accordion-toggle">
+						<icon-svg name="down-arrow-inside-circle" class-name="color1hue2"></icon-svg>
+					</a>
+				</h4>
+
+
+
+				<div
+					class="box-text accordion-content  panel-collapse collapse in"
+					id="bloco-falta-agendamento"
+				>
+
+					<p>
+						Quando será a sua próxima interação com esse cliente?
+					</p>
+
+					<p>
+						Desde
+
+						<strong>
+						{{
+							transactionItem.extraInfo.atendimentoInteracaoUsuarioUltimaData
+							||
+							transactionItem.extraInfo.atendimentoInteracaoUsuarioUltimaGeralData
+							| date:'dd/MM/yy'
+						}}
+						</strong>
+
+						não há nenhuma <strong>atividade agendada</strong> que deixa claro quando e como será
+						a próxima atividade com o(a)
+						{{transactionItem.expand.clients.fields.prospect.prospectNome}}.
+					</p>
+
+					<p>
+						Orientamos para a sua própria organização, que você sempre tenha uma
+						<strong>próxima atividade agendada</strong> para todos os seus clientes.
+					</p>
+
+					<p>
+						Evite perder seus clientes por falta de interação!
+					</p>
+
+				</div>
+
+			</div>
+
+			<div
+				ng-if="userWillSoonLooseIt"
+				class="instruction-item "
+			>
+
+				<h4
+					layout="row"
+					layout-align="start center"
+					class="collapsed"
+					data-toggle="collapse"
+					data-target="#bloco-perder-cliente"
+				>
+					<icon-svg name="attention-sign-filled" flex-none class="color2hue1"></icon-svg>
+					Você esta prestes a perder esse cliente
+
+					<a class="accordion-toggle">
+						<icon-svg name="down-arrow-inside-circle" class-name="color1hue2"></icon-svg>
+					</a>
+
+				</h4>
+
+				<div
+					class="box-text accordion-content  panel-collapse collapse in"
+					id="bloco-perder-cliente"
+				>
+
+					<p>
+						Na <strong>{{companyName}}</strong>, está configurado para você
+						<strong>perder</strong> automaticamente esse cliente caso você não
+						registre um <strong>follow-up</strong> ou agende a próxima Atividade
+						<strong>(próximo passo)</strong> até a data
+						<strong>
+							{{
+								transactionItem.extraInfo.atendimentoExpiracaoAutomaticaData | date:'dd/MM HH:mm'
+							}}
+						</strong>.
+					</p>
+
+					<p ng-if="transactionItem.extraInfo.atendimentoInteracaoUsuarioUltimaData">
+						A sua última interação com esse cliente foi
+						{{transactionItem.extraInfo.atendimentoInteracaoUsuarioUltimaTipoValor}}
+						em
+						<strong>
+							{{
+								transactionItem.extraInfo.atendimentoInteracaoUsuarioUltimaData | date:'dd/MM HH:mm'
+							}}
+						</strong>.
+					</p>
+
+					<p ng-if="!transactionItem.extraInfo.atendimentoInteracaoUsuarioUltimaData">
+						Desde
+						<strong>
+							{{
+								transactionItem.extraInfo.atendimentoInteracaoUsuarioUltimaGeralData | date:'dd/MM HH:mm'
+							}}
+						</strong>
+						você <strong>não registrou</strong> nenhuma interação para esse cliente.
+					</p>
+
+					<p>
+						Mantenha esse <strong>cliente</strong> sempre atualizado registrando um novo
+						<strong>follow-up</strong> a cada
+						<strong>{{getExpiresTimeConfInDays()}}</strong>
+						dias ou mantendo sempre uma <strong>próxima atividade</strong> agendada,
+						evitando assim a <strong>perda</strong> automática de clientes.
+					</p>
+
+				</div>
+
+			</div>
+
+			<div
+				ng-if="
+					transactionItem.extraInfo.alarmeProximoInteracaoQtdMinutosRestantesMax < 0
+				"
+				class="instruction-item"
+			>
+				<h4
+					layout="row"
+					layout-align="start center"
+					class="collapsed"
+					data-toggle="collapse"
+					data-target="#bloco-atividade-atrasada"
+				>
+					<icon-svg name="attention-sign-filled" flex-none class="color2hue1"></icon-svg>
+					Existe atividade agendada atrasada!
+
+					<a class="accordion-toggle">
+						<icon-svg name="down-arrow-inside-circle" class-name="color1hue2"></icon-svg>
+					</a>
+
+				</h4>
+
+				<div
+					class="box-text accordion-content  panel-collapse collapse in"
+					id="bloco-atividade-atrasada"
+				>
+
+					<p>
+						Uma atividade
+						<strong>{{transactionItem.extraInfo.alarmeProximoInteracaoTipoValor}}</strong>
+						foi agendada para
+						<strong>
+							{{
+								transactionItem.extraInfo.alarmeProximoDtAlarme | date:'dd/MM HH:mm'
+							}}
+						</strong>
+					 	e encontra-se atrasada.
+					</p>
+
+					<p>
+						Evite <strong>perder</strong> esse cliente cumprindo seus compromissos no prazo.
+					</p>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+</div>

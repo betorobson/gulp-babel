@@ -1,0 +1,75 @@
+
+<div
+	ng-if="!edit"
+	layout-fill
+	layout="column"
+	layout-align="none center"
+	class="position"
+
+	has-permission-handler="{{hasHandlerPositionPermission()}}"
+>
+	<div
+		ng-if="!loading"
+		layout="row"
+		layout-align="center center"
+
+		bs-tooltip
+		data-type="{{getBsTooltip().type}}"
+		data-title="{{getBsTooltip().title}}"
+		ng-click="setEdit()"
+	>
+		<icon-svg name="edit"></icon-svg>
+		<h4>{{item.Ordem}} º</h4>
+	</div>
+	<div
+		ng-if="loading"
+		layout="row"
+		layout-align="center center"
+	>
+		<loading-spinner
+			class="size-mid"
+			ng-class="submitStatus"
+
+		></loading-spinner>
+		<h4>{{item.Ordem}}</h4>
+	</div>
+</div>
+
+<div
+	ng-if="edit"
+	layout-fill
+	layout="row"
+	layout-align="center center"
+>
+	<a
+		class="bt-reset"
+		ng-click="reset()"
+		bs-tooltip
+		data-type="info"
+		data-title="Voltar"
+	>
+		<icon-svg
+			name="arrow-left"
+		></icon-svg>
+	</a>
+	<form
+		flex
+		name="form"
+		ng-submit="submit(form)"
+		novalidate
+		autocomplete="off"
+	>
+		<formly-form
+			form="form"
+			fields="fields"
+			model="model"
+			layout-xs="column"
+			layout-sm="column"
+			layout-gt-sm="row"
+			layout-align-gt-sm="space-between start"
+			layout-wrap
+			class="formly-user-profile"
+		>
+		</formly-form>
+	</form>
+</div>

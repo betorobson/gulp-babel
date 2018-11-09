@@ -1,0 +1,26 @@
+
+.btn-group {
+
+	&.open {
+
+		.dropdown-toggle {
+
+			&.arrow {
+				box-shadow: none;
+			}
+
+		}
+
+	}
+
+	.dropdown-toggle {
+
+		&.arrow {
+			display: block;
+			padding: 10px;
+		}
+
+	}
+
+}
+

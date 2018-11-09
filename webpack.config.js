@@ -19,17 +19,17 @@ const webpack = require('webpack');
 // };
 
 module.exports = {
-	entry: glob.sync([
-		'!./_tmp/src/**/*.config.js', // select modules declarations first
-		'./_tmp/src/app.js',
-		'./_tmp/src/config/*.js',
-		'./_tmp/src/**/*.js',
-		'./_tmp/src/**/*.config.js', // select modules config
-		'./_tmp/src/**/*.run.js', // select modules run
-		'./_tmp/src/legacy.js'
-	]),
+	// entry: glob.sync([
+	// 	'!./_tmp/src/**/*.config.js', // select modules declarations first
+	// 	'./_tmp/src/app.js',
+	// 	'./_tmp/src/config/*.js',
+	// 	'./_tmp/src/**/*.js',
+	// 	'./_tmp/src/**/*.config.js', // select modules config
+	// 	'./_tmp/src/**/*.run.js', // select modules run
+	// 	'./_tmp/src/legacy.js'
+	// ]),
 	output: {
-		path: path.resolve(__dirname, 'dist'),
+		// path: path.resolve(__dirname, 'dist'),
 		filename: 'app.min.bundle.js',
 		// sourceMap: true,
 		// sourceMapFilename: 'app.min.js.map',

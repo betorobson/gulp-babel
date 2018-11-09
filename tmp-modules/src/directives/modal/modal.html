@@ -1,0 +1,45 @@
+
+<div class="modal fade" id="{{attrs.modalId}}">
+	<div
+		layout="column"
+		layout-fill
+		layout-padding
+		layout-align-xs="center stretch"
+		layout-align-gt-xs="center center"
+		class="modal-dialog modal-lg"
+	>
+		<div
+			layout="column"
+			class="modal-content"
+		>
+
+			<div class="modal-header">
+				<button type="button"
+					class="btn-close"
+					aria-label="Close"
+					ng-click="hide()"
+				>
+					<icon-svg name="remove" class-name="color1hue2"></icon-svg>
+				</button>
+				<h4 class="modal-title" ng-transclude="title"></h4>
+			</div>
+
+			<div
+				layout="column"
+				ng-transclude="bodyCustom"
+			></div>
+
+			<div
+				flex
+				ng-transclude="body"
+				class="modal-content-scrollable"
+			></div>
+
+			<div
+				flex-none
+				ng-transclude="footer"
+			></div>
+
+		</div>
+	</div>
+</div>

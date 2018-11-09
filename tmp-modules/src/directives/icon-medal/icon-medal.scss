@@ -1,0 +1,51 @@
+
+$icon-medals-colors:
+	#19a0bd,
+	#7f4196,
+	#a73827,
+	#fece30,
+	#9e66a7,
+	#0e7c4b,
+	#e56130,
+	#8ab643,
+	#7d4823,
+	#e84797;
+
+icon-medal {
+
+	display: flex;
+	border-radius: 50%;
+	background-color: $color1;
+	flex: 0 0 auto;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+
+	width: 86px;
+	height: 86px;
+
+	.icon-svg {
+		width: 70%;
+		height: 70%;
+		fill: #fff;
+	}
+
+	&.size-small {
+		width: 20px;
+		height: 20px;
+	}
+
+	&.size-mid {
+		width: 30px;
+		height: 30px;
+	}
+
+	@for $i from 1 through length($icon-medals-colors){
+
+		&[number="#{$i}"] {
+			background-color: nth($icon-medals-colors,$i);
+		}
+
+	}
+
+}

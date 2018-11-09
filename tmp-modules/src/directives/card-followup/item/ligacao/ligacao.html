@@ -1,0 +1,56 @@
+
+		<div class="grey-block" >
+
+			<div 
+				ng-if="!item.interacaoLigacaoDestinoAtendeu"
+				layout='row'
+			> 
+				<div 
+					flex='45' 
+					layout="column" 
+					layout-align="space-between center"
+				>
+					<p>
+						<strong>Origem</strong>
+					</p>
+				
+					<span class="{{ligacaoOrigem.className}}">
+						ligação {{ligacaoOrigem.status}}
+					</span>
+				</div>
+
+				<div class="ligacaoIncompleta" flex>
+					<icon-svg name="cancel-call"></icon-svg>
+				</div>
+
+				<div 
+					flex='45' 
+					layout="column" 
+					layout-align="space-between center"
+				>
+					<p>
+						<strong>Destino</strong>
+					</p>
+				
+					<span class="{{ligacaoDestino.className}}">
+						ligação {{ligacaoDestino.status}}
+					</span>
+				</div>
+			</div>
+
+			<div 
+				ng-if="item.interacaoLigacaoDestinoAtendeu"
+				layout="row" 
+				layout-align="space-around center"
+			>
+				<audio 
+					flex
+					src="{{item.interacaoLigacaoLinkGravacao}}" 
+					controls
+				>
+					<p>Seu navegador não suporta executar audio.</p>
+				</audio>
+			</div>
+
+		</div>
+	

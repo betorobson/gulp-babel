@@ -1,0 +1,689 @@
+
+.only-desk {
+	display: none !important;
+}
+
+
+/*
+.icons-menu-logo {
+	background: url('/assets/imgs/icons/icones_menu_anapro.png') no-repeat;
+	width: 31px;
+	height: 38px;
+}
+.icons-menu-sair {
+	background: url('/assets/imgs/icons/icones_menu_mobile_sair.png') no-repeat;
+	width: 31px;
+	height: 38px;
+}
+.icons-pessoas {
+	background-position: 0 -480px;
+}
+.icons-menu-data {
+	background-position: 0 -400px;
+}
+.icons-menu-mao {
+	background-position: 0 -592px;
+}
+.icons-menu-predio {
+	background-position: 0 -553px;
+}
+.icons-menu-ajuda {
+	background-position: 0 -364px;
+}
+.icons-menu-config {
+	background-position: 0 -516px;
+}
+.icons-menu-agenda {
+	background: url('/assets/imgs/icons/menu-agenda-branco.png') no-repeat;
+}
+*/
+
+.mobile-container {
+	margin-top: 67px;
+	// margin-bottom: 65px;
+	.breadcrumbs {
+		display: none;
+	}
+	.principal-title {
+		margin-top: 0;
+	}
+}
+.display-block-desk {
+	display: inline-block;
+	vertical-align: text-top;
+	padding-bottom: 10px;
+}
+.carousel {
+	.carousel-title {
+		text-align: center;
+		font-size: 20px;
+	}
+	.bullet-filter {
+		width: 100%;
+		.bullet {
+			display: inline-block;
+			margin: 1px 3px;
+			&.active {
+				background: #28b17f;
+				border-color: #28b17f;
+			}
+		}
+	}
+}
+.perfil {
+	display: inline-block;
+	width: 100%;
+	figure {
+		float: left;
+	}
+	a {
+		float: right;
+		display: block;
+		margin-bottom: -23px;
+		padding-top: 60px;
+		line-height: 0;
+		width: auto;
+	}
+	br {
+		content: "";
+	}
+	img.medalha {
+		float: left;
+		margin-top: 45px;
+		margin-left: -10px;
+		vertical-align: top;
+	}
+}
+.email {
+	display: inline-block;
+	width: 100%;
+	figure {
+		float: left;
+		margin-right: 20px;
+	}
+	a {
+		float: right;
+		display: block;
+		margin-bottom: -23px;
+		padding-top: 60px;
+		line-height: 0;
+		width: auto;
+	}
+}
+.info-gerais {
+	.grey-block {
+		margin-right: 0 !important;
+	}
+	.green-box {
+		float: none !important;
+	}
+}
+.imovel-filtro {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	background: #2b3e51;
+	width: 100%;
+	display: inline-block;
+	height: 50px;
+	z-index: 20;
+	.btn {
+		width: 100%;
+		color: #20aee9;
+		font-size: 14px;
+		margin: 10px 0;
+		line-height: 15px;
+		padding: 2px 0;
+		&.icons-filtrar {
+			border-right: solid 1px;
+			//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+			border-radius: 0;
+			&:before {
+				content: "";
+				display: inline-block;
+				background: url('/assets/imgs/icons/icones-filtrar.png') no-repeat left;
+				height: 20px;
+				width: 20px;
+				margin-left: -20px;
+				vertical-align: middle;
+			}
+		}
+		&.icons-buscar:before {
+			content: "";
+			display: inline-block;
+			background: url('/assets/imgs/icons/icones-buscar.png') no-repeat left;
+			height: 20px;
+			width: 20px;
+			margin-left: -20px;
+			vertical-align: middle;
+		}
+	}
+}
+.modal-imovel-filtro {
+	.grey-block {
+		width: 23%;
+		margin-right: 1%;
+		margin-left: 1%;
+		display: block;
+		float: left;
+		&.active {
+			font-weight: bold;
+			border: solid 1px #20aee9;
+		}
+	}
+	.icons-area:before {
+		content: "";
+		height: 17px;
+		width: 100%;
+		margin-bottom: 5px;
+		vertical-align: top;
+		display: block;
+		background: url('/assets/imgs/icons/icones-input-area.png') no-repeat center;
+	}
+	.icons-preco:before {
+		content: "";
+		height: 17px;
+		width: 100%;
+		margin-bottom: 5px;
+		vertical-align: top;
+		display: block;
+		background: url('/assets/imgs/icons/icones-input-preco.png') no-repeat center;
+	}
+	.icons-quarto:before {
+		content: "";
+		height: 17px;
+		width: 100%;
+		margin-bottom: 5px;
+		vertical-align: top;
+		display: block;
+		background: url('/assets/imgs/icons/icones-input-quarto.png') no-repeat center;
+	}
+	.icons-vaga:before {
+		content: "";
+		height: 17px;
+		width: 100%;
+		margin-bottom: 5px;
+		vertical-align: top;
+		display: block;
+		background: url('/assets/imgs/icons/icones-input-vaga.png') no-repeat center;
+	}
+	.panel.in {
+		display: inline-block;
+		width: 100%;
+		min-height: 150px;
+	}
+}
+
+.simulacao-dados {
+	p {
+		margin: 10px 0;
+	}
+	label {
+		display: block;
+		clear: left;
+		margin: 10px 0;
+	}
+}
+.table-simulacao {
+	padding: 15px;
+	&.darkblue {
+		border: solid 1px #2c3e50;
+		border-left: solid 5px #2c3e50;
+	}
+	&.green {
+		border: solid 1px #28b17f;
+		border-left: solid 5px #28b17f;
+	}
+}
+.mobile-block {
+	display: inline-block;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.collapsing {
+	//Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+	transition: height 0s;
+}
+
+.green-block {
+	margin-bottom: 20px;
+	border: solid 1px #1da278;
+	background: #fff;
+	color: #1da278;
+	font-size: 14px;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 2px;
+	a {
+		cursor: pointer;
+		color: #1da278;
+		display: block;
+		padding: 15px 5px;
+		text-align: center;
+		&:hover {
+			text-decoration: none;
+			background-color: rgba(#1da278, .15);
+		}
+		&.active {
+			background-color: #1da278;
+			color: #fff;
+		}
+	}
+}
+
+.agenda-content {
+	.tasks {
+		background: #28b17f;
+		.task-view {
+			background: #28b17f;
+			//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+			border-radius: 2px;
+			color: #fff;
+			padding: 30px 0;
+			.info {
+				padding-left: 40px;
+				padding-top: 15px;
+				background: url('/assets/imgs/icons/icones-imovel.png') no-repeat 5px 0;
+				.icons-horario {
+					background: url('/assets/imgs/icons/icones-horario.png') no-repeat left;
+					padding-left: 40px;
+					margin-top: 10px;
+					line-height: 25px;
+				}
+				.icons-local {
+					background: url('/assets/imgs/icons/icones-local.png') no-repeat 3px;
+					padding-left: 40px;
+					margin-top: 10px;
+					margin-bottom: 20px;
+					line-height: 25px;
+				}
+			}
+			.title {
+				font-size: 24px;
+				margin-bottom: 20px;
+				padding-bottom: 20px;
+				border-bottom: solid 1px;
+			}
+			.descricao {
+				padding: 10px;
+				text-align: left;
+				.btn-group {
+					position: absolute;
+					top: -20px;
+					right: 0;
+				}
+			}
+			.btn-close {
+				color: #fff;
+				font-size: 25px;
+				font-weight: bold;
+			}
+			.task-item {
+				display: inline-block;
+				width: 100%;
+			}
+			hr {
+				border-top-color: #fff;
+			}
+		}
+		.day {
+			margin: 0 !important;
+			font-size: 16px !important;
+			border: 0 !important;
+		}
+		select {
+			color: #000;
+		}
+		a.icons-mais:before {
+			background: url('/assets/imgs/icons/icones-mais-azul.png') no-repeat left !important;
+			width: 10px !important;
+			height: 9px !important;
+		}
+	}
+	.dayweek .col {
+		font-size: 16px !important;
+	}
+	.daymonth .col {
+		padding: 0 !important;
+		margin-bottom: 0 !important;
+		border: 0 !important;
+		height: auto !important;
+		.day {
+			margin: 0 !important;
+			font-size: 16px !important;
+			border: 0 !important;
+		}
+		.task {
+			display: none !important;
+		}
+		&.selected {
+			background: #28b17f;
+			.day {
+				color: #fff;
+			}
+			.task {
+				color: #fff;
+			}
+			.task-view {
+				display: block;
+				position: absolute;
+				background: #28b17f;
+				left: 0;
+				width: 97%;
+				min-height: 300px;
+				margin-top: -30px;
+				//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+				border-radius: 2px;
+				color: #fff;
+				z-index: 2;
+				.info {
+					background: url('/assets/imgs/icons/icones-imovel.png') no-repeat 40px 55px;
+					padding: 65px 0 20px 130px;
+					font-size: 24px;
+					text-align: left;
+					.title {
+						margin-bottom: 40px;
+					}
+					.icons-horario {
+						background: url('/assets/imgs/icons/icones-horario.png') no-repeat left;
+						padding-left: 40px;
+						margin-bottom: 20px;
+					}
+					.icons-local {
+						background: url('/assets/imgs/icons/icones-local.png') no-repeat left;
+						padding-left: 40px;
+						margin-bottom: 20px;
+					}
+				}
+				.descricao {
+					border-left: solid 1px #fff;
+					padding: 10px 0 0 40px;
+					margin-top: 60px;
+					text-align: left;
+					min-height: 150px;
+					position: relative;
+					.btn-group {
+						position: absolute;
+						top: -20px;
+						right: 0;
+					}
+				}
+				.btn-close {
+					color: #fff;
+					font-size: 25px;
+					font-weight: bold;
+				}
+				.task-item {
+					display: inline-block;
+					width: 100%;
+				}
+				hr {
+					border-top-color: #fff;
+				}
+			}
+		}
+		.task-view {
+			display: none;
+		}
+		a.icons-mais {
+			position: absolute !important;
+			margin-left: 10px;
+			&:before {
+				background: url('/assets/imgs/icons/icones-mais-azul.png') no-repeat left !important;
+				width: 10px !important;
+				height: 9px !important;
+			}
+		}
+		&.disabled .day {
+			opacity: 0.5;
+		}
+		&.othermonth .day {
+			opacity: 0.5;
+		}
+	}
+}
+
+.botao-novo {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	background: #2b3e51;
+	width: 100%;
+	display: inline-block;
+	height: 50px;
+	z-index: 20;
+	.btn-mais {
+		margin: 12px;
+	}
+}
+.overcontent {
+	display: none;
+}
+.overcontent-container {
+	position: fixed;
+	z-index: 1100;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #eae8e8;
+	overflow: auto;
+	.header {
+		border-bottom: solid 1px #d6d6d6;
+		padding-bottom: 0;
+		margin-bottom: 20px;
+		a {
+			text-decoration: none;
+		}
+	}
+}
+.bullet-filter {
+	margin: 10px auto;
+	display: block;
+	width: 60%;
+	.item {
+		display: inline-block;
+		margin: 7px auto;
+		width: 12%;
+	}
+	.bullet {
+		background: #d6d6d6;
+		border: solid 1px #d6d6d6;
+		//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+		border-radius: 12px;
+		display: block;
+		width: 12px;
+		height: 12px;
+		padding: 5px;
+	}
+	.active .bullet {
+		background: #28b17f;
+		border-color: #28b17f;
+	}
+}
+
+// .tarefas {
+// 	.item {
+// 		.info {
+// 			width: 84% !important;
+// 			.horario {
+// 				float: none !important;
+// 				width: 100% !important;
+// 				text-align: left !important;
+// 				border: 0 !important;
+// 				padding: 0 !important;
+// 			}
+// 			.descricao {
+// 				float: none !important;
+// 				width: 100% !important;
+// 				text-align: left !important;
+// 				border: 0 !important;
+// 				padding: 0 !important;
+// 				line-height: 16px !important;
+// 				min-height: 35px !important;
+// 				.one-line {
+// 					line-height: inherit !important;
+// 				}
+// 			}
+// 		}
+// 		.thumb {
+// 			width: 15% !important;
+// 			height: 72px !important;
+// 		}
+// 	}
+// 	.separador {
+// 		background: transparent !important;
+// 		height: 3px !important;
+// 	}
+// }
+
+.simulacao-step::-webkit-scrollbar {
+	width: 1px;
+	height: 1px;
+	* {
+		background: transparent;
+	}
+}
+.simulacao-step::-webkit-scrollbar-thumb {
+	background: rgba(0,0,0,0) !important;
+}
+.chat-mobile-status {
+	margin-top: 55px;
+	border-bottom: solid 1px #d6d6d6;
+}
+.chat-container {
+	top: 60px;
+	right: 0 !important;
+	width: 100% !important;
+	height: 100% !important;
+	.contatos {
+		display: none !important;
+	}
+	.chat {
+		width: 100% !important;
+		height: 100% !important;
+		.chat-body {
+			display: block !important;
+			height: 85% !important;
+			.box-content {
+				height: 100% !important;
+			}
+			.chat-history {
+				position: fixed;
+				width: 85%;
+				height: 70%;
+				.messages {
+					height: 100% !important;
+				}
+			}
+			.chat-commands {
+				position: fixed;
+				bottom: 3%;
+				width: 85%;
+				background: #fff;
+			}
+		}
+		.chat-header .botao-voltar {
+			width: auto;
+			position: static;
+			padding: 2px 0;
+			margin: 0;
+			margin-right: 10px;
+			margin-left: -5px;
+			height: auto;
+			top: 0;
+		}
+	}
+}
+.carousel-inner .item .sub-item .sup {
+	width: auto !important;
+	margin: -20px 0 0 0 !important;
+}
+.text-sucess i {
+	display: inline-block;
+	white-space: nowrap;
+	padding: 10px 10px 10px 30px;
+	background: #28b17f url('/assets/imgs/icons/seta-cima.png') no-repeat 5px;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 2px;
+	color: #fff;
+	margin-bottom: 5px;
+}
+.text-danger i {
+	display: inline-block;
+	white-space: nowrap;
+	padding: 10px 10px 10px 30px;
+	background: #ff5a5f url('/assets/imgs/icons/seta-baixo.png') no-repeat 5px;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 2px;
+	color: #fff;
+	margin-bottom: 5px;
+}
+.assinatura .btn-primary {
+	display: inline-block;
+	width: 100%;
+}
+.imovel-destaque .buttons .btn {
+	width: 30% !important;
+	margin-left: 0 !important;
+	margin-right: 3% !important;
+	max-height: 100% !important;
+	float: left !important;
+}
+.modal label.label-radio {
+	margin-top: 10px;
+}
+.reserva-buscar .ddl-filtro {
+	min-width: auto !important;
+	margin-left: 0 !important;
+	padding-left: 2px;
+	padding-right: 2px;
+	&:first-child {
+		padding-left: 15px;
+	}
+	&:last-child {
+		padding-right: 15px;
+	}
+}
+.simulacao-referencia .grey-block {
+	margin-bottom: 5px;
+}
+
+// .tarefas-filtro .col {
+// 	width: 19% !important;
+// 	margin-right: 1% !important;
+// 	.qtd {
+// 		margin-top: 10px 0 5px !important;
+// 	}
+// 	.desc {
+// 		font-size: 12px !important;
+// 		padding: 5px !important;
+// 	}
+// }
+
+.chat-mobile-container .loading {
+	padding: 60px 0;
+	&:before {
+		content: "";
+		background: #fff url('/assets/imgs/icons/loading.gif') no-repeat center;
+		background-size: 170%;
+		width: 140px;
+		height: 140px;
+		margin: 0 auto;
+		display: block;
+		//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+		border-radius: 100%;
+		border: solid 25px #f8f7f7;
+		margin-bottom: 50px;
+	}
+}
+
+.mobile-notications {
+	margin-top: 15px;
+	li {
+		display: inline-block;
+	}
+	.btn-lupa {
+		background-color: transparent;
+	}
+}

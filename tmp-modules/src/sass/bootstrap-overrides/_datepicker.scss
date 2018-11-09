@@ -1,0 +1,14 @@
+
+.datepicker {
+	.btn.btn-default.btn-info.btn-today {
+		background-color: $color3hue1;
+		color: #000;
+	}
+}
+
+.datepicker,
+.timepicker {
+	.btn.btn-default.btn-primary:hover {
+		padding: 5px;
+	}
+}

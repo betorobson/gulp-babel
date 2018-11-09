@@ -1,0 +1,21 @@
+
+<div layout="column">
+	<h4>{{item.fields.produto.produtoNome}}</h4>
+	<div layout="row">
+		<icon-svg name="home"></icon-svg>
+		<div flex layout="column">
+			<p class="item-value">
+				<small>Valor médio</small><br />
+				<strong>{{item.fields.produto.produtoValorMedio | currency:'R$'}}</strong>
+			</p>
+			<p class="item-value">
+				<small>Comissão média</small><br/>
+				<strong>
+					{{getComissao(item) | currency:'R$'}}
+					<small>({{item.fields.produto.produtoComissaoMedio | number}}%)</small>
+				</strong>
+			</p>
+			<small>{{getStateName(item.fields.produto.produtoUF)}}</small>
+		</div>
+	</div>
+</div>

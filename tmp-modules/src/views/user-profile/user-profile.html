@@ -1,0 +1,103 @@
+<breadcrumbs class="only-desk" trail="breadcrumbs"></breadcrumbs>
+
+<section
+	class="section"
+>
+
+	<view-title
+		title="viewTitle.title"
+		subtitle="viewTitle.subtitle"
+		desc="viewTitle.desc"
+	></view-title>
+
+	<div class="box-content" ng-if="error">
+		<h1 class="text-center">
+			{{error.title}}
+		</h1>
+		<h2 class="text-center">
+			{{error.message}}
+		</h2>
+	</div>
+
+	<div class="box-content" ng-if="!error">
+
+		<div
+			layout-sm="column"
+			layout-gt-sm="row"
+		>
+
+			<div
+				layout="row"
+				layout-align="center center"
+				class="avatar-wrapper"
+			>
+				<avatar
+					ng-if="urlAvatar"
+					imgsrc="urlAvatar"
+				>
+				</avatar>
+			</div>
+
+			<form
+				flex
+				layout="column"
+				xlayout-xs="column"
+				xlayout-sm="column"
+				xlayout-gt-sm="row"
+				name="form"
+				ng-submit="submit(form)"
+				novalidate
+			>
+
+				<loading-spinner
+					class="fill size-mid"
+					ng-class="submitStatus"
+					ng-if="loading"
+				></loading-spinner>
+
+				<formly-form
+					form="form"
+					fields="fields"
+					model="model"
+					options="formOptions"
+					layout-xs="column"
+					layout-sm="column"
+					layout-gt-sm="row"
+					layout-align-gt-sm="space-between start"
+					layout-wrap
+					class="formly-user-profile"
+				>
+				</formly-form>
+
+				<div
+					class="form-buttons"
+					flex
+					layout="row"
+					layout-align-xs="space-between end"
+					layout-align-sm="space-between end"
+					layout-align-gt-sm="end end"
+				>
+
+					<button
+						type="button"
+						class="btn btn-secondary"
+						ng-click="cancel(form)"
+					>
+						Cancelar
+					</button>
+
+					<button
+						class="btn btn-primary"
+						type="submit"
+					>
+						<span>Salvar alterações</span>
+					</button>
+
+				</div>
+
+			</form>
+		</div>
+
+	</div>
+
+</section>

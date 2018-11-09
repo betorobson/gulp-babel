@@ -1,0 +1,41 @@
+
+view-transaction-followers-list {
+
+	.form-group {
+		margin-bottom: 0;
+	}
+
+	avatar {
+		.avatar-picture {
+			width: 50px;
+			height: 50px;
+		}
+	}
+
+	.follower-item {
+
+		margin-left: 0;
+		margin-right: 0;
+
+		.follower-desc {
+			word-break: break-word;
+		}
+
+		.name {
+			font-size: 16px;
+			line-height: 1;
+		}
+
+		.email {
+			font-size: 14px;
+			color: rgba($color1hue1, .5);
+			line-height: 1;
+		}
+
+		.btn {
+			width: 115px;
+		}
+
+	}
+
+}

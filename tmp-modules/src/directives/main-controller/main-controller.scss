@@ -1,0 +1,16 @@
+
+body {
+
+	&.hideScrollBars {
+		overflow: hidden;
+	}
+
+}
+
+main-controller{
+	display: block;
+}
+
+%main-controller-footer-bar{
+	padding-bottom: 55px;
+}

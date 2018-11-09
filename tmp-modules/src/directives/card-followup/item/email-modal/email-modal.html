@@ -1,0 +1,30 @@
+
+<modal class="card-followp-email-modal">
+	<modal-title>
+		<strong>
+			{{emailSubject}}
+		</strong>
+	</modal-title>
+	<modal-body>
+		<div class="box-content"></div>
+	</modal-body>
+	<modal-footer>
+			<div
+			flex-none
+			layout="row"
+			layout-align="end center"
+		>
+
+			<a
+				flex-gt-xs="33"
+				type="button"
+				class="btn btn-primary"
+				href="mailto:{{emailProspect}}?subject={{emailSubject}}"
+				target="_blank"
+			>
+				Responder
+			</a>
+
+		</div>
+	</modal-footer>
+</modal>

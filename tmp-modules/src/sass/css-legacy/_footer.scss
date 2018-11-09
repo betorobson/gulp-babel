@@ -1,0 +1,56 @@
+/* line 1, ../sass/footer.scss */
+footer {
+  background: #2c3e50;
+  margin-top: 50px;
+  padding: 7px 0;
+}
+
+footer .footer-content{
+  padding: 10px;
+}
+/* line 7, ../sass/footer.scss */
+// footer figure .icon-svg-Anapro-Logo-Marca-3paths {
+//   border-right: solid 1px #28b17f;
+//   padding-right: 15px;
+//   margin-right: 15px;
+//   width: 140px;
+//   height: 34px;
+// }
+/* line 11, ../sass/footer.scss */
+// footer figure .icon-svg-Anapro-Logo-Marca-3paths + p {
+//   line-height: 16px;
+//   margin: 10px 0;
+// }
+/* line 18, ../sass/footer.scss */
+// footer p,
+// footer .icon-svg-Anapro-Logo-Marca-3paths {
+//   float: left;
+// }
+/* line 23, ../sass/footer.scss */
+footer p {
+  padding: 0 15px;
+  font-size: 14px;
+  color: #fff;
+}
+/* line 26, ../sass/footer.scss */
+footer p:first-child {
+  text-align: right;
+  border-right: solid 1px #28b17f;
+}
+
+/* Inicio - MCorrea Version */
+
+@media #{$mediaMobile}{
+    footer p,
+    footer p:first-child{
+      border:0px;
+      padding: 0 10px;
+      text-align: left;
+    }
+
+    footer figure .icon-svg-Anapro-Logo-Marca-3paths{
+      border:0px;
+    }
+}
+
+/* Fim - MCorrea Version */

@@ -1,0 +1,116 @@
+
+view-transaction-details .products,
+.modal.transaction-details .products {
+
+	.item {
+		padding: 10px;
+		min-width: 250px;
+	}
+
+	view-transaction-details-product {
+
+		display: block;
+		background-color: $backgroundColor;
+		padding: 14px;
+		border-radius: 3px;
+		border: 1px solid transparent;
+
+		&.selected {
+
+			background-color: $color2;
+			color: #fff;
+
+			.icon-svg {
+				color: #fff;
+			}
+
+		}
+
+		h4 {
+			border-bottom: 1px solid #d6d6d6;
+			margin-top: 0;
+			padding-bottom: 4px;
+			margin-bottom: 4px;
+		}
+
+		small {
+			text-align: right;
+		}
+
+		.icon-svg {
+			width: 40px;
+			height: 40px;
+			color: $color2;
+			margin-right: 12px;
+		}
+
+		.item-value {
+			strong {
+				font-size: 18px;
+				font-weight: 400;
+			}
+		}
+
+	}
+
+}
+
+view-transaction-details {
+
+	loading-spinner {
+		min-height: 147px;
+	}
+
+	.products {
+
+		margin: 0;
+
+	}
+
+}
+
+.modal.transaction-details {
+
+	modal-body {
+		display: block;
+	}
+
+	.form-group,
+	.products {
+
+		margin: 0 10px;
+
+		view-transaction-details-product {
+			cursor: pointer;
+		}
+
+	}
+
+	@media #{$mediaDesktop}{
+
+		modal-body {
+			min-width: 400px;
+		}
+
+		view-transaction-details-product {
+
+			&:hover {
+				border: 1px solid $color2;
+			}
+		}
+
+	}
+
+	@media #{$mediaMobile}{
+
+		view-transaction-details-product {
+
+			&:active {
+				border: 1px solid $color2;
+			}
+		}
+
+	}
+
+
+}

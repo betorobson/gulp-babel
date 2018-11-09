@@ -1,0 +1,49 @@
+
+<loading-spinner
+	class="fill size-mid"
+	ng-class="submitStatus"
+	ng-if="loading"
+></loading-spinner>
+
+<form
+	name="form"
+	ng-submit="submit(getHide())"
+	novalidate
+	disabled="true"
+>
+	<formly-form
+		layout="column"
+		form="form"
+		options="formOptions"
+		fields="fields"
+		model="model"
+	>
+	</formly-form>
+
+	<div
+		layout="row"
+		layout-align="space-between center"
+	>
+
+		<button
+			flex="45"
+			type="button"
+			class="btn btn-secondary"
+			ng-disabled="loading"
+			ng-click="cancel(getHide())"
+		>
+			Cancelar
+		</button>
+
+		<button
+			flex="45"
+			type="submit"
+			class="btn btn-primary"
+			ng-disabled="loading"
+		>
+			Atualizar
+		</button>
+
+	</div>
+
+</form>

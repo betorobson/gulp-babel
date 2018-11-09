@@ -1,0 +1,200 @@
+
+<div class="box-content position-relative simulacao-proposta">
+
+	<div
+		ng-if="title"
+		class="principal-title no-padding-right">
+		<h2 class="pull-left">
+			{{title}}
+		</h2>
+	</div>
+
+	<loading-spinner
+		class="fill size-mid"
+		ng-class="submitStatus"
+		ng-if="loading"
+	></loading-spinner>
+
+	<div
+		ng-if="hasBlock('informacoespessoais') && !isTitleBlockHidden('informacoespessoais')"
+		class="principal-title block no-padding-right"
+		ng-class="{collapsed: !isExpandedBlock('informacoespessoais')}"
+		data-toggle="collapse"
+		data-target="#bloco-clientes-informacoespessoais"
+	>
+		<h3 class="pull-left">
+			<strong>Informações pessoais</strong>
+			<icon-svg name="edit" class-name="color1hue2"></icon-svg>
+		</h3>
+
+		<a class="accordion-toggle">
+			<icon-svg name="down-arrow-inside-circle" class-name="color1hue2"></icon-svg>
+		</a>
+	</div>
+
+	<div
+		ng-if="hasBlock('informacoespessoais')"
+		id="bloco-clientes-informacoespessoais"
+		class="position-relative accordion-content row panel-collapse collapse"
+		ng-class="{in: isExpandedBlock('informacoespessoais')}"
+	>
+
+		<div class="box-content no-padding-top">
+
+			<form
+				layout="column"
+				layout-wrap
+				name="form"
+				ng-submit="submit(form, fields, model)"
+				novalidate
+				disabled="true"
+				autocomplete="off"
+			>
+				<formly-form
+					form="form"
+					fields="fields"
+					model="model"
+				>
+				</formly-form>
+
+				<div
+					ng-if="edit"
+					layout="row"
+					layout-align="space-between center"
+				>
+
+					<button
+						flex-gt-xs="33"
+						type="button"
+						class="btn btn-secondary"
+						ng-disabled="loading"
+						ng-click="cancel(fields, model)"
+					>
+						Cancelar
+					</button>
+
+					<button
+						flex-gt-xs="33"
+						type="submit"
+						class="btn btn-primary"
+						ng-disabled="loading"
+					>
+						Atualizar
+					</button>
+
+				</div>
+
+				<div
+					ng-if="!edit"
+					layout="row"
+					layout-align="end center"
+				>
+
+					<button
+						flex-gt-xs="33"
+						type="submit"
+						class="btn btn-primary"
+						ng-disabled="loading"
+					>
+						Adicionar
+					</button>
+
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+	<div
+		ng-if="hasBlock('contato') && !isTitleBlockHidden('contato')"
+		class="principal-title block no-padding-right"
+		ng-class="{collapsed: !isExpandedBlock('contato')}"
+		data-toggle="collapse"
+		data-target="#bloco-clientes-contato"
+	>
+		<h3 class="pull-left">
+			<strong>Contato<icon-svg name="edit" class-name="color1hue2"></icon-svg></strong>
+		</h3>
+		<a class="accordion-toggle">
+			<icon-svg name="down-arrow-inside-circle" class-name="color1hue2"></icon-svg>
+		</a>
+	</div>
+
+	<div
+		ng-if="hasBlock('contato')"
+		id="bloco-clientes-contato"
+		class="position-relative accordion-content row panel-collapse collapse"
+		ng-class="{in: isExpandedBlock('contato')}"
+	>
+
+		<div class="box-content no-padding-top">
+
+			<form
+				layout="column"
+				layout-wrap
+				name="formContact"
+				ng-submit="submit(formContact, fieldsContact, modelContact)"
+				novalidate
+				disabled="true"
+				autocomplete="off"
+			>
+				<formly-form
+					form="formContact"
+					fields="fieldsContact"
+					model="modelContact"
+				>
+				</formly-form>
+
+				<div
+					ng-if="edit"
+					layout="row"
+					layout-align="space-between center"
+				>
+
+					<button
+						flex-gt-xs="33"
+						type="button"
+						class="btn btn-secondary"
+						ng-disabled="loading"
+						ng-click="cancel(fieldsContact, modelContact)"
+					>
+						Cancelar
+					</button>
+
+					<button
+						flex-gt-xs="33"
+						type="submit"
+						class="btn btn-primary"
+						ng-disabled="loading"
+					>
+						Atualizar
+					</button>
+
+				</div>
+
+				<div
+					ng-if="!edit"
+					layout="row"
+					layout-align="end center"
+				>
+
+					<button
+						flex-gt-xs="33"
+						type="submit"
+						class="btn btn-primary"
+						ng-disabled="loading"
+					>
+						Adicionar
+					</button>
+
+				</div>
+
+			</form>
+
+		</div>
+
+	</div>
+
+</div>

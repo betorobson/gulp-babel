@@ -1,0 +1,52 @@
+<modal
+	class="transaction-details"
+	delegate="delegate"
+>
+	<modal-title><strong>Selecione um produto</strong></modal-title>
+	<modal-body>
+
+		<div
+			layout="column"
+			layout-margin
+			ng-if="showFilter"
+		>
+			<h3 flex>
+				Caso o produto não esteja na lista,
+				digite abaixo alguma parte do nome para filtrar
+			</h3>
+			<div flex class="form-group">
+				<input
+					type="text"
+					ng-model="model.filter"
+					class="form-control"
+					minlength="2"
+					ng-model-options="{
+						debounce: 300
+					}"
+				/>
+				</div>
+		</div>
+
+		<div
+			layout="row"
+			layout-wrap
+			class="products"
+		>
+			<div
+				ng-repeat="item in getData() | limitTo: 20"
+				class="item"
+				flex-xs="100"
+				flex-gt-xs="50"
+				flex-gt-sm="25"
+				layout="row"
+			>
+				<view-transaction-details-product
+					flex
+					ng-click="patchProduct(item)"
+					class="{{getClassButton(item)}}"
+				></view-transaction-details-product>
+			</div>
+		</div>
+
+	</modal-body>
+</modal>

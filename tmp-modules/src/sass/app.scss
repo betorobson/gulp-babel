@@ -1,0 +1,23 @@
+
+@import
+
+	"sass/variables",
+	"sass/functions",
+	"sass/typography",
+	"sass/icons",
+
+	"sass/helpers",
+
+	"sass/index",
+
+	"sass/bootstrap-overrides/bootstrap-overrides",
+	"sass/swiper-overrides/swiper-overrides",
+	"sass/toastr-overrides/toastr-overrides",
+	"sass/custom/custom",
+
+	"sass/mixins/mixins",
+
+	// CSS Try legacy
+	"sass/css-legacy/css-legacy"
+
+;

@@ -1,0 +1,59 @@
+
+icon-svg-symbols-bundle,
+.iconSVGBundle {
+	display:none;
+}
+
+.icon-svg {
+
+	// default size icons
+	width: 40px;
+	height: 40px;
+	fill: currentColor;
+
+	// set icons colors
+	@each $color in $colors {
+
+			// base color
+			&.color#{nth($color,1)} {
+				color: nth($color,2);
+			}
+
+			// hue 1
+			&.color#{nth($color,1)}hue1 {
+				color: nth($color,3);
+			}
+
+			// hue 2
+			&.color#{nth($color,1)}hue2 {
+				color: nth($color,4);
+			}
+
+	}
+
+	&.Anapro-Logo-Marca-3paths-white {
+		.st0,
+		.st2 {
+			fill: #fff;
+		}
+		.st1 {
+			fill: #d8d6d6;
+		}
+	}
+
+	&.Anapro-Logo-Marca-3paths-gray {
+		.st0,
+		.st2 {
+			fill: #5f6266;
+		}
+		.st1 {
+			fill: #4f4d4f;
+		}
+	}
+
+}
+
+.icon-svg-down-arrow-inside-circle {
+	width: 13px;
+	height: 13px;
+}

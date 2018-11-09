@@ -1,0 +1,33 @@
+
+transaction-transfer {
+
+	display: block;
+
+}
+
+.modal transaction-transfer {
+
+	padding: 0 10px;
+
+	.modal-content-scrollable {
+		margin-left: 0;
+		margin-right: 0;
+		padding: 0 2px;
+	}
+
+}
+
+@media #{$mediaDesktop} {
+	.modal transaction-transfer {
+		width: 600px;
+		min-height: 360px;
+	}
+}
+
+.modal transaction-transfer {
+	@extend %modal-min-height;
+}
+
+.modal transaction-transfer ng-form{
+		min-height: 80px;
+}

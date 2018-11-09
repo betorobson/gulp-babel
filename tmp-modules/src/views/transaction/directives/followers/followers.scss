@@ -1,0 +1,103 @@
+
+view-transaction-followers {
+
+	display: block;
+
+	&[layout-reverse] {
+
+		.followers-row {
+			flex-direction: row-reverse;
+			justify-content: flex-end;
+		}
+
+		.text {
+			text-align: right;
+		}
+
+	}
+
+	.text {
+		margin: 0;
+		padding-right: 10px;
+		padding-left: 10px;
+		line-height: 1;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.link-modal {
+
+		color: inherit;
+		cursor: pointer;
+
+		&:hover{
+			text-decoration: underline;
+		}
+
+	}
+
+	.btn-follow {
+
+		display: block;
+		height: 30px;
+		cursor: pointer;
+		color: rgba($color1hue1, .5);
+
+		&.active {
+			animation: view-transaction-followers-btn-follow .2s ease;
+			color: $color4;
+			transition: color .2s ease;
+		}
+
+		&[permissions-disable-mode]{
+			color: rgba(#000,.1);
+		}
+
+		.icon-svg {
+			width: 30px;
+			height: 30px;
+		}
+
+	}
+
+	@media #{$mediaDesktop}{
+		.btn-follow {
+			&:hover:not(.active):not([permissions-disable-mode]) {
+				color: rgba($color1hue1, .8);
+			}
+		}
+	}
+
+	@keyframes view-transaction-followers-btn-follow{
+		0%,
+		100% {
+			transform: scale(1);
+		}
+		50% {
+			transform: scale(1.2);
+		}
+	}
+
+}
+
+.transaction-followers-modal {
+
+	.modal-content-scrollable {
+		margin-bottom: 0;
+	}
+
+	modal-body {
+		display: block;
+	}
+
+	@media #{$mediaDesktop}{
+
+		view-transaction-followers-list {
+			width: 400px;
+			height: 400px;
+		}
+
+	}
+
+}

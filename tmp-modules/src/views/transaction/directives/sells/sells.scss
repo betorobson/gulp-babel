@@ -1,0 +1,41 @@
+
+view-transaction-sells {
+
+	display: block;
+
+	view-transaction-sell-interaction {
+		display: block;
+
+		.box-product{
+			background-color: $backgroundColor;
+			border-radius: 3px;
+
+			.product-name, .date{
+				font-size: 16px;
+			}
+
+
+		}
+
+		.box-description{
+			padding-top: 10px;
+		}
+
+		.box-financial{
+			border-left: 1px solid #d6d6d6;
+			padding-left: 30px;
+		}
+
+		.total-value{
+			font-size: 16px;
+			margin-bottom: 5px;
+		}
+
+		.list-particulars{
+			margin-top: 10px;
+
+		}
+
+	}
+
+}

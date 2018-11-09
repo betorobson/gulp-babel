@@ -1,0 +1,26 @@
+add-client {
+	display: block;
+}
+
+.modal add-client {
+
+	padding: 0 10px;
+
+	.modal-content-scrollable {
+		margin-left: 0;
+		margin-right: 0;
+		padding: 0 2px;
+	}
+
+}
+
+@media #{$mediaDesktop} {
+	.modal add-client {
+		width: 600px;
+		min-height: 360px;
+	}
+}
+
+.modal add-client{
+	@extend %modal-min-height;
+}

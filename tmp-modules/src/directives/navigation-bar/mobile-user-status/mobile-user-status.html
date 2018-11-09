@@ -1,0 +1,54 @@
+
+<div
+	layout="column"
+	ng-class="classToggle"
+>
+	<div
+		class="mobile-user-status-avatar"
+		layout="row"
+		ng-click="toggle()"
+	>
+		<avatar
+			imgsrc="userProfile.fields.usuario.usuarioUrlImagem"
+		>
+			<user-status-bullet></user-status-bullet>
+			<icon-medal number="1" class="size-mid"></icon-medal>
+		</avatar>
+		<div
+			flex
+			layout="row"
+			layout-align="start center"
+		>
+			<h3 flex>
+				{{userProfile.fields.usuario.usuarioNome}}<br />
+				<small>{{userProfile.extraInfo.contaSistemaNome}}</small>
+			</h3>
+			<div class="arrow"></div>
+		</div>
+	</div>
+	<div
+		layout="column"
+		class="user-status-menu"
+	>
+		<a
+			layout="row"
+			layout-align="start center"
+			class="menu-item-row"
+			hide-mobile-menu-on-tap
+			href="{{$root.pathProvider.getPath('user-profile')}}"
+		>
+			<icon-svg name="{{$root.pathProvider.getIcon('user-profile')}}" class="icons"></icon-svg>
+			<strong>Meus dados</strong>
+		</a>
+		<div
+			layout="column"
+			layout-align="center"
+			class="status-row"
+		>
+			<p>
+				Status nos canais
+			</p>
+		</div>
+		<user-status-switchers switchers></user-status-switchers>
+	</div>
+</div>

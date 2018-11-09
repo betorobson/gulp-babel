@@ -1,0 +1,270 @@
+
+@mixin btn-disabled($bgcolor, $txtColor, $borderColor, $type : "dark"){
+	&[disabled]{
+		@if $type == "light"{
+			&,
+			&:hover{
+				background-color: desaturate(darken($bgcolor, 15%), 100%);
+				cursor: default;
+				color: desaturate(darken($txtColor, 10%), 100%);
+				border-color: desaturate(lighten($borderColor, 10%), 100%);
+			}
+		}
+		@if $type == "dark"{
+			&,
+			&:hover{
+				background-color: desaturate(lighten($bgcolor, 15%), 100%);
+				cursor: default;
+				color: desaturate(darken($txtColor, 5%), 100%);
+				border-color: desaturate(darken($borderColor, 10%), 100%);
+			}
+		}
+
+	}
+}
+
+@mixin btn-media-focus-hover($bgcolor, $bordercolor, $textcolor){
+
+	&:focus,
+	&:focus:active {
+		outline: none;
+	}
+
+	@media #{$mediaDesktop}{
+
+		&:hover {
+			color: $textcolor;
+			background-color: $bgcolor;
+			border: solid 1px $bordercolor;
+		}
+
+		&:active {
+			background-color: rgba($bgcolor, .7);
+		}
+
+	}
+
+	@media #{$mediaMobile}{
+
+		&:active {
+			color: $textcolor;
+			background-color: $bgcolor;
+			border: solid 1px $bordercolor;
+		}
+
+	}
+
+}
+
+.btn {
+
+	position: relative;
+	padding-left: 12px;
+	padding-right: 12px;
+
+	&:active {
+		box-shadow: none;
+	}
+
+	&.btn-fat {
+		line-height: 40px;
+	}
+
+	&.btn-link {
+		text-decoration: underline;
+	}
+
+	&.btn-default-border-radius {
+		border-radius: 2px;
+	}
+
+	&.btn-default-padding {
+		padding-top: 9px;
+		padding-bottom: 9px;
+	}
+
+	&.btn-info,
+	&.btn-primary {
+
+		@extend .btn.btn-default-border-radius;
+		@extend .btn.btn-default-padding;
+
+		color: #fff;
+		background-color: $color1hue2;
+		border: solid 1px $color1hue2;
+
+		@include btn-disabled($color1hue2, #000, $color1hue2, "dark");
+		@include btn-media-focus-hover($color1, $color1, #fff)
+
+	}
+
+	&.btn-secondary {
+
+		@extend .btn.btn-default-border-radius;
+		@extend .btn.btn-default-padding;
+
+		background-color: #fff;
+		border: solid 1px $color1hue2;
+		color: $color1hue2;
+
+		@include btn-disabled(#fff, $color1hue2, $color1hue2, "light");
+		@include btn-media-focus-hover($color1hue2, $color1hue2, #fff)
+
+	}
+
+	&.btn-tertiary {
+
+		@extend .btn.btn-default-border-radius;
+
+		background-color: #fff;
+		border: solid 1px $color1hue2;
+		color: $color1hue2;
+		padding-top: 4px;
+		padding-bottom: 4px;
+
+		&:hover {
+			background-color: #fff;
+			border: solid 1px $color1hue2;
+			color: $color1hue2;
+			padding-top: 4px;
+			padding-bottom: 4px;
+			border-radius: 2px;
+		}
+
+		@include btn-disabled(#fff, $color1hue2, $color1hue2, "light");
+
+	}
+
+	&.btn-link {
+		color: $color1hue2;
+		border-radius: 2px;
+		&:focus, &:hover {
+			color: $color1hue2;
+			border-radius: 2px;
+		}
+	}
+
+	&.btn-xs {
+		color: $color2hue2;
+		background-color: #fff;
+		border-color: #aaaaaa;
+		border-radius: 4px;
+		padding: 3px 10px 1px;
+		margin: 2px;
+		min-width: 90px;
+		font-size: 14px;
+		&:focus,
+		&:hover {
+			color: $color2hue2;
+			background-color: #fff;
+			border-color: #aaaaaa;
+			border-radius: 4px;
+			padding: 3px 10px 1px;
+			margin: 2px;
+			min-width: 90px;
+			font-size: 14px;
+		}
+
+		@include btn-disabled(#fff, $color2hue2, #aaaaaa, "light")
+	}
+
+	&.btn-icon {
+		height: 40px;
+		width: 40px;
+		padding: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		.icon-svg {
+			width: 50%;
+			height: 50%;
+		}
+
+		figure {
+			line-height: 1px;
+		}
+	}
+
+	&:not(.btn-icon) > .icon-svg {
+
+		width: 18px;
+		height: 18px;
+		margin: -4px 0;
+
+		&:first-child {
+			margin-right: 5px;
+		}
+
+		&:last-child {
+			margin-left: 5px;
+		}
+
+	}
+
+	.btn.left {
+		float: left;
+		margin-right: 5px;
+	}
+
+	// @media #{$mediaDesktop}{
+
+&.wrap {
+	white-space: normal;
+}
+
+	// 		&:hover {
+	// 			color: #fff;
+	// 			background-color: $color1;
+	// 			border: solid 1px $color1;
+	// 		}
+
+	// 		&:active {
+	// 			background-color: rgba($color1, .7);
+	// 		}
+
+	// 	}
+
+	// 	&.btn-secondary {
+
+	// 		&:hover {
+	// 			background-color: $color1hue2;
+	// 			border: solid 1px $color1hue2;
+	// 			color: #fff;
+	// 		}
+
+	// 		&:active {
+	// 			background-color: rgba($color1hue2, .7);
+	// 		}
+
+	// 	}
+
+	// }
+
+	// @media #{$mediaMobile}{
+
+	// 	&.btn-info,
+	// 	&.btn-primary {
+
+	// 		&:active {
+	// 			color: #fff;
+	// 			background-color: $color1;
+	// 			border: solid 1px $color1;
+	// 		}
+
+	// 	}
+
+	// 	&.btn-secondary {
+
+	// 		&:active {
+	// 			background-color: $color1hue2;
+	// 			border: solid 1px $color1hue2;
+	// 			color: #fff;
+	// 		}
+
+	// 	}
+
+	// }
+
+}
+

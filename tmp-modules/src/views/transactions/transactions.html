@@ -1,0 +1,47 @@
+
+<breadcrumbs class="only-desk" trail="breadcrumbs"></breadcrumbs>
+
+<section
+	permissions="atd_listar_atendimento"
+	class="section"
+>
+
+	<view-title
+		title="viewTitle.title"
+		desc="viewTitle.desc"
+	></view-title>
+
+	<list-filter ng-if="!loading">
+		<view-transactions-list-filter></view-transactions-list-filter>
+	</list-filter>
+
+	<loading-spinner
+		class="size-mid"
+		ng-if="loading && !error"
+	></loading-spinner>
+
+	<div class="box-content" ng-show="empty">
+		<h1 class="text-center">
+			Nenhum atendimento foi localizado com os filtros informados.
+		</h1>
+	</div>
+
+	<div class="box-content" ng-show="error">
+		<h1 class="text-center">
+			{{error.title}}
+		</h1>
+		<h2 class="text-center">
+			{{error.message}}
+		</h2>
+	</div>
+
+	<list ng-if="!loading && !empty && !error">
+		<list-type-table>
+			<view-transactions-table></view-transactions-table>
+		</list-type-table>
+		<list-type-column>
+			<view-transactions-column></view-transactions-column>
+		</list-type-column>
+	</list>
+
+</section>

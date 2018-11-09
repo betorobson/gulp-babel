@@ -1,0 +1,22 @@
+
+<div
+	class="tab-pane fade in position-relative modal-content-scrollable"
+	ng-class="{active: active}"
+>
+
+	<div
+		ng-if="!delegate.data.emailClient"
+	>
+
+		<h4>Escolha para qual email enviar.</h4>
+
+		<card-actions-email-select
+			item="delegate.data"
+			delegate="cardActionsEmailSelectDelegate"
+			layout="column"
+		>
+		</card-actions-email-select>
+
+	</div>
+
+</div>

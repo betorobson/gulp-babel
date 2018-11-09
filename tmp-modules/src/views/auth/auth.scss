@@ -1,0 +1,42 @@
+
+@include view('auth') {
+
+	#container {
+
+		margin-top: 0;
+
+		.logo {
+			width: 100%;
+			height: 80px;
+			margin: 20px 0;
+
+			.st0 {
+				fill: #4D4D4F;
+			}
+
+			.st1{
+				animation: authLogoAnapro 3.5s ease-in-out infinite;
+				animation-direction: alternate;
+			}
+
+			.st2{
+				animation: authLogoAnapro 3s ease-in-out infinite;
+				animation-direction: alternate-reverse;
+			}
+		}
+
+		@keyframes authLogoAnapro {
+			0%{
+				fill: #4D4D4F;
+			}
+			50% {
+				fill: #8a8d92;
+			}
+			100%{
+				fill: #5D6268;
+			}
+		}
+
+	}
+
+}

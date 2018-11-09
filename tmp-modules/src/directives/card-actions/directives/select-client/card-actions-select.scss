@@ -1,0 +1,71 @@
+card-actions-select-client{
+
+	display: block;
+	position: relative;
+	min-height: 200px;
+
+	strong{
+
+		margin-bottom: 10px;
+
+		span {
+			white-space: nowrap;
+		}
+
+	}
+
+	.icon-svg{
+		width: 20px;
+		height: 20px;
+		color: $color2;
+	}
+
+	.btn-lupa{
+		background-color: transparent;
+		right: 0;
+		position: absolute;
+		outline: none;
+	}
+
+	.form-group {
+		margin-bottom: 0;
+	}
+
+	.card-client{
+
+		background-color: $backgroundColor;
+		border: 1px solid transparent;
+		border-radius: 4px;
+		margin-top: 10px;
+		padding: 10px;
+		color: #333;
+
+		strong{
+			font-weight: 400;
+		}
+
+		h4{
+			margin-top: 0;
+		}
+
+	}
+
+	@media #{$mediaDesktop}{
+		.card-client{
+			&:hover{
+				border: 1px solid $color2;
+				cursor: pointer;
+			}
+		}
+	}
+
+	@media #{$mediaMobile}{
+
+		.card-client{
+			&:active{
+				border: 1px solid $color2;
+			}
+		}
+	}
+
+}

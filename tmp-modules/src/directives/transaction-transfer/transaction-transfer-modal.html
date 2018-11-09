@@ -1,0 +1,15 @@
+
+<modal
+	delegate="delegate"
+>
+	<modal-title>
+		<strong>
+			<span ng-hide="isFinished(item)">Transferir</span>
+			<span ng-hide="!isFinished(item)">Reabrir</span>
+			atendimento
+		</strong>
+	</modal-title>
+	<modal-body-custom layout="column">
+		<transaction-transfer item="item" layout="column" delegate="delegate"></transaction-transfer>
+	</modal-body-custom>
+</modal>

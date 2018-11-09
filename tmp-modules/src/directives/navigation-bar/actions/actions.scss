@@ -1,0 +1,31 @@
+
+#navigationbar-actions {
+
+	modal-body {
+
+		.navigation-bar-actions {
+			margin: 0 15px;
+			display: flex;
+			flex: 1 0 auto;
+			flex-direction: row;
+			flex-wrap: wrap;
+		}
+
+		li {
+
+			@extend .btn-bigicon-text-grid-item;
+
+			display: flex;
+			flex: 1 0 50%;
+			max-width: 50%;
+
+			.btn-bigicon-text {
+				flex: 1 0 100%;
+				width: 100%;
+			}
+
+		}
+
+	}
+
+}

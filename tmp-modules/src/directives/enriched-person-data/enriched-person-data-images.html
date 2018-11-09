@@ -1,0 +1,26 @@
+<ul class="display-items-row">
+	<li ng-repeat="itemOption in item.options">
+		<a 
+			ng-href="{{itemOption.name}}" 
+			target="_blank"
+			flex
+		> 
+			<div 
+				class="person-photo-container"
+				ng-if="!isUserImageError(itemOption)"  
+			>
+				<img 
+					class="person-photo img-circle" 
+					ng-src="{{itemOption.name}}" 
+					on-error-src-remove="hideIcon(itemOption)"
+				/>
+				<div class="person-photo-source-icon-wrapper">
+					<img 
+						class="person-photo-source-icon" 
+						ng-src="//{{itemOption.properties.enrichPersonUrl.ImgUrl}}"
+					/>
+				</div>
+			</div>
+		</a>
+	</li>
+</ul>

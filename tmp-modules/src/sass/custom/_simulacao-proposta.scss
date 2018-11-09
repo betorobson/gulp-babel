@@ -1,0 +1,125 @@
+
+.simulacao-proposta {
+
+	&.box-content {
+		margin-bottom: 20px;
+	}
+
+	.principal-title {
+		margin-top: 0px;
+		padding: 10px 15px;
+		height: auto;
+		display: inline-block;
+	}
+
+	.icons-print {
+		height: 17px;
+		line-height: 17px;
+		padding-left: 20px;
+		margin: 0px;
+		margin-bottom: 10px;
+		vertical-align: top;
+		display: block;
+		color: #2dafe6;
+		background: url(/assets/imgs/icons/icones-impressora.png) no-repeat left;
+	}
+
+	.info-gerais .btn-tertiary {
+		margin-left: 15px;
+	}
+
+	.analise-instantanea {
+		margin: 10px 0;
+		display: inline-block;
+		width: 100%;
+		.title {
+			font-size: 14px;
+			line-height: 16px;
+		}
+
+		dl {
+			&.box-content {
+				padding: 4px;
+				border-radius: 4px;
+			}
+
+			dt a {
+				color: #444747;
+				display: inline-block;
+				width: 100%;
+				text-decoration: none;
+				background: url(/assets/imgs/icons/collapse.png) no-repeat right;
+			}
+
+			a.collapsed {
+				background: url(/assets/imgs/icons/expand.png) no-repeat right;
+			}
+
+			&.correto dt {
+				padding-left: 20px;
+				background: url(/assets/imgs/icons/icones-correto.png) no-repeat left;
+			}
+
+			&.incorreto dt {
+				color: #fe686c;
+				padding-left: 20px;
+				background: url(/assets/imgs/icons/icones-incorreto.png) no-repeat left;
+				a {
+					color: #fe686c;
+				}
+
+			}
+
+		}
+
+		dd {
+			padding: 10px;
+			p, ul {
+				margin: 10px 0;
+			}
+
+			.destaque {
+				color: #fe686c;
+			}
+
+		}
+
+	}
+
+	.buttons {
+
+		.btn {
+			white-space: nowrap;
+		}
+
+	}
+
+	.icons-enviar-documento {
+		padding: 20px 0;
+		max-width: 140px;
+		width: 100%;
+		display: inline-block;
+		border: solid 1px #2dafe6;
+		border-radius: 2px;
+		color: #2dafe6;
+		text-align: center;
+		text-decoration: none;
+		&:before {
+			content: "";
+			height: 27px;
+			width: 100%;
+			margin: 0px;
+			margin-bottom: 10px;
+			vertical-align: top;
+			display: block;
+			background: url(/assets/imgs/icons/novo-atalho.png) no-repeat center;
+		}
+	}
+
+}
+
+modal .simulacao-proposta {
+	&.box-content {
+		margin: 0;
+	}
+}

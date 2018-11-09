@@ -1,0 +1,62 @@
+
+<div
+	class="tab-pane fade in position-relative modal-content-scrollable"
+	ng-class="{active: active}"
+>
+	<loading-spinner
+		class="fill size-mid"
+		ng-class="submitStatus"
+		ng-if="loading"
+	></loading-spinner>
+
+	<form
+		ng-if="delegate.data.phoneClient"
+		layout="column"
+		layout-wrap
+		name="form"
+		ng-submit="submit(form)"
+		novalidate
+		disabled="true"
+	>
+		<formly-form
+			form="form"
+			fields="fields"
+			model="model"
+			options="formOptions"
+		>
+		</formly-form>
+
+		<div
+			layout="row"
+			layout-align="end center"
+		>
+
+			<button
+				flex-gt-xs="33"
+				type="submit"
+				class="btn btn-primary"
+				ng-disabled="loading"
+			>
+				Enviar
+			</button>
+
+		</div>
+
+	</form>
+
+	<div
+		ng-if="!delegate.data.phoneClient"
+	>
+		<h4>Clique no número do telefone e já registre a mensagem.</h4>
+		<card-actions-phone-select
+			item="delegate.data"
+			delegate="cardActionsPhoneSelectDelegate"
+			layout-gt-sm="row"
+			layout-wrap
+			layout-align-gt-sm="center center"
+		>
+		</card-actions-phone-select>
+
+	</div>
+
+</div>

@@ -1,0 +1,49 @@
+<div
+	class="principal-title block no-padding-right"
+	data-toggle="collapse"
+	data-target="#external-info"
+>
+	<h3 class="pull-left">
+		<strong>Informações adicionais</strong>
+	</h3>
+	<a class="accordion-toggle">
+		<icon-svg name="down-arrow-inside-circle" class-name="color1hue2"></icon-svg>
+	</a>
+</div>
+
+<div
+	id="external-info"
+	class="position-relative accordion-content row panel-collapse collapse in"
+>
+	<div class="box-content no-padding-top">
+
+		<ul layout-padding class="no-padding">
+			<li 
+				ng-repeat="item in person.filters"
+				flex 
+				layout="row" 
+				layout-xs="column" 
+				layout-sm="column"
+			>
+				<strong 
+					flex-xs 
+					flex-sm 
+					flex-gt-sm="20"
+				>
+					{{item.templateOptions.label}}
+				</strong>
+
+				<enriched-person-data-text flex ng-if="getTypeByField(item) == 'dataText'"></enriched-person-data-text>
+
+				<enriched-person-data-list flex ng-if="getTypeByField(item) == 'dataList'"></enriched-person-data-list>
+
+				<enriched-person-data-icons flex ng-if="getTypeByField(item) == 'dataIcons'"></enriched-person-data-icons>
+				
+				<enriched-person-data-images flex ng-if="getTypeByField(item) == 'dataImages'"></enriched-person-data-images>
+
+			</li>
+		</ul>
+	
+	</div>
+
+</div>

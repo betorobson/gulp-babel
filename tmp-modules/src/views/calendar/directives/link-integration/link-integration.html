@@ -1,0 +1,98 @@
+
+<loading-spinner
+	class="size-small"
+	ng-if="loading && !error"
+></loading-spinner>
+
+<div
+	ng-if="!loading && !error"
+>
+
+	<p>
+		Abaixo, clique no sistema de agenda que você utiliza para integrar
+		automaticamente ou clique em "Outros" para integrar com qualquer outro
+		sistema de agenda de sua preferência,
+		que seja compatível com o padrão ICal ou arquivo .ics.
+	</p>
+</div>
+
+<div class="box-content" ng-show="error">
+	<h1 class="text-center">
+		{{error.title}}
+	</h1>
+	<h2 class="text-center">
+		{{error.message}}
+	</h2>
+</div>
+
+<div
+	ng-if="!loading && !error"
+	layout="row"
+	layout-wrap
+	layout-align="center start"
+	class="integration-itens"
+>
+
+	<div
+		ng-repeat="item in listKeys"
+		flex="33"
+		class="btn-bigicon-text-grid-item"
+	>
+		<a
+			ng-href="{{list[item]}}"
+			target="_blank"
+			flex
+			layout="column"
+			layout-align="center center"
+			class="btn-bigicon-text"
+		>
+			<icon-svg name="{{::getButtons(item).icon}}"></icon-svg>
+			<span>
+				{{::getButtons(item).label || item}}
+				<small ng-if="getButtons(item).small">{{::getButtons(item).small}}</small>
+			</span>
+		</a>
+
+	</div>
+
+
+	<div
+		flex="33"
+		class="btn-bigicon-text-grid-item"
+	>
+		<a
+			target="_blank"
+			flex
+			layout="column"
+			layout-align="center center"
+			class="btn-bigicon-text"
+			ng-click="integrationManual()"
+		>
+		<icon-svg name="http"></icon-svg>
+			Outros
+		</a>
+	</div>
+
+
+	<div
+		ng-if="schedulesManual"
+		flex="100"
+		class="textarea-link"
+	>
+
+		<strong>
+			Copie e cole essa URL em qualquer sistema de agenda
+			de sua preferência que use o padrão ICal ou arquivo com padrão .ics
+		</strong>
+
+		<textarea
+			readonly
+			class="form-control"
+		>
+			{{list.integrationSchedulesManual}}
+		</textarea>
+	</div>
+
+</div>
+
+

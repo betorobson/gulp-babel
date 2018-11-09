@@ -1,0 +1,24 @@
+
+// Will grow as needed, but won't shrink. Starts with a size based on its width
+// and height values.
+[flex-noshrink] {
+	flex: 1 0 auto;
+}
+
+// Will shrink as needed, but won't grow. Starts with a size based on
+// its width and height values.
+[flex-nogrow] {
+	flex: 0 1 auto;
+}
+
+[layout="row"]{
+	&[layout-reverse]{
+		flex-direction: row-reverse;
+	}
+}
+
+[layout="column"]{
+	&[layout-reverse]{
+		flex-direction: column-reverse;
+	}
+}

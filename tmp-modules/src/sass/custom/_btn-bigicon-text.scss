@@ -1,0 +1,66 @@
+
+.btn-bigicon-text-grid-item {
+	padding: 2px;
+}
+
+.btn-bigicon-text {
+
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid $color1hue2;
+	border-radius: 3px;
+	padding: 10px 5px;
+	text-align: center;
+	color: $color1hue2;
+	align-items: center;
+
+	&.active {
+		background-color: $color1hue2;
+		color: #fff;
+	}
+
+	&[disabled] {
+		opacity: .6;
+		color: #ccc;
+		border-color: #ccc;
+		cursor: default;
+	}
+
+	.icon-svg {
+		width: 33px;
+		height: 33px;
+		margin: 10px 0;
+	}
+
+	small{
+		display: inline;
+	}
+
+	@media #{$mediaDesktop}{
+		&:hover {
+
+			text-decoration: none;
+
+			&:not([disabled]) {
+				background-color: $color1;
+			}
+		}
+
+	}
+
+	@media #{$mediaMobile}{
+		&:not([disabled]) {
+
+			&:hover {
+				text-decoration: none;
+			}
+
+			&:active {
+				background-color: rgba($color1, .7);
+			}
+
+		}
+	}
+
+}

@@ -1,0 +1,98 @@
+
+@include view('queues-handler-position') {
+
+	.table {
+
+		avatar {
+			margin-right: 10px;
+		}
+
+		h4 {
+			margin: 0;
+		}
+
+		tr.current-user td {
+			background-color: lighten(#d6d6d6, 10%);
+		}
+
+		loading-spinner,
+		.icon-svg{
+			width: 22px;
+			height: 22px;
+		}
+
+		.icon-svg-thumb-up{
+			fill: $color2
+		}
+
+		.icon-svg-cloud-error-filled{
+			fill: $color2hue1;
+		}
+
+		.icon-svg-pause-button-circle-filled{
+			fill: $color4;
+		}
+
+
+	}
+
+}
+
+queues-handler-position-input {
+
+	display: block;
+
+	.position[has-permission-handler=true] {
+
+		cursor: pointer;
+
+		&:hover {
+			h4 {
+				color: $color1hue2;
+			}
+		}
+
+	}
+
+	.position:not([has-permission-handler=true]) {
+		.icon-svg-edit {
+			color: #d6d6d6;
+		}
+	}
+
+	.icon-svg-edit,
+	loading-spinner {
+		margin-right: 5px;
+	}
+
+	.icon-svg-arrow-left,
+	.icon-svg-edit {
+		color: $color1hue2;
+	}
+
+	.form-group {
+		margin: 0;
+	}
+
+	.bt-reset {
+		cursor: pointer;
+	}
+
+	input {
+		padding-right: 0;
+	}
+
+	h4,
+	input.form-control {
+		font-size: 22px;
+	}
+
+	@media #{$mediaDesktop}{
+		width: 85px;
+	}
+
+	@media #{$mediaMobile}{
+		width: 65px;
+	}
+
+}

@@ -1,0 +1,113 @@
+
+.pill-actions {
+
+	border: 1px solid #d6d6d6;
+	border-radius: 3px;
+	padding: 2px 5px;
+	margin: 3px;
+	color: $color2hue2;
+	font-size: 14px;
+	line-height: 16px;
+	min-height: 22px;
+	word-break: break-all;
+
+	.icon-svg{
+		width: 12px;
+		height: 12px;
+		margin-bottom: -1px;
+		margin-left: 5px;
+		cursor: pointer;
+		color: $color1hue2;
+
+		&.icon-svg-remove {
+			color: $color2hue1;
+		}
+
+	}
+
+
+	// set icons colors
+	@each $color in $colors {
+
+		// base color
+		&.color#{nth($color,1)} {
+
+			background-color: nth($color,2);
+			border: none;
+			color: contrast-color(darken(nth($color,2), 20%), #fff, #333);
+
+		}
+	}
+
+	@media #{$mediaDesktop}{
+
+		.icon-svg.icon-svg-remove {
+
+			&:hover{
+				color: $color1hue2;
+			}
+
+		}
+
+		&:hover {
+			// set icons colors
+			@each $color in $colors {
+
+				// base color
+				&.color#{nth($color,1)} {
+					background-color: nth($color,4);
+					color: contrast-color(darken(nth($color,4), 20%), #fff, #333);
+
+					.icon-svg{
+						&:hover{
+							color: contrast-color(darken(nth($color,4), 20%), #fff, $color1hue2);
+						}
+					}
+
+				}
+
+
+
+			}
+
+		}
+
+	}
+
+
+	@media #{$mediaMobile}{
+
+
+		.icon-svg.icon-svg-remove {
+
+			&:active{
+				color: $color1hue2;
+			}
+
+		}
+
+		&:active {
+			// set icons colors
+			@each $color in $colors {
+
+				// base color
+				&.color#{nth($color,1)} {
+					background-color: nth($color,4);
+					color: contrast-color(darken(nth($color,4), 20%), #fff, #333);
+
+					.icon-svg{
+						&:active{
+							color: contrast-color(darken(nth($color,4), 20%), #fff, $color1hue2);
+						}
+					}
+
+				}
+
+
+
+			}
+
+		}
+	}
+
+}

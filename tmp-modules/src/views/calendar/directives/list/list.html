@@ -1,0 +1,20 @@
+
+<div
+	class="calendar"
+	layout="row"
+	layout-xs="column"
+	layout-wrap
+>
+
+	<calendar-list-item
+		item="item"
+		delegate="delegate"
+		ng-repeat="item in list"
+		ng-click="clickItem(item, $event)"
+		layout="row"
+		flex-xs="50"
+		flex-sm="33"
+		flex-gt-sm="25"
+	></calendar-list-item>
+
+</div>

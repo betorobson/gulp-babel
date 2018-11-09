@@ -1,0 +1,100 @@
+
+<loading-spinner
+	class="fill size-small"
+	ng-if="loading"
+></loading-spinner>
+
+<div
+	flex
+	layout="row"
+	layout-wrap
+	ng-class="{
+		'nya-content-column-multiple': options.data.multiple,
+		'toggle-select': isAllOptionsSelected()
+	}"
+>
+	<ol
+		ng-if="!loading"
+		flex
+		class="nya-bs-select"
+		ng-model="model[options.key || index]"
+		live-search="true"
+		size="8"
+		disabled="options.templateOptions.options.length === 0"
+		title="{{to.placeholder}}"
+		data-selected-text-format="count"
+	>
+		<li class="search-box-hint-limit-exceeded" ng-if="showSearchBoxHint">
+			<p>
+				Caso o que queira não esteja na lista, digite para tentar encontrar.
+			</p>
+		</li>
+		<li
+			data-value="option.value"
+			nya-bs-option="
+				option in getOptions()
+			"
+			ng-class="{
+				selected: optionIsSelected(option)
+			}"
+		>
+			<a>
+
+				<span
+					ng-if="!options.data.customDesc"
+					option-value="{{option.value}}"
+				>
+					{{option.displayName}}
+					<span class="hidden-normalized-name">{{option.name}}</span>
+				</span>
+
+				<span
+					ng-if="options.data.customDesc"
+					ng-bind-html="option.customDescTemplate"
+					option-value="{{option.value}}"
+				>
+				</span>
+
+				<span class="glyphicon glyphicon-unchecked"></span>
+				<span class="glyphicon glyphicon-ok"></span>
+
+			</a>
+		</li>
+	</ol>
+
+	<div
+		ng-if="options.data.multiple"
+		layout="row"
+		layout-wrap
+		flex="100"
+		class="selected-items"
+	>
+		<div
+			ng-repeat="option in options.templateOptions.options"
+			ng-if="optionIsSelected(option)"
+			class="pill-actions"
+		>
+			{{option.displayName}}
+			<a
+				class="btn-remove"
+				title="Clique para remover"
+				ng-click="removeSelectedOption(option)"
+			>
+				<icon-svg name="remove"></icon-svg>
+			</a>
+		</div>
+	</div>
+
+	<a
+		ng-if="!options.data.multiple && !to.required && model[options.key || index]"
+		layout="row"
+		layout-align="center center"
+		class="btn-cleanup"
+		ng-click="cleanup($event)"
+	>
+		<icon-svg
+			name="remove-filled"
+		></icon-svg>
+	</a>
+
+</div>

@@ -1,0 +1,98 @@
+
+<breadcrumbs class="only-desk" trail="breadcrumbs"></breadcrumbs>
+
+<section
+	class="section"
+>
+
+	<view-title
+		title="viewTitle.title"
+		subtitle="viewTitle.subtitle"
+		desc="viewTitle.desc"
+	></view-title>
+
+	<div class="box-content" ng-if="error">
+		<h1 class="text-center">
+			{{error.title}}
+		</h1>
+		<h2 class="text-center">
+			{{error.message}}
+		</h2>
+	</div>
+
+	<div class="box-content" ng-if="!error">
+
+		<loading-spinner
+			class="size-mid"
+			ng-class="submitStatus"
+			ng-if="loading"
+		></loading-spinner>
+
+		<table ng-if="!loading" class="table" border="1" cellpadding="2">
+			<thead>
+				<tr>
+					<th width="5%">
+						Posição
+					</th>
+					<th>Nome</th>
+					<th width="5%">Status</th>
+					<th ng-if="$root.mainController.device == 'desktop' " width="15%">Entrou no Chat</th>
+					<th ng-if="$root.mainController.device == 'desktop' " width="15%">Último retorno</th>
+					<th ng-if="$root.mainController.device == 'desktop' " width="15%">Último atendimento</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					ng-repeat="item in users | orderBy:'Ordem'"
+					class="no-hover"
+					ng-class="{
+						'current-user': isSameUser(item)
+					}"
+				>
+					<td>
+						<queues-handler-position-input
+							queue="dataQueue"
+							item="item"
+							channel-properties="channelProperties"
+						>
+						</queues-handler-position-input>
+					</td>
+					<td class="col-user-name">
+						<div
+							layout="row"
+							layout-align="start center"
+						>
+							<avatar
+								imgsrc="item.UsuarioUrlImagem"
+							>
+							</avatar>
+							<h4 flex>
+								{{item.UsuarioContaSistemaNome}}
+								<small ng-show="item.UsuarioContaSistemaApelido">
+									({{item.UsuarioContaSistemaApelido}})
+								</small>
+							</h4>
+						</div>
+					</td>
+					<td>
+						<div
+							layout="row"
+							layout-align="center center"
+							bs-tooltip
+							data-title="{{getStatusProperties(item.ChannelStatus).label}}"
+						>
+							<icon-svg
+								name="{{getStatusProperties(item.ChannelStatus).icon}}"
+							></icon-svg>
+						</div>
+					</td>
+					<td ng-if="$root.mainController.device == 'desktop' ">{{item.ChannelEnterDate | date: 'dd/MM HH:mm' || 'Nenhum'}}</td>
+					<td ng-if="$root.mainController.device == 'desktop' ">{{item.ChannelLastAttendedReturnProspectDate | date: 'dd/MM HH:mm'}}</td>
+					<td ng-if="$root.mainController.device == 'desktop' ">{{item.ChannelLastAttendedNewProspectDate | date: 'dd/MM HH:mm'}}</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+</section>
