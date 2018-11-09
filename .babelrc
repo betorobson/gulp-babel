@@ -5,7 +5,7 @@
 		[
 			"@babel/preset-env",
 			{
-				"debug": true,
+				// "debug": true,
 				"targets": [
 					"last 5 chrome version",
 					"last 2 safari version"

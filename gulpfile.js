@@ -64,11 +64,11 @@ gulp.task(
 			// '!src/app.js',
 			// 'tmp-modules/src/**/*.js'
 		])
+			.pipe(cached('scripts'))
 			.pipe(webpack( require('./webpack.config.js') ))
 			// .pipe(sourcemaps.init())
-			// .pipe(cached('scripts'))
 			// .pipe(gulpDebug({title: 'javascriptSrcBuild'}))
-			// .pipe(remember('scripts'))
+			.pipe(remember('scripts'))
 			// .pipe(concat('app.min.js'))
 			// .pipe(babel())
 			// .pipe(browserified)
@@ -96,8 +96,8 @@ task(
 	series(
 		'clean',
 		'eslint',
-		'javascript',
-		'browserify'
+		'javascript'
+		// 'browserify'
 	)
 );
 
@@ -107,12 +107,12 @@ gulp.task(
 
 		var watcher = gulp.watch(
 			[
-				'src/**/*.js',
+				// 'src/**/*.js',
 				'tmp-modules/src/**/*.js',
 			],
 			gulp.series(
-				'javascript',
-				'browserify'
+				'javascript'
+				// 'browserify'
 			)
 		);
 

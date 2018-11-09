@@ -49,6 +49,9 @@ module.exports = {
 			})
 		]
 	},
+	performance: {
+		hints: false
+	},
 	plugins: [
 		new webpack.SourceMapDevToolPlugin({
 			filename: 'app.min.bundle.js.map'
