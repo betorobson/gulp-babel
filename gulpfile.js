@@ -2,28 +2,28 @@
 const
 	gulp = require('gulp'),
 	{ task, series } = require('gulp'),
-	babel = require('gulp-babel'),
-	babelify = require('babelify'),
-	concat = require('gulp-concat'),
+	// babel = require('gulp-babel'),
+	// babelify = require('babelify'),
+	// concat = require('gulp-concat'),
 	del = require('del'),
-	browserify = require('browserify'),
-	bro = require('gulp-bro'),
-	source = require('vinyl-source-stream'),
-	buffer = require('vinyl-buffer'),
-	sourcemaps = require('gulp-sourcemaps'),
+	// browserify = require('browserify'),
+	// bro = require('gulp-bro'),
+	// source = require('vinyl-source-stream'),
+	// buffer = require('vinyl-buffer'),
+	// sourcemaps = require('gulp-sourcemaps'),
 	// uglify = require('gulp-uglify'),
 	eslint = require('gulp-eslint'),
 	// runSequence = require('gulp-sequence'),
 	cached = require('gulp-cached'),
-	gulpDebug = require('gulp-debug'),
-	transform = require('vinyl-transform'),
+	// gulpDebug = require('gulp-debug'),
+	// transform = require('vinyl-transform'),
 	remember = require('gulp-remember'),
 	webpack = require('webpack-stream');
 
-var browserified = transform(function(filename) {
-	var b = browserify(filename);
-	return b.bundle();
-});
+// var browserified = transform(function(filename) {
+// 	var b = browserify(filename);
+// 	return b.bundle();
+// });
 
 gulp.task(
 	'clean',
@@ -76,20 +76,20 @@ gulp.task(
 			.pipe(gulp.dest('./dist'))
 );
 
-gulp.task(
-	'browserify',
-	() =>
+// gulp.task(
+// 	'browserify',
+// 	() =>
 
-		browserify({
-			entries: './dist/app.min.js',
-			debug: true
-		})
-			.transform(babelify)
-			.bundle()
-			.pipe(source('app.min.bundle.js'))
-			.pipe(buffer())
-			.pipe(gulp.dest('./dist'))
-);
+// 		browserify({
+// 			entries: './dist/app.min.js',
+// 			debug: true
+// 		})
+// 			.transform(babelify)
+// 			.bundle()
+// 			.pipe(source('app.min.bundle.js'))
+// 			.pipe(buffer())
+// 			.pipe(gulp.dest('./dist'))
+// );
 
 task(
 	'default',
